@@ -118,12 +118,17 @@ public interface SsUserMapper {
     @Select("select user_id from ss_user where register_mobile =#{registerMobile}")
     String getUserByRegisterMobile(String registerMobile);
 
-    @Select("select count(*) from ss_user usr,ss_order so,ss_product sp where usr.available = 1 and usr.referrer = #{userId} and so.available = 1 and so.order_status>=1 and usr.user_id = so.user_id and usr.member_level=sp.`level`")
-    Integer getXiaXianCountByUserId(@Param("userId") String userId);
+//    @Select("select count(*) from ss_user usr,ss_order so,ss_product sp where usr.available = 1 and usr.referrer = #{userId} and so.available = 1 and so.order_status>=1 and usr.user_id = so.user_id and usr.member_level=sp.`level`")
+    @Select("select count(*) from ss_user where referrer = #{userId} and merchant_id = #{merchantId} and available = 1")
+    Integer getXiaXianCountByUserId(@Param("userId") String userId, @Param("merchantId")String merchantId);
 
     @Select("select sum(actual_money) from ss_order where available = 1 and user_id = #{userId} and order_status in (1,2)")
     Integer getActualMoneyByUserId(@Param("userId") String userId);
 
     @Select("select * from ss_user where available=1 and register_mobile=#{phone} and merchant_id =#{merchantId}")
     SsUserDO getUserByPhone(@Param("phone") String phone, @Param("merchantId") String merchantId);
+
+    //根据userId查询该userId的一级下线的总业绩
+    @Select("select sum(so.money) from ss_user su join ss_order so on su.user_id = so.user_id where su.referrer = #{userId} and su.merchant_id = #{merchantId} and su.available = 1 and so.order_status in (1,2) and so.available = 1")
+    Integer getTotalPerformanceByUserId(@Param("userId")String userId, @Param("merchantId")String merchantId);
 }

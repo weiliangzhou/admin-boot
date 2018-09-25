@@ -32,9 +32,11 @@ public interface SsUserService {
 
 	String getUserByRegisterMobile(String registerMobile);
 
-    Integer getXiaXianCountByUserId(String userId);
+    Integer getXiaXianCountByUserId(String userId, String merchantId);
 
 	Integer getActualMoneyByUserId(String userId);
 
 	SsUserDO getUserByPhone(String referrerPhone, String merchantId);
+
+	Integer getTotalPerformanceByUserId(String userId, String merchantId);
 }

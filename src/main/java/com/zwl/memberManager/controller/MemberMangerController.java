@@ -64,12 +64,16 @@ public class MemberMangerController {
 
             }
             String userId = ssUserDO.getUserId();
-            Integer xiaxianCount = ssUserService.getXiaXianCountByUserId(userId);
+            String merchantId = ShiroUtils.getMerchantId();
+            //根据userId查下线人数
+            Integer xiaxianCount = ssUserService.getXiaXianCountByUserId(userId,merchantId);
             ssUserDO.setXiaxianCount(xiaxianCount == null ? 0 : xiaxianCount);
             //根据userId查消费金额
             Integer actualMoney = ssUserService.getActualMoneyByUserId(userId);
             ssUserDO.setActualMoney(actualMoney == null ? 0 : actualMoney / 100);
-
+            //根据userId查总业绩
+            Integer totalPerformance = ssUserService.getTotalPerformanceByUserId(userId,merchantId);
+            ssUserDO.setTotalPerformance(totalPerformance == null ? 0 : totalPerformance / 100);
         }
         int total = ssUserService.count(query);
         PageUtils pageUtils = new PageUtils(ssUserList, total);
@@ -146,4 +150,35 @@ public class MemberMangerController {
         return R.ok();
     }
 
+    @GetMapping("/xiaXian/{userId}")
+    String xiaXian(Model model, @PathVariable("userId") String userId) {
+        model.addAttribute("userId", userId);
+        return "memberManager/xiaXian";
+    }
+
+    @GetMapping("/getXiaXianList")
+    @ResponseBody
+    public PageUtils getXiaXianList(@RequestParam Map<String, Object> params) {
+        //查询列表数据
+        params.put("merchantId", ShiroUtils.getMerchantId());
+        params.put("available", 1);
+        Query query = new Query(params);
+        List<SsUserDO> ssUserList = ssUserService.list(query);
+        for (SsUserDO ssUserDO : ssUserList) {
+            String userId = ssUserDO.getUserId();
+            String merchantId = ShiroUtils.getMerchantId();
+            //根据userId查下线人数
+            Integer xiaxianCount = ssUserService.getXiaXianCountByUserId(userId, merchantId);
+            ssUserDO.setXiaxianCount(xiaxianCount == null ? 0 : xiaxianCount);
+            //根据userId查消费金额
+            Integer actualMoney = ssUserService.getActualMoneyByUserId(userId);
+            ssUserDO.setActualMoney(actualMoney == null ? 0 : actualMoney / 100);
+            //根据userId查总业绩
+            Integer totalPerformance = ssUserService.getTotalPerformanceByUserId(userId,merchantId);
+            ssUserDO.setTotalPerformance(totalPerformance == null ? 0 : totalPerformance / 100);
+        }
+        int total = ssUserService.count(query);
+        PageUtils pageUtils = new PageUtils(ssUserList, total);
+        return pageUtils;
+    }
 }

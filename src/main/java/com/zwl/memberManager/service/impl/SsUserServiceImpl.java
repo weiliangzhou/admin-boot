@@ -61,8 +61,8 @@ public class SsUserServiceImpl implements SsUserService {
     }
 
     @Override
-    public Integer getXiaXianCountByUserId(String userId) {
-        return ssUserMapper.getXiaXianCountByUserId(userId);
+    public Integer getXiaXianCountByUserId(String userId, String merchantId) {
+        return ssUserMapper.getXiaXianCountByUserId(userId,merchantId);
     }
 
     @Override
@@ -73,5 +73,10 @@ public class SsUserServiceImpl implements SsUserService {
     @Override
     public SsUserDO getUserByPhone(String phone, String merchantId) {
         return ssUserMapper.getUserByPhone(phone, merchantId);
+    }
+
+    @Override
+    public Integer getTotalPerformanceByUserId(String userId, String merchantId) {
+        return ssUserMapper.getTotalPerformanceByUserId(userId,merchantId);
     }
 }

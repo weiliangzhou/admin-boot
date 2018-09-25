@@ -69,20 +69,11 @@ function load() {
 								{
 									checkbox : true
 								},
-																{
-									field : 'id', 
-									title : '' 
-								},
-                                {
-                                	field : 'merchantId',
-                                	title : '商户号'
-                                }
-								,
-								{
-									field : 'userId', 
-									title : 'userId'
-								}
-								// ,
+								// 								{
+								// 	field : 'id',
+								// 	title : ''
+								// },
+
 								// 								{
 								// 	field : 'wechatOpenid',
 								// 	title : '微信openid'
@@ -92,72 +83,86 @@ function load() {
 								// 	field : 'wechatUnionId',
 								// 	title : '微信unionID'
 								// }
-								 ,
-								 								{
-								 	field : 'registerFrom',
-								 	title : '渠道注册',
-                                    formatter: function (value, row, index) {
-                                        if(row.registerFrom == null ){
-                                            return "";
-                                        }
-                                       if (row.registerFrom == 1){
-                                            return "注册";
-                                        }else if (row.registerFrom == 2){
-                                            return "线下导入";
-                                        }
-                                        return "";
-                                    }
-								 }
-								,
+								//  ,
+
+								{
+									field : 'realName',
+									title : '真实姓名'
+								},
 								{
 									field : 'registerMobile', 
-									title : '绑定手机号' 
+									title : '绑定手机号',
+                                    formatter : function(value, row, index) {
+                                        var e = '<a  href="#" style="color: blue" mce_href="#" title="查看下线" onclick="getXiaXianList(\''
+                                            + row.userId
+                                            + '\')">'+value+'</a> ';
+                                        return e ;
+                                    }
 								},
-																{
-									field : 'realName', 
-									title : '真实姓名' 
-								}
-								,
+								{
+									field : 'levelName',
+									title : '会员等级'
+								},
+								{
+									field : 'referrerRealName',
+									title : '推荐人'
+								},
+								{
+									field : 'referrerMobile',
+									title : '推荐人手机号 '
+								},
+								{
+									field : 'xiaxianCount',
+									title : '下级数量'
+								},
+								{
+									field : 'totalPerformance',
+									title : '总业绩'
+								},
+								{
+									field : 'userId',
+									title : 'userId'
+								},
 																{
 									field : 'referrer', 
 									title : '推荐人userId '
 								},
-																{
-									field : 'referrerMobile',
-									title : '推荐人手机号 '
+								{
+									field : 'expiresTime',
+									title : '会员到期时间'
 								},
-																{
-									field : 'referrerRealName',
-									title : '推荐人姓名 '
-								}
-								,
-                            	{
-                                	field : 'xiaxianCount',
-									title : '下线'
-                            	},
+								{
+									field : 'registerTime',
+									title : '注册时间'
+								},
+								{
+									field : 'registerFrom',
+									title : '注册渠道',
+									formatter: function (value, row, index) {
+										if(row.registerFrom == null ){
+											return "";
+										}
+										if (row.registerFrom == 1){
+											return "注册";
+										}else if (row.registerFrom == 2){
+											return "线下导入";
+										}
+										return "";
+									}
+								},
                             	{
                                 	field : 'actualMoney',
                                 	title : '消费金额'
 								},
-																{
-									field : 'levelName', 
-									title : '会员等级名称' 
-								}
-								,
-																{
-									field : 'expiresTime', 
-									title : '会员到期时间' 
+								{
+									field : 'merchantId',
+									title : '商户号'
 								},
-																{
-									field : 'registerTime', 
-									title : '注册时间' 
-								}
 //								,
 //																{
 //									field : 'modifyTime',
 //									title : '更新时间'
 //								}
-								,
 																{
 									title : '操作',
 									field : 'id',
@@ -279,3 +284,14 @@ layui.use('laydate', function(){
     ,type: 'datetime'
   });
 });
+
+function getXiaXianList(userId) {
+    layer.open({
+        type : 2,
+        title : '查看下线',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '800px', '520px' ],
+        content : prefix + '/xiaXian/' + userId// iframe的url
+    });
+}

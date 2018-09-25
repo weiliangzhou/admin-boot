@@ -59,5 +59,7 @@ public class SsUserDO implements Serializable {
     private Integer xiaxianCount;
     //消费金额
     private Integer actualMoney;
+    //总业绩
+    private Integer totalPerformance;
 
 }
