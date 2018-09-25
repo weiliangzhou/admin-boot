@@ -55,6 +55,10 @@ function load() {
 									title : '绑定手机号'
 								},
 								{
+									field : 'userId',
+									title : 'userId'
+								},
+								{
 									field : 'levelName',
 									title : '会员等级'
 								},
@@ -70,10 +74,6 @@ function load() {
 									field : 'totalPerformance',
 									title : '总业绩'
 								}
-								// {
-								// 	field : 'userId',
-								// 	title : 'userId'
-								// }
 						]
 					});
 }
