@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t layui-form" id="signupForm">
+                        <input name="id" type="hidden" th:value="${Withdraw.id}">
+                        <!--<input id="openId" name="openId" type="hidden" th:value="${Withdraw.openId}">-->
+                        <!--<input id="userId" name="userId" type="hidden" th:value="${Withdraw.userId}">-->
+                        <!--<input id="paymentNo" name="paymentNo" type="hidden" th:value="${Withdraw.paymentNo}">-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">真实姓名：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly" th:value="${Withdraw.realName}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">提现金额：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" readonly="readonly"
+                                       th:value="${Withdraw.money}/100">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">提现状态</label>
+                            <div class="col-sm-8">
+                                <div class="layui-input-block">
+
+                                    <input type="radio" th:if="${Withdraw.status == 1}"
+                                           th:checked="checked" title="审核中">
+                                    <input type="radio" th:if="${Withdraw.status == 2}"
+                                           th:checked="checked" title="通过">
+                                    <input type="radio" th:if="${Withdraw.status == 3}"
+                                           th:checked="checked" title="未通过">
+
+                                    <!--<input type="radio" name="withdrawStatus" title="未审核" th:value="未审核" th:checked="${Withdraw.status == 1}? true : false" />-->
+                                    <!--<input type="radio" name="withdrawStatus" title="审核中" th:value="审核中" th:checked="${Withdraw.status == 2}? true : false" />-->
+                                    <!--<input type="radio" name="withdrawStatus" title="未通过" th:value="未通过" th:checked="${Withdraw.status == 3}? true : false" />-->
+                                    <!--<input type="radio" name="withdrawStatus" title="已通过" th:value="已通过" th:checked="${Withdraw.status == 4}? true : false" />-->
+
+                                    <!--<input id="status" name="" class="form-control" type="text" readonly="readonly" th:if="${Withdraw.status == 1 }" th:value="未提交">-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">支付方式</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly"
+                                       th:value="${Withdraw.payWay}==1?'微信':'支付宝'">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商户号：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly" th:value="${Withdraw.merchantId}">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">提现微信订单号：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--
+                    <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">到账时间：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="paymentTime" name="paymentTime" class="form-control" type="text"-->
+                        <!--readonly="readonly"-->
+                        <!--th:value="${Withdraw.paymentTime == null ? '' : #dates.format(Withdraw.paymentTime,'yyyy-MM-dd hh:mm:ss')}">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly"
+                                       th:value="${#dates.format(Withdraw.createTime,'yyyy-MM-dd hh:mm:ss')}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审核通过时间：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly"
+                                       th:value="${Withdraw.successTime == null ? '' : #dates.format(Withdraw.successTime,'yyyy-MM-dd hh:mm:ss')}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审核人员：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly"
+                                       th:value="${Withdraw.operator}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注：</label>
+                            <div class="col-sm-8">
+                                <input id="remark" name="remark" class="form-control" type="text"
+                                       th:value="${Withdraw.remark}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审批：</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="status">
+                                    <option value="2">审批通过</option>
+                                    <option value="3">审批不通过</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary" >提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/withdrawManager/edit.js">
+</script>
+</body>
+</html>

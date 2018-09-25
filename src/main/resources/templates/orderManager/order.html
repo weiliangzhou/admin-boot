@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div id="exampleToolbar" role="group" class="form-group">
+                    <div class=" col-sm-2">
+                        <input id="phone" name="phone" type="text" class="form-control" placeholder="手机号码">
+                    </div>
+                    <div class=" col-sm-2">
+                        <input id="orderNo" name="phone" type="text" class="form-control" placeholder="订单编号">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="minTime" type="text" class="form-control" placeholder="购买时间>=">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="maxTime" type="text" class="form-control" placeholder="购买时间<=">
+                    </div>
+                    <div class=" col-sm-2">
+                        <select id="order_status" class="form-control" name="order_status">
+                            <option value="0">未支付</option>
+                            <option value="1">已付款</option>
+                            <option value="-1">超时关闭</option>
+                            <option value="" selected>全部</option>
+                        </select>
+                    </div>
+                    <div class=" col-sm-2">
+                        <button class="btn btn-success" onclick="reLoad()">查询</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" id="download" id="btn_download"
+                                class="btn btn-primary"
+                                onClick="$('#exampleTable').tableExport({ type: 'excel', escape: 'false' })">数据导出
+                        </button>
+                    </div>
+                    <!--<button type="button" class="btn  btn-primary" onclick="add()">-->
+                    <!--<i class="fa fa-plus" aria-hidden="true"></i>添加-->
+                    <!--</button>-->
+                    <!--<button type="button" class="btn  btn-danger"-->
+                    <!--onclick="batchRemove()">-->
+                    <!--<i class="fa fa-trash" aria-hidden="true"></i>删除-->
+                    <!--</button>-->
+                </div>
+                <table id="exampleTable" data-mobile-responsive="true">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/orderManager/order.js"></script>
+</body>
+</html>

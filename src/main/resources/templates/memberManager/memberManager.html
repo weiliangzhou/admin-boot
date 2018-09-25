@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="col-sm-14">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div id="exampleToolbar" class="form-group" role="group">
+                    <div class=" col-sm-2">
+                        <input id="registerMobile" type="text" class="form-control" placeholder="注册手机号"/>
+                    </div>
+                    <div class=" col-sm-2">
+                        <select class="form-control" id="memberLevel" placeholder="等级">
+                            <option value="" selected>全部</option>
+                            <option value="99">校长</option>
+                            <option value="6">院长</option>
+                            <option value="5">班长</option>
+                            <option value="4">学员</option>
+                            <option value="1">小班</option>
+                            <option value="0">会员</option>
+                            <option value="-1">游客</option>
+                        </select>
+                    </div>
+                    <div class=" col-sm-2">
+                        <input id="userId" type="text" class="form-control" placeholder="userId"/>
+                    </div>
+                    <div class=" col-sm-2">
+                        <select class="form-control" id="registerFrom" placeholder="注册方式">
+                            <option value="" selected>全部</option>
+                            <option value="1">注册</option>
+                            <option value="2">线下导入</option>
+                        </select>
+                    </div>
+                    <div class=" col-sm-2">
+                        <input id="referrerMobile" type="text" class="form-control" placeholder="推荐人手机号"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="minTime" type="text" class="form-control" placeholder="注册时间>=">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="maxTime" type="text" class="form-control" placeholder="注册时间<=">
+                    </div>
+
+
+                    <div class=" col-sm-2">
+                        <button class="btn btn-success" onclick="reLoad()">查询</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" id="download" id="btn_download"
+                                class="btn btn-primary"
+                                onClick="$('#exampleTable').tableExport({ type: 'excel', escape: 'false' })">数据导出
+                        </button>
+                    </div>
+                    <!--<button type="button" class="btn  btn-primary" onclick="add()">-->
+                    <!--<i class="fa fa-plus" aria-hidden="true"></i>添加-->
+                    <!--</button>-->
+                    <!--<button type="button" class="btn  btn-danger"-->
+                    <!--onclick="batchRemove()">-->
+                    <!--<i class="fa fa-trash" aria-hidden="true"></i>删除-->
+                    <!--</button>-->
+                </div>
+                <table id="exampleTable" data-mobile-responsive="true">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/memberManger/ssUser/ssUser.js"></script>
+</body>
+</html>

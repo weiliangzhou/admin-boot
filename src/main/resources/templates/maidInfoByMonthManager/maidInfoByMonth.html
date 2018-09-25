@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div id="exampleToolbar" role="group" class="form-group">
+                    <div class="col-sm-2">
+                        <input id="referrerMobile" type="text" class="form-control" placeholder="获得分佣手机号">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="minTime" type="text" class="form-control" placeholder="返佣时间>=">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="maxTime" type="text" class="form-control" placeholder="返佣时间<=">
+                    </div>
+                    <button class="btn btn-success" onclick="reLoad()">查询</button>
+                    <div class="col-sm-2">
+                        <button type="button" id="download" id="btn_download"
+                                class="btn btn-primary"
+                                onClick="$('#exampleTable').tableExport({ type: 'excel', escape: 'false' })">数据导出
+                        </button>
+                    </div>
+                </div>
+                <table id="exampleTable" data-mobile-responsive="true">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/maidInfoByMonthManager/maidInfoByMonth.js"></script>
+</body>
+</html>

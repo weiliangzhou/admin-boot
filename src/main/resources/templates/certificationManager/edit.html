@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t layui-form" id="signupForm">
+                        <input name="id" type="hidden" th:value="${userCertification.id}">
+                        <input name="userId" type="hidden" th:value="${userCertification.userId}">
+                        <input name="realname" type="hidden" th:value="${userCertification.realname}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">真实姓名：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly" th:value="${userCertification.realname}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身份证：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" readonly="readonly"
+                                       th:value="${userCertification.idCard}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身份证正面照：</label>
+                            <div class="col-sm-8">
+                                <img class="layui-upload-img" th:src="${userCertification.img1Url}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身份证国徽面：</label>
+                            <div class="col-sm-8">
+                                <img class="layui-upload-img" th:src="${userCertification.img2Url}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">手持身份证：</label>
+                            <div class="col-sm-8">
+                                <img class="layui-upload-img" th:src="${userCertification.img3Url}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商户号：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly" th:value="${userCertification.merchantId}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly"
+                                       th:value="${userCertification.createTime == null ? '' : #dates.format(userCertification.createTime,'yyyy-MM-dd hh:mm:ss')}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审核时间：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly"
+                                       th:value="${userCertification.auditTime == null ? '' : #dates.format(userCertification.auditTime,'yyyy-MM-dd hh:mm:ss')}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审核人员：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text"
+                                       readonly="readonly"
+                                       th:value="${userCertification.operator}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状态</label>
+                            <div class="col-sm-8">
+                                <div class="layui-input-block">
+
+                                    <input type="radio" name="withdrawStatus" th:if="${userCertification.status == 1}"
+                                           th:checked="checked" title="审核中">
+                                    <input type="radio" name="withdrawStatus" th:if="${userCertification.status == 2}"
+                                           th:checked="checked" title="通过">
+                                    <input type="radio" name="withdrawStatus" th:if="${userCertification.status == 3}"
+                                           th:checked="checked" title="未通过">
+
+                                    <!--<input type="radio" name="withdrawStatus" title="未审核" th:value="未审核" th:checked="${Withdraw.status == 1}? true : false" />-->
+                                    <!--<input type="radio" name="withdrawStatus" title="审核中" th:value="审核中" th:checked="${Withdraw.status == 2}? true : false" />-->
+                                    <!--<input type="radio" name="withdrawStatus" title="未通过" th:value="未通过" th:checked="${Withdraw.status == 3}? true : false" />-->
+                                    <!--<input type="radio" name="withdrawStatus" title="已通过" th:value="已通过" th:checked="${Withdraw.status == 4}? true : false" />-->
+
+                                    <!--<input id="status" name="" class="form-control" type="text" readonly="readonly" th:if="${Withdraw.status == 1 }" th:value="未提交">-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">审批：</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="status">
+                                    <option value="2" th:selected="${userCertification.status == 2}?true:false">审批通过
+                                    </option>
+                                    <option value="3" th:selected="${userCertification.status == 3}?true:false">审批不通过
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">驳回原因：</label>
+                            <div class="col-sm-8">
+                                <input name="rejectReason" class="form-control" type="text"
+                                       th:value="${userCertification.rejectReason}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/certificationManager/edit.js">
+</script>
+</body>
+</html>

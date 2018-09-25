@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div id="exampleToolbar" class="form-group" role="group">
+                    <div class="col-sm-2">
+                        <input id="realName" type="text" class="form-control" placeholder="真实姓名">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="merchantId" type="text" class="form-control" placeholder="商户号">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="phone" type="text" class="form-control" placeholder="手机号码">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="withdrawId" type="text" class="form-control" placeholder="提现编号">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="minTime" type="text" class="form-control" placeholder="提交时间>=">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="maxTime" type="text" class="form-control" placeholder="提交时间<=">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="minSuccessTime" type="text" class="form-control" placeholder="审核通过时间>=">
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="maxSuccessTime" type="text" class="form-control" placeholder="审核通过时间<=">
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="status">
+                            <option value="" selected>全部</option>
+                            <option value="1">待审核</option>
+                            <option value="2">审批通过</option>
+                            <option value="3">审批不通过</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-success" onclick="reLoad()">查询</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" id="download" id="btn_download"
+                                class="btn btn-primary"
+                                onClick="$('#exampleTable').tableExport({ type: 'excel', escape: 'false' })">数据导出
+                        </button>
+                    </div>
+                    <!--<button type="button" class="btn  btn-primary" onclick="add()">-->
+                    <!--<i class="fa fa-plus" aria-hidden="true"></i>添加-->
+                    <!--</button>-->
+                    <!--<button type="button" class="btn  btn-danger"-->
+                    <!--onclick="batchRemove()">-->
+                    <!--<i class="fa fa-trash" aria-hidden="true"></i>删除-->
+                    <!--</button>-->
+                </div>
+                <table id="exampleTable" data-mobile-responsive="true">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/withdrawManager/withdraw.js"></script>
+</body>
+</html>

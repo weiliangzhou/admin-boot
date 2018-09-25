@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-content">
+                <form class="form-horizontal m-t layui-form" id="signupForm">
+                    <input name="id" th:value="${product.id}"
+                           type="hidden">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">等级名称：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="levelName"
+                                   th:value="${product.levelName}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">产品名称：</label>
+                        <div class="col-sm-8">
+                            <input id="productName" name="productName" class="form-control" type="text" th:value="${product.productName}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">分佣百分比：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="maidPercent"
+                                   th:value="${product.maidPercent}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">有效期：</label>
+                        <div class="col-sm-8">
+                            <input type="radio" name="validityTime" title="永久" th:value="99999" th:checked="${product.validityTime == 99999}? true : false" />
+                            <input type="radio" name="validityTime" title="一年" th:value="365" th:checked="${product.validityTime == 365}? true : false" />
+                            <input type="radio" name="validityTime" title="一季度" th:value="90" th:checked="${product.validityTime == 90}? true : false" />
+                            <input type="radio" name="validityTime" title="一个月" th:value="30" th:checked="${product.validityTime == 30}? true : false" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"><span style="color:red">*</span>图片：</label>
+                        <div class="col-sm-8">
+                            <div class="layui-upload">
+                                <input id="product_imageUrl" name="imageUrl" class="form-control" type="text"
+                                       th:value="${product.imageUrl}">
+                                <button type="button" class="layui-btn" id="imgBtn">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="imgShow" th:src="${product.imageUrl}">
+                                    <p id="demoText"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">简介：</label>
+                        <div class="col-sm-8">
+                                <textarea id="content_desc" name="content" style="display: none;"
+                                          th:inline="text">
+                                    [[${product.content}]]
+                                </textarea>
+                            <input id="contentText" name="contentText" type="hidden">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/productManager/edit.js">
+</script>
+</body>
+</html>
