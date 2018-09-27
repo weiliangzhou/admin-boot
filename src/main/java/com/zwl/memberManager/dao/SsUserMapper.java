@@ -28,7 +28,7 @@ public interface SsUserMapper {
             "<if test=\"wechatUnionId != null and wechatUnionId != ''\">" + "and wechat_union_id = #{wechatUnionId} " + "</if>" +
             "<if test=\"merchantId != null and merchantId != 'admin'\">" + "and merchant_id = #{merchantId} " + "</if>" +
             "<if test=\"registerFrom != null and registerFrom != ''\">" + "and register_from = #{registerFrom} " + "</if>" +
-            "<if test=\"registerMobile != null and registerMobile != ''\">" + "and register_mobile = #{registerMobile} " + "</if>" +
+            "<if test=\"registerMobile != null and registerMobile != ''\">" + "and register_mobile like concat('%',#{registerMobile},'%') " + "</if>" +
             "<if test=\"realName != null and realName != ''\">" + "and real_name = #{realName} " + "</if>" +
             "<if test=\"logoUrl != null and logoUrl != ''\">" + "and logo_url = #{logoUrl} " + "</if>" +
             "<if test=\"referrer != null and referrer != ''\">" + "and referrer = #{referrer} " + "</if>" +
@@ -65,7 +65,7 @@ public interface SsUserMapper {
             "<if test=\"wechatUnionId != null and wechatUnionId != ''\">" + "and wechat_union_id = #{wechatUnionId} " + "</if>" +
             "<if test=\"merchantId != null and merchantId != 'admin'\">" + "and merchant_id = #{merchantId} " + "</if>" +
             "<if test=\"registerFrom != null and registerFrom != ''\">" + "and register_from = #{registerFrom} " + "</if>" +
-            "<if test=\"registerMobile != null and registerMobile != ''\">" + "and register_mobile = #{registerMobile} " + "</if>" +
+            "<if test=\"registerMobile != null and registerMobile != ''\">" + "and register_mobile like concat('%',#{registerMobile},'%') " + "</if>" +
             "<if test=\"realName != null and realName != ''\">" + "and real_name = #{realName} " + "</if>" +
             "<if test=\"logoUrl != null and logoUrl != ''\">" + "and logo_url = #{logoUrl} " + "</if>" +
             "<if test=\"referrer != null and referrer != ''\">" + "and referrer = #{referrer} " + "</if>" +
