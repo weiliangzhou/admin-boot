@@ -32,8 +32,8 @@ function load() {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
-								offset:params.offset
-					           // name:$('#searchName').val(),
+								offset:params.offset,
+                                themeName:$('#themeName').val()
 					           // username:$('#searchName').val()
 							};
 						},
@@ -55,14 +55,14 @@ function load() {
 									field : 'themeName', 
 									title : '主题名称' 
 								},
-																{
-									field : 'themeHrefUrl', 
-									title : '跳转地址' 
-								},
-																{
-									field : 'themeType', 
-									title : '类型 0图片 1视频' 
-								},
+								// 								{
+								// 	field : 'themeHrefUrl',
+								// 	title : '图片地址或者视频地址'
+								// },
+								// 								{
+								// 	field : 'themeType',
+								// 	title : '类型'
+								// },
 								// 								{
 								// 	field : 'content',
 								// 	title : ''
@@ -71,6 +71,48 @@ function load() {
 								// 	field : 'contentText',
 								// 	title : ''
 								// },
+								// 								{
+								// 	field : 'buyCount',
+								// 	title : '收听人数'
+								// },
+																{
+									field : 'isRecommend', 
+									title : '是否推荐',
+									formatter: function (value, row, index) {
+										if (row.isRecommend == null) {
+											return "-";
+										}
+										if (row.isRecommend == 0) {
+											return "不推荐";
+										} else if (row.isRecommend == 1) {
+											return "推荐";
+										}
+										return "";
+									}
+								},
+																{
+									field : 'isShow', 
+									title : '是否展示',
+									formatter: function (value, row, index) {
+										if (row.isShow == null) {
+											return "-";
+										}
+										if (row.isShow == 0) {
+											return "不展示";
+										} else if (row.isShow == 1) {
+											return "展示";
+										}
+										return "";
+									}
+								},
+								// 								{
+								// 	field : 'imgUrl',
+								// 	title : '图片地址'
+								// },
+																{
+									field : 'activityTime', 
+									title : '时长'
+								},
 																{
 									field : 'createTime', 
 									title : '创建时间'

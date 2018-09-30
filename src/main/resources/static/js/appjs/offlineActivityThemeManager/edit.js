@@ -4,14 +4,14 @@ $().ready(function() {
 
 $.validator.setDefaults({
 	submitHandler : function() {
-		save();
+		update();
 	}
 });
-function save() {
+function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/offlineActivityTheme/save",
+		url : "/offlineActivityTheme/update",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {

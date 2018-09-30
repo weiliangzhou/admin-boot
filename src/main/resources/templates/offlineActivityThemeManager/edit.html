@@ -9,10 +9,11 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t layui-form" id="signupForm">
+							<input id="id" name="id" class="form-control" type="hidden" th:value="${offlineActivityTheme.id}">
 							<div class="form-group">	
 								<label class="col-sm-3 control-label">主题名称：</label>
 								<div class="col-sm-8">
-									<input id="themeName" name="themeName" class="form-control" type="text">
+									<input id="themeName" name="themeName" class="form-control" type="text" th:value="${offlineActivityTheme.themeName}">
 								</div>
 							</div>
 														<div class="form-group">	
@@ -20,12 +21,12 @@
 								<div class="col-sm-8">
 									<!--<input id="themeHrefUrl" name="themeHrefUrl" class="form-control" type="text">-->
 									<div class="layui-upload">
-										<input id="themeHrefUrl" name="themeHrefUrl" class="form-control" type="text">
+										<input id="themeHrefUrl" name="themeHrefUrl" class="form-control" type="text" th:value="${offlineActivityTheme.themeHrefUrl}">
 										<button type="button" class="layui-btn" id="themeHrefBtn">上传图片/视频</button>
-										<div class="layui-upload-list">
-											<img class="layui-upload-img" id="themeHrefShow">
+										<!--<div class="layui-upload-list">-->
+											<!--<img class="layui-upload-img" id="themeHrefShow">-->
 											<!--<p id="demoText"></p>-->
-										</div>
+										<!--</div>-->
 									</div>
 								</div>
 							</div>
@@ -33,8 +34,8 @@
 								<label class="col-sm-3 control-label">类型：</label>
 								<div class="col-sm-8">
 									<div class="layui-input-block">
-										<input type="radio" name="themeType" value="0" title="图片">
-										<input type="radio" name="themeType" value="1" title="视频" checked>
+										<input type="radio" name="themeType" value="0" title="图片" th:checked="${offlineActivityTheme.themeType == 0 ? true:false}">
+										<input type="radio" name="themeType" value="1" title="视频" th:checked="${offlineActivityTheme.themeType == 1 ? true:false}">
 									</div>
 								</div>
 							</div>
@@ -54,8 +55,8 @@
 								<label class="col-sm-3 control-label">是否推荐：</label>
 								<div class="col-sm-8">
 									<div class="layui-input-block">
-										<input type="radio" name="isRecommend" value="0" title="不推荐">
-										<input type="radio" name="isRecommend" value="1" title="推荐" checked>
+										<input type="radio" name="isRecommend" value="0" title="不推荐" th:checked="${offlineActivityTheme.isRecommend == 0 ? true:false}">
+										<input type="radio" name="isRecommend" value="1" title="推荐" th:checked="${offlineActivityTheme.isRecommend == 1 ? true:false}">
 									</div>
 								</div>
 							</div>
@@ -63,8 +64,8 @@
 								<label class="col-sm-3 control-label">是否展示：</label>
 								<div class="col-sm-8">
 									<div class="layui-input-block">
-										<input type="radio" name="isShow" value="0" title="不展示">
-										<input type="radio" name="isShow" value="1" title="展示" checked>
+										<input type="radio" name="isShow" value="0" title="不展示" th:checked="${offlineActivityTheme.isShow == 0 ? true:false}">
+										<input type="radio" name="isShow" value="1" title="展示" th:checked="${offlineActivityTheme.isShow == 1 ? true:false}">
 									</div>
 								</div>
 							</div>
@@ -73,10 +74,10 @@
 								<div class="col-sm-8">
 									<!--<input id="imgUrl" name="imgUrl" class="form-control" type="text">-->
 									<div class="layui-upload">
-										<input id="imgUrl" name="imgUrl" class="form-control" type="text">
+										<input id="imgUrl" name="imgUrl" class="form-control" type="text" th:value="${offlineActivityTheme.imgUrl}">
 										<button type="button" class="layui-btn" id="imgBtn">上传图片/视频</button>
 										<div class="layui-upload-list">
-											<img class="layui-upload-img" id="imgShow">
+											<img class="layui-upload-img" id="imgShow" th:src="${offlineActivityTheme.imgUrl}">
 											<!--<p id="demoText"></p>-->
 										</div>
 									</div>
@@ -89,11 +90,11 @@
 								<!--</div>-->
 								<label class="col-sm-3 control-label">时长：</label>
 								<div class="col-sm-2">
-									<input id="day" name="day" class="form-control" type="text">
+									<input id="day" name="day" class="form-control" type="text" th:value="${offlineActivityTheme.day}">
 								</div>
 								<label class="col-sm-1 control-label">天</label>
 								<div class="col-sm-2">
-									<input id="night" name="night" class="form-control" type="text">
+									<input id="night" name="night" class="form-control" type="text" th:value="${offlineActivityTheme.night}">
 								</div>
 								<label class="col-sm-1 control-label">夜</label>
 							</div>
@@ -101,7 +102,7 @@
 								<label class="col-sm-3 control-label">简介：</label>
 								<div class="col-sm-8">
 									<!--<input id="content" name="content" class="form-control" type="text">-->
-									<textarea id="content" name="content" style="display: none;"></textarea>
+									<textarea id="content" name="content" style="display: none;" th:inline="text">[[${offlineActivityTheme.content}]]</textarea>
 								</div>
 							</div>
 														<!--<div class="form-group">	-->
@@ -140,7 +141,7 @@
 	</div>
 	</div>
 	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/offlineActivityThemeManager/add.js">
+	<script type="text/javascript" src="/js/appjs/offlineActivityThemeManager/edit.js">
 	</script>
 </body>
 </html>

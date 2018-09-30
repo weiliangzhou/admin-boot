@@ -3,7 +3,7 @@ package com.zwl.offlineActivityThemeManager.controller;
 import java.util.List;
 import java.util.Map;
 
-import com.zwl.common.utils.ShiroUtils;
+import com.zwl.common.utils.*;
 import com.zwl.offlineActivityThemeManager.domain.OfflineActivityThemeDO;
 import com.zwl.offlineActivityThemeManager.service.OfflineActivityThemeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -17,10 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.zwl.common.utils.PageUtils;
-import com.zwl.common.utils.Query;
-import com.zwl.common.utils.R;
 
 @Controller
 @RequestMapping("/offlineActivityTheme")
@@ -55,10 +51,17 @@ public class OfflineActivityThemeController {
 	    return "offlineActivityThemeManager/add";
 	}
 
-	@GetMapping("/edit")
+	@GetMapping("/edit/{id}")
 	@RequiresPermissions("offlineActivityTheme:edit")
 	String edit(Model model, @PathVariable("id")Integer id){
 		OfflineActivityThemeDO offlineActivityTheme = offlineActivityThemeService.get(id);
+		String activityTime = offlineActivityTheme.getActivityTime();
+		if(null != activityTime){
+			Integer day = Integer.valueOf(activityTime.substring(3,activityTime.indexOf("天")));
+			Integer night = Integer.valueOf(activityTime.substring(activityTime.indexOf("天")+1,activityTime.indexOf("夜")));
+			offlineActivityTheme.setDay(day);
+			offlineActivityTheme.setNight(night);
+		}
 		model.addAttribute("offlineActivityTheme", offlineActivityTheme);
 	    return "offlineActivityThemeManager/edit";
 	}
@@ -80,6 +83,13 @@ public class OfflineActivityThemeController {
 //	@RequiresPermissions("demo:save")
 	public R save( OfflineActivityThemeDO offlineActivityTheme){
 		offlineActivityTheme.setMerchantId(ShiroUtils.getMerchantId());
+		Integer day = offlineActivityTheme.getDay();
+		Integer night = offlineActivityTheme.getNight();
+		if (null != day && null != night) {
+			offlineActivityTheme.setActivityTime("时长 "+day+"天"+night+"夜");
+		}
+		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
+		offlineActivityTheme.setContentText(contextText);
 		if(offlineActivityThemeService.save(offlineActivityTheme)>0){
 			return R.ok();
 		}
@@ -93,6 +103,13 @@ public class OfflineActivityThemeController {
 	@PostMapping("/update")
 //	@RequiresPermissions("demo:update")
 	public R update( OfflineActivityThemeDO offlineActivityTheme){
+		Integer day = offlineActivityTheme.getDay();
+		Integer night = offlineActivityTheme.getNight();
+		if (null != day && null != night) {
+			offlineActivityTheme.setActivityTime("时长 "+day+"天"+night+"夜");
+		}
+		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
+		offlineActivityTheme.setContentText(contextText);
 		offlineActivityThemeService.update(offlineActivityTheme);
 		
 		return R.ok();
