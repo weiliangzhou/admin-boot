@@ -6,6 +6,8 @@ import com.zwl.classManager.domain.ClaSetItemVo;
 import com.zwl.classManager.domain.ClassCategoryItemVo;
 import com.zwl.classManager.service.ClasetService;
 import com.zwl.classManager.service.ClassCategoryService;
+import com.zwl.offlineActivityManager.domain.OfflineActivityVo;
+import com.zwl.offlineActivityManager.service.OfflineActivityService;
 import com.zwl.offlineActivityThemeManager.domain.OfflineActivityThemeItemVo;
 import com.zwl.offlineActivityThemeManager.service.OfflineActivityThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,17 @@ public class ItemsListController {
 
     @Autowired
     private OfflineActivityThemeService offlineActivityThemeService;
+
+    @Autowired
+    private OfflineActivityService offlineActivityService;
+
+    @PostMapping("/getActivityItemsList")
+    public String getActivityItemsList(@RequestBody JSONObject jsonObject) {
+        String merchantId = jsonObject.getString("merchantId");
+        Integer activityThemeId = jsonObject.getInteger("activityThemeId");
+        List<OfflineActivityVo> list = offlineActivityService.getActivityItemsList(merchantId,activityThemeId);
+        return JSON.toJSONString(list);
+    }
 
     @PostMapping("/getActivityThemeItemsList")
     public String getActivityThemeItemsList(@RequestBody JSONObject jsonObject) {
