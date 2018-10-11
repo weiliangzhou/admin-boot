@@ -53,19 +53,27 @@ function load() {
 								// },
 																{
 									field : 'activityAddress', 
-									title : '活动地点' 
+									title : '开课城市'
+								},
+								// {
+								// 	field : 'applyStartTime',
+								// 	title : '报名开始时间'
+								// },
+								// {
+								// 	field : 'applyEndTime',
+								// 	title : '报名结束时间'
+								// },
+																{
+									field : 'activityStartTime',
+									title : '开课开始时间'
 								},
 																{
-									field : 'activityStartTime', 
-									title : '开始时间' 
-								},
-																{
-									field : 'activityEndTime', 
-									title : '结束时间' 
+									field : 'activityEndTime',
+									title : '开课结束时间'
 								},
 																{
 									field : 'activityPrice', 
-									title : '价格',
+									title : '原价',
 									formatter: function (value) {
 										if(value == null){
 											return "-";
@@ -89,17 +97,28 @@ function load() {
 										return "";
 									}
 								},
+								{
+									field : 'retrainingPrice',
+									title : '复训价格',
+									formatter: function (value) {
+										if(value == null){
+											return "-";
+										}else {
+											return value/100+"元";
+										}
+									}
+								},
 																{
 									field : 'activityTheme',
-									title : '活动主题'
+									title : '线下课程主题'
 								},
-																{
-									field : 'activityParent',
-									title : '上个活动'
-								},
+								// 								{
+								// 	field : 'activityParent',
+								// 	title : '上个活动'
+								// },
 																{
 									field : 'limitCount', 
-									title : '容纳人数',
+									title : '报名人数',
 									formatter: function (value) {
                                         if(value == null){
                                             return "-";
@@ -113,66 +132,66 @@ function load() {
 								// 	field : 'buyCount',
 								// 	title : '购买人数'
 								// },
-																{
-									field : 'isRecommend', 
-									title : '是否推荐',
-									formatter: function (value) {
-										if (value == null) {
-											return "-";
-										}
-										if (value == 0) {
-											return "不推荐";
-										} else if (value == 1) {
-											return "推荐";
-										}
-										return "";
-									}
-								},
-																{
-									field : 'isShow', 
-									title : '是否展示',
-									formatter: function (value) {
-										if (value == null) {
-											return "-";
-										}
-										if (value == 0) {
-											return "不展示";
-										} else if (value == 1) {
-											return "展示";
-										}
-										return "";
-									}
-								},
-																{
-									field : 'isRebuy', 
-									title : '是否可用重复购买',
-									formatter: function (value) {
-										if (value == null) {
-											return "-";
-										}
-										if (value == 0) {
-											return "不可用";
-										} else if (value == 1) {
-											return "可用";
-										}
-										return "";
-									}
-								},
-																{
-									field : 'isMaid', 
-									title : '是否返佣',
-									formatter: function (value) {
-										if (value == null) {
-											return "-";
-										}
-										if (value == 0) {
-											return "不返佣";
-										} else if (value == 1) {
-											return "返佣";
-										}
-										return "";
-									}
-								},
+								// 								{
+								// 	field : 'isRecommend',
+								// 	title : '是否推荐',
+								// 	formatter: function (value) {
+								// 		if (value == null) {
+								// 			return "-";
+								// 		}
+								// 		if (value == 0) {
+								// 			return "不推荐";
+								// 		} else if (value == 1) {
+								// 			return "推荐";
+								// 		}
+								// 		return "";
+								// 	}
+								// },
+								// 								{
+								// 	field : 'isShow',
+								// 	title : '是否展示',
+								// 	formatter: function (value) {
+								// 		if (value == null) {
+								// 			return "-";
+								// 		}
+								// 		if (value == 0) {
+								// 			return "不展示";
+								// 		} else if (value == 1) {
+								// 			return "展示";
+								// 		}
+								// 		return "";
+								// 	}
+								// },
+								// 								{
+								// 	field : 'isRebuy',
+								// 	title : '是否可用重复购买',
+								// 	formatter: function (value) {
+								// 		if (value == null) {
+								// 			return "-";
+								// 		}
+								// 		if (value == 0) {
+								// 			return "不可用";
+								// 		} else if (value == 1) {
+								// 			return "可用";
+								// 		}
+								// 		return "";
+								// 	}
+								// },
+								// 								{
+								// 	field : 'isMaid',
+								// 	title : '是否返佣',
+								// 	formatter: function (value) {
+								// 		if (value == null) {
+								// 			return "-";
+								// 		}
+								// 		if (value == 0) {
+								// 			return "不返佣";
+								// 		} else if (value == 1) {
+								// 			return "返佣";
+								// 		}
+								// 		return "";
+								// 	}
+								// },
 																{
 									field : 'minRequirement', 
 									title : '购买最低要求',
@@ -180,7 +199,9 @@ function load() {
 										if (row.minRequirement == null) {
 											return "-";
 										}
-										if (row.minRequirement == 1) {
+										if(row.minRequirement == 0){
+                                            return "会员";
+										}else if(row.minRequirement == 1) {
 											return "学员";
 										} else if (row.minRequirement == 4) {
 											return "VIP学员";
@@ -194,18 +215,18 @@ function load() {
 										return "";
 									}
 								},
-																{
-									field : 'merchantId', 
-									title : '商户号' 
-								},
-																{
-									field : 'createTime', 
-									title : '创建时间'
-								},
-																{
-									field : 'modifyTime', 
-									title : '更新时间'
-								},
+								// 								{
+								// 	field : 'merchantId',
+								// 	title : '商户号'
+								// },
+								// 								{
+								// 	field : 'createTime',
+								// 	title : '创建时间'
+								// },
+								// 								{
+								// 	field : 'modifyTime',
+								// 	title : '更新时间'
+								// },
 								// 								{
 								// 	field : 'available',
 								// 	title : ''
@@ -216,7 +237,7 @@ function load() {
 									align : 'center',
 									formatter : function(value, row, index) {
 										var e = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="编辑" onclick="edit('
-												+ row.id+ ','+ row.activityThemeId + ','+ row.activityParentId
+												+ row.id+ ','+ row.activityThemeId
 												+ ')"><i class="fa fa-edit"></i></a> ';
 										var d = '<a class="btn btn-warning btn-sm" href="#" title="删除"  mce_href="#" onclick="remove(\''
 												+ row.id
@@ -242,9 +263,9 @@ function add() {
 		content : prefix + '/add' // iframe的url
 	});
 }
-function edit(id,activityThemeId,activityParentId) {
+function edit(id,activityThemeId) {
     window.sessionStorage.setItem('activityThemeId',activityThemeId);
-    window.sessionStorage.setItem('activityParentId',activityParentId);
+    // window.sessionStorage.setItem('activityParentId',activityParentId);
 	layer.open({
 		type : 2,
 		title : '编辑',

@@ -26,5 +26,5 @@ public interface OfflineActivityService {
 
 	String selectThemeNameByThemeId(Integer activityThemeId);
 
-	String selectActivityAddressByActivityParentId(Integer activityParentId);
+//	String selectActivityAddressByActivityParentId(Integer activityParentId);
 }

@@ -46,9 +46,9 @@ public class OfflineActivityController {
 			//根据活动主题id查询活动主题名称
 			String activityTheme = offlineActivityService.selectThemeNameByThemeId(offlineActivityDO.getActivityThemeId());
 			//根据上个活动id查询上个活动名称
-			String activityParent = offlineActivityService.selectActivityAddressByActivityParentId(offlineActivityDO.getActivityParentId());
+//			String activityParent = offlineActivityService.selectActivityAddressByActivityParentId(offlineActivityDO.getActivityParentId());
 			offlineActivityDO.setActivityTheme(activityTheme);
-			offlineActivityDO.setActivityParent(activityParent == null ? "":activityParent);
+//			offlineActivityDO.setActivityParent(activityParent == null ? "":activityParent);
 		}
 		int total = offlineActivityService.count(query);
 		PageUtils pageUtils = new PageUtils(offlineActivityList, total);
@@ -91,10 +91,15 @@ public class OfflineActivityController {
 		try {
 			offlineActivity.setActivityStartTime(simpleDateFormat.parse(offlineActivity.getActivityStartTimeDesc()));
 			offlineActivity.setActivityEndTime(simpleDateFormat.parse(offlineActivity.getActivityEndTimeDesc()));
+			offlineActivity.setApplyStartTime(simpleDateFormat.parse(offlineActivity.getApplyStartTimeDesc()));
+			offlineActivity.setApplyEndTime(simpleDateFormat.parse(offlineActivity.getApplyEndTimeDesc()));
 		} catch (ParseException e) {
 			log.error("日期转化异常");
+			throw new RuntimeException("日期转化异常");
 		}
 		offlineActivity.setMerchantId(ShiroUtils.getMerchantId());
+		offlineActivity.setBuyCount(0);
+		offlineActivity.setMinRequirement(offlineActivity.getMinRequirement() == null ? 0 :offlineActivity.getMinRequirement());
 		if(offlineActivityService.save(offlineActivity)>0){
 			return R.ok();
 		}
@@ -112,8 +117,11 @@ public class OfflineActivityController {
 		try {
 			offlineActivity.setActivityStartTime(simpleDateFormat.parse(offlineActivity.getActivityStartTimeDesc()));
 			offlineActivity.setActivityEndTime(simpleDateFormat.parse(offlineActivity.getActivityEndTimeDesc()));
+			offlineActivity.setApplyStartTime(simpleDateFormat.parse(offlineActivity.getApplyStartTimeDesc()));
+			offlineActivity.setApplyEndTime(simpleDateFormat.parse(offlineActivity.getApplyEndTimeDesc()));
 		} catch (ParseException e) {
 			log.error("日期转化异常");
+			throw new RuntimeException("日期转化异常");
 		}
 		offlineActivityService.update(offlineActivity);
 		
