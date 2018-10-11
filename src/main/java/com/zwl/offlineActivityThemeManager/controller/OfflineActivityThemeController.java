@@ -90,6 +90,7 @@ public class OfflineActivityThemeController {
 		}
 		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
 		offlineActivityTheme.setContentText(contextText);
+		offlineActivityTheme.setBuyCount(0);
 		if(offlineActivityThemeService.save(offlineActivityTheme)>0){
 			return R.ok();
 		}
