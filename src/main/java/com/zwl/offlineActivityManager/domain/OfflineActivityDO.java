@@ -66,4 +66,8 @@ public class OfflineActivityDO implements Serializable {
 	private String applyStartTimeDesc;
 	//报名结束时间
 	private String applyEndTimeDesc;
+	//价格
+	private Double activityPriceDesc;
+	//复训价格
+	private Double retrainingPriceDesc;
 }

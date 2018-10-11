@@ -19,6 +19,8 @@ import com.zwl.common.utils.PageUtils;
 import com.zwl.common.utils.Query;
 import com.zwl.common.utils.R;
 
+import static com.zwl.common.utils.BigDecimalUtil.mul;
+
 @Controller
 @RequestMapping("/offlineActivity")
 @Slf4j
@@ -97,6 +99,8 @@ public class OfflineActivityController {
 			log.error("日期转化异常");
 			throw new RuntimeException("日期转化异常");
 		}
+		offlineActivity.setActivityPrice(Integer.parseInt((int)mul(offlineActivity.getActivityPriceDesc(),100)+""));
+		offlineActivity.setRetrainingPrice(Integer.parseInt((int)mul(offlineActivity.getRetrainingPriceDesc(),100)+""));
 		offlineActivity.setMerchantId(ShiroUtils.getMerchantId());
 		offlineActivity.setBuyCount(0);
 		offlineActivity.setMinRequirement(offlineActivity.getMinRequirement() == null ? 0 :offlineActivity.getMinRequirement());
@@ -123,6 +127,8 @@ public class OfflineActivityController {
 			log.error("日期转化异常");
 			throw new RuntimeException("日期转化异常");
 		}
+		offlineActivity.setActivityPrice(Integer.parseInt((int)mul(offlineActivity.getActivityPriceDesc(),100)+""));
+		offlineActivity.setRetrainingPrice(Integer.parseInt((int)mul(offlineActivity.getRetrainingPriceDesc(),100)+""));
 		offlineActivityService.update(offlineActivity);
 		
 		return R.ok();
