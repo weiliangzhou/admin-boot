@@ -62,12 +62,12 @@ public class GzhServiceImpl implements GzhService {
         GzhMsgTemplate gzhMsgTemplate = new GzhMsgTemplate();
         Map first = new HashMap();
         first.put("value", "微商夜大有新课程啦！");
-        first.put("color", "#173177");
+        first.put("color", "#e6304a");
         Map keyword1 = new HashMap();
-        keyword1.put("value", className);
+        keyword1.put("value", "\uD83C\uDF38"+className+"\uD83C\uDF31");
         keyword1.put("color", "#173177");
         Map keyword2 = new HashMap();
-        keyword2.put("value", classType);
+        keyword2.put("value", "\uD83C\uDF41"+classType+"\uD83C\uDF40");
         keyword2.put("color", "#173177");
         Map keyword3 = new HashMap();
         keyword3.put("value", teacherName);
