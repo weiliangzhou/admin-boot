@@ -73,24 +73,48 @@ function validateRule() {
             },
             limitCount: {
                 required: true
-            }
+            },
+            applyStartTimeDesc: {
+                required: true
+            },
+            applyEndTimeDesc: {
+                required: true
+            },
+            activityThemeId: {
+                required: true
+            },
+            minRequirement: {
+                required: true
+            },
 		},
 		messages : {
             activityAddress : {
 				required : icon + "请输入地点"
 			},
             activityStartTimeDesc: {
-                required: icon + "请选择开始时间"
+                required: icon + "请选择开课开始时间"
             },
             activityEndTimeDesc: {
-                required: icon + "请选择结束时间"
+                required: icon + "请选择开课结束时间"
             },
             activityPrice: {
                 required: icon + "请填写价格"
             },
             limitCount: {
                 required: icon + "请填写容纳人数"
-            }
+            },
+            applyStartTimeDesc: {
+                required: icon + "请选择报名开始时间"
+            },
+            applyEndTimeDesc: {
+                required: icon + "请选择报名结束时间"
+            },
+            activityThemeId: {
+                required: icon + "请选择线下课程主题"
+            },
+            minRequirement: {
+                required: icon + "请选择购买最低要求"
+            },
 		}
 	})
 }
@@ -110,32 +134,54 @@ layui.use('laydate', function(){
     });
 });
 
-layui.use(['layer', 'form'], function(){
-    var layer = layui.layer, $ = layui.jquery,form = layui.form;
-    form.on('select(activityThemeId)', function(data){//一级主题选择的改变
-        if(!data){
-            return;
-        }
-        var url = "/items/getActivityItemsList";
-        var merchantId = $('#merchantId').val();
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:JSON.stringify({merchantId:merchantId,activityThemeId:data.value}),
-            contentType:"application/json; charset=utf-8",
-            dataType:"json",
-            success: function(res){
-                if(!res){
-                    return
-                }
-                var activityParentIdHtml = "<option value=''>请选择</option>";
-                res.forEach(item=>{
-                    activityParentIdHtml+="<option value='"+item.id+"'>"+item.activityAddress+"</option>"
-                })
-                $("#activityParentId").html(activityParentIdHtml);
-                layui.form.render();
-            }
-        })
+layui.use('laydate', function(){
+    var laydate = layui.laydate;
+    laydate.render({
+        elem: '#applyStartTime',
+        type: 'datetime'
     });
+});
+layui.use('laydate', function(){
+    var laydate = layui.laydate;
+    laydate.render({
+        elem: '#applyEndTime',
+        type: 'datetime'
+    });
+});
 
+// layui.use(['layer', 'form'], function(){
+//     var layer = layui.layer, $ = layui.jquery,form = layui.form;
+//     form.on('select(activityThemeId)', function(data){//一级主题选择的改变
+//         if(!data){
+//             return;
+//         }
+//         var url = "/items/getActivityItemsList";
+//         var merchantId = $('#merchantId').val();
+//         $.ajax({
+//             url:url,
+//             type:"POST",
+//             data:JSON.stringify({merchantId:merchantId,activityThemeId:data.value}),
+//             contentType:"application/json; charset=utf-8",
+//             dataType:"json",
+//             success: function(res){
+//                 if(!res){
+//                     return
+//                 }
+//                 var activityParentIdHtml = "<option value=''>请选择</option>";
+//                 res.forEach(item=>{
+//                     activityParentIdHtml+="<option value='"+item.id+"'>"+item.activityAddress+"</option>"
+//                 })
+//                 $("#activityParentId").html(activityParentIdHtml);
+//                 layui.form.render();
+//             }
+//         })
+//     });
+//
+// });
+$( '.ckz-radio').on('click','.layui-form-radio', function(){
+    if($(this).children('div')[0].innerText == '复训'){
+        $('.ckz').removeClass('hide');
+    }else{
+        $('.ckz').addClass('hide');
+    }
 });

@@ -84,7 +84,7 @@ layui.use('upload', function () {
     upload.render({
         elem: '#themeHrefBtn' //绑定元素
         , url: '/file/upload/' //上传接口
-        , accept: 'images'
+        , accept: 'file'
         , before: function (obj) {
             //预读本地文件示例，不支持ie8
             obj.preview(function (index, file, result) {

@@ -14,9 +14,9 @@ public class OfflineActivityDO implements Serializable {
 	private Integer id;
 	//活动地点
 	private String activityAddress;
-	//开始时间
+	//活动开始时间
 	private Date activityStartTime;
-	//结束时间
+	//活动结束时间
 	private Date activityEndTime;
 	//价格
 	private Integer activityPrice;
@@ -25,7 +25,7 @@ public class OfflineActivityDO implements Serializable {
 	//活动主题id
 	private Integer activityThemeId;
 	//上个活动的id
-	private Integer activityParentId;
+//	private Integer activityParentId;
 	//容纳人数
 	private Integer limitCount;
 	//购买人数
@@ -56,4 +56,14 @@ public class OfflineActivityDO implements Serializable {
 	private String activityTheme;
 	//上个活动
 	private String activityParent;
+	//报名开始时间
+	private Date applyStartTime;
+	//报名结束时间
+	private Date applyEndTime;
+	//复训价格
+	private Integer retrainingPrice;
+	//报名开始时间
+	private String applyStartTimeDesc;
+	//报名结束时间
+	private String applyEndTimeDesc;
 }

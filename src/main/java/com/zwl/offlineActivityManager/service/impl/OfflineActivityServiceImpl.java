@@ -60,9 +60,9 @@ public class OfflineActivityServiceImpl implements OfflineActivityService {
 		return offlineActivityMapper.selectThemeNameByThemeId(activityThemeId);
 	}
 
-	@Override
-	public String selectActivityAddressByActivityParentId(Integer activityParentId) {
-		return offlineActivityMapper.selectActivityAddressByActivityParentId(activityParentId);
-	}
+//	@Override
+//	public String selectActivityAddressByActivityParentId(Integer activityParentId) {
+//		return offlineActivityMapper.selectActivityAddressByActivityParentId(activityParentId);
+//	}
 
 }
