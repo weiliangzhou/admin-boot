@@ -5,7 +5,9 @@ import com.zwl.common.utils.Query;
 import com.zwl.common.utils.R;
 import com.zwl.common.utils.ShiroUtils;
 import com.zwl.memberManager.domain.SsUserDO;
+import com.zwl.memberManager.domain.UserWechatDO;
 import com.zwl.memberManager.service.SsUserService;
+import com.zwl.memberManager.service.UserWechatService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ import java.util.Map;
 public class MemberMangerController {
     @Autowired
     private SsUserService ssUserService;
+    @Autowired
+    private UserWechatService userWechatService;
 
     @GetMapping()
     @RequiresPermissions("memberManager:memberManager")
@@ -66,14 +70,19 @@ public class MemberMangerController {
             String userId = ssUserDO.getUserId();
             String merchantId = ShiroUtils.getMerchantId();
             //根据userId查下线人数
-            Integer xiaxianCount = ssUserService.getXiaXianCountByUserId(userId,merchantId);
+            Integer xiaxianCount = ssUserService.getXiaXianCountByUserId(userId, merchantId);
             ssUserDO.setXiaxianCount(xiaxianCount == null ? 0 : xiaxianCount);
             //根据userId查消费金额
             Integer actualMoney = ssUserService.getActualMoneyByUserId(userId);
             ssUserDO.setActualMoney(actualMoney == null ? 0 : actualMoney / 100);
             //根据userId查总业绩
-            Integer totalPerformance = ssUserService.getTotalPerformanceByUserId(userId,merchantId);
+            Integer totalPerformance = ssUserService.getTotalPerformanceByUserId(userId, merchantId);
             ssUserDO.setTotalPerformance(totalPerformance == null ? 0 : totalPerformance / 100);
+            //获取用户绑定的微信账号
+            UserWechatDO userWechatDO = userWechatService.getUserWechatByUserId(userId);
+            if (null != userWechatDO) {
+                ssUserDO.setWechatAccount(userWechatDO.getWechatAccount());
+            }
         }
         int total = ssUserService.count(query);
         PageUtils pageUtils = new PageUtils(ssUserList, total);
@@ -174,7 +183,7 @@ public class MemberMangerController {
             Integer actualMoney = ssUserService.getActualMoneyByUserId(userId);
             ssUserDO.setActualMoney(actualMoney == null ? 0 : actualMoney / 100);
             //根据userId查总业绩
-            Integer totalPerformance = ssUserService.getTotalPerformanceByUserId(userId,merchantId);
+            Integer totalPerformance = ssUserService.getTotalPerformanceByUserId(userId, merchantId);
             ssUserDO.setTotalPerformance(totalPerformance == null ? 0 : totalPerformance / 100);
         }
         int total = ssUserService.count(query);

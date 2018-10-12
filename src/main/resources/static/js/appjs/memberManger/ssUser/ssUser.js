@@ -120,16 +120,23 @@ function load() {
 									title : '总业绩'
 								},
 								{
+									field : 'wechatAccount',
+									title : '微信账号'
+								},
+								{
 									field : 'userId',
-									title : 'userId'
+									title : 'userId',
+                                    visible : false
 								},
 																{
 									field : 'referrer', 
-									title : '推荐人userId '
+									title : '推荐人userId ',
+									visible : false
 								},
 								{
 									field : 'expiresTime',
-									title : '会员到期时间'
+									title : '会员到期时间',
+                                    visible : false
 								},
 								{
 									field : 'registerTime',
@@ -156,7 +163,8 @@ function load() {
 								},
 								{
 									field : 'merchantId',
-									title : '商户号'
+									title : '商户号',
+									visible : false
 								},
 //								,
 //																{

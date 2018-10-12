@@ -7,8 +7,6 @@ import java.util.Date;
 
 
 /**
- *
- *
  * @author 二师兄超级帅
  * @email 382308664@qq.com
  * @date 2018-08-27 16:35:27
@@ -61,5 +59,7 @@ public class SsUserDO implements Serializable {
     private Integer actualMoney;
     //总业绩
     private Integer totalPerformance;
+    //绑定的微信账号
+    private String wechatAccount;
 
 }
