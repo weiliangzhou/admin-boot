@@ -14,7 +14,7 @@ import java.util.Map;
 @Mapper
 public interface WithdrawMapper {
 
-    @Select("select `id`, `withdraw_id`, `money`, `open_id`, `real_name`, `user_id`, `account`, `status`, `pay_way`, `operator`, `remark`, `success_time`, `merchant_id`, `payment_no`, `payment_time`, `create_time`, `modify_time`, `available` from ss_withdraw where id = #{id}")
+    @Select("select `id`, `withdraw_id`, `money`, `open_id`, `real_name`, `user_id`, `account`, `status`, `pay_way`, `operator`, `remark`, `success_time`, `merchant_id`, `payment_no`, `payment_time`, `create_time`, `modify_time`, `available`,`bank_name`,`bank_province`,`bank_city`,`bank_area`,`bank_branch` from ss_withdraw where id = #{id}")
     WithdrawDO get(Long id);
 
     @Select("<script>" +

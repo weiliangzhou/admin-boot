@@ -1,7 +1,23 @@
 $().ready(function() {
-	validateRule();
+    init();
+    validateRule();
 });
 
+function init(){
+    //默认隐藏银行卡列
+    $("#bank_info").hide();
+    $("#wechat_info").hide();
+	var payType = $("#payWayType").val();
+	if(payType == 1){
+		$("#payWayTxt").val("微信");
+        $("#wechat_info").show();
+	}else if(payType == 3){
+        $("#payWayTxt").val("银行卡");
+        $("#bank_info").show();
+    }else{
+        $("#payWayTxt").val("其他");
+    }
+}
 $.validator.setDefaults({
 	submitHandler : function() {
 		update();

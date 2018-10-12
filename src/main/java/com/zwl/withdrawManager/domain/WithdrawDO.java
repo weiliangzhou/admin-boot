@@ -68,6 +68,15 @@ public class WithdrawDO implements Serializable {
     private String idCard;
     //手机号码
     private String phone;
-
+    // 银行卡用户名
+    private String bankName;
+    //银行卡 省
+    private String bankProvince;
+    //银行卡 市
+    private String bankCity;
+    //银行卡 区
+    private String bankArea;
+    //银行卡 支行
+    private String bankBranch;
 
 }

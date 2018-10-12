@@ -47,7 +47,8 @@ function load() {
                         maxTime: $('#maxTime').val(),
                         minSuccessTime: $('#minSuccessTime').val(),
                         maxSuccessTime: $('#maxSuccessTime').val(),
-                        phone: $('#phone').val()
+                        phone: $('#phone').val(),
+                        withdrawId:$("#withdrawId").val()
                         // username:$('#searchName').val()
                     };
                 },
@@ -138,7 +139,9 @@ function load() {
                             if (row.payWay == 1) {
                                 return "微信";
                             } else if (row.payWay == 2) {
-                                return "其他";
+                                return "余额";
+                            } else if (row.payWay == 3) {
+                                return "银行卡";
                             }
                             return "";
                         }
