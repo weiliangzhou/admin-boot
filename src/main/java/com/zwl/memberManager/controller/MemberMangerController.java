@@ -51,7 +51,8 @@ public class MemberMangerController {
                 params.put("referrer", referrerUserId);
         }
         //查询列表数据
-        params.put("merchantId", ShiroUtils.getMerchantId());
+        String merchantId = ShiroUtils.getMerchantId();
+        params.put("merchantId", merchantId);
         params.put("available", 1);
         Query query = new Query(params);
         List<SsUserDO> ssUserList = ssUserService.list(query);
@@ -68,7 +69,7 @@ public class MemberMangerController {
 
             }
             String userId = ssUserDO.getUserId();
-            String merchantId = ShiroUtils.getMerchantId();
+//            String merchantId = ShiroUtils.getMerchantId();
             //根据userId查下线人数
             Integer xiaxianCount = ssUserService.getXiaXianCountByUserId(userId, merchantId);
             ssUserDO.setXiaxianCount(xiaxianCount == null ? 0 : xiaxianCount);

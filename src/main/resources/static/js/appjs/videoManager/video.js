@@ -62,10 +62,10 @@ function load() {
                     //     title: '视频地址',
                     //     visible: 0
                     // },
-                    {
-                        field: 'merchantId',
-                        title: '商户号'
-                    },
+                    // {
+                    //     field: 'merchantId',
+                    //     title: '商户号'
+                    // },
                     {
                         field: 'title',
                         title: '视频标题'
@@ -152,7 +152,7 @@ function reLoad() {
 }
 
 function add() {
-    layer.open({
+    var index = layer.open({
         type: 2,
         title: '增加',
         maxmin: true,
@@ -160,10 +160,11 @@ function add() {
         area: ['800px', '520px'],
         content: prefix + '/add' // iframe的url
     });
+    layer.full(index);
 }
 
 function edit(id) {
-    layer.open({
+    var index = layer.open({
         type: 2,
         title: '编辑',
         maxmin: true,
@@ -171,6 +172,7 @@ function edit(id) {
         area: ['800px', '520px'],
         content: prefix + '/edit/' + id // iframe的url
     });
+    layer.full(index);
 }
 
 function remove(id) {

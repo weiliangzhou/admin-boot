@@ -54,10 +54,10 @@ function load() {
 									field : 'registerMobile',
 									title : '绑定手机号'
 								},
-								{
-									field : 'userId',
-									title : 'userId'
-								},
+								// {
+								// 	field : 'userId',
+								// 	title : 'userId'
+								// },
 								{
 									field : 'levelName',
 									title : '会员等级'

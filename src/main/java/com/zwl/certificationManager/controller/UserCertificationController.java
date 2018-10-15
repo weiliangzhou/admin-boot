@@ -50,8 +50,8 @@ public class UserCertificationController {
                 params.put("userId", userId);
         }
         //查询列表数据
-        Query query = new Query(params);
         params.put("merchantId", ShiroUtils.getMerchantId());
+        Query query = new Query(params);
 //        params.put("available", 1);
         List<UserCertificationDO> userCertificationList = userCertificationService.list(query);
 

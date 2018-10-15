@@ -51,10 +51,10 @@ function load() {
 								// 	field : 'id',
 								// 	title : 'id'
 								// },
-								{
-									field : 'merchantId',
-									title : '商户id'
-								},
+								// {
+								// 	field : 'merchantId',
+								// 	title : '商户id'
+								// },
 								{
 									field : 'title',
 									title : '节课标题'
@@ -175,7 +175,7 @@ function reLoad() {
 	$('#exampleTable').bootstrapTable('refresh');
 }
 function add() {
-	layer.open({
+    var index = layer.open({
 		type : 2,
 		title : '增加',
 		maxmin : true,
@@ -183,11 +183,12 @@ function add() {
 		area : [ '800px', '520px' ],
 		content : prefix + '/add' // iframe的url
 	});
+    layer.full(index);
 }
 function edit(id,categoryId,classSetId) {
     window.sessionStorage.setItem('categoryId',categoryId);
     window.sessionStorage.setItem('classSetId',classSetId);
-    layer.open({
+    var index = layer.open({
 		type : 2,
 		title : '编辑',
 		maxmin : true,
@@ -195,6 +196,7 @@ function edit(id,categoryId,classSetId) {
 		area : [ '800px', '520px' ],
 		content : prefix + '/edit/' + id // iframe的url
 	});
+    layer.full(index);
 }
 function remove(id) {
 	layer.confirm('确定要删除选中的记录？', {

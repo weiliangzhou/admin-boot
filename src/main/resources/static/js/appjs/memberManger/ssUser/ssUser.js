@@ -123,21 +123,21 @@ function load() {
 									field : 'wechatAccount',
 									title : '微信账号'
 								},
-								{
-									field : 'userId',
-									title : 'userId',
-                                    visible : false
-								},
-																{
-									field : 'referrer', 
-									title : '推荐人userId ',
-									visible : false
-								},
-								{
-									field : 'expiresTime',
-									title : '会员到期时间',
-                                    visible : false
-								},
+								// {
+								// 	field : 'userId',
+								// 	title : 'userId',
+                                 //    visible : false
+								// },
+								// 								{
+								// 	field : 'referrer',
+								// 	title : '推荐人userId ',
+								// 	visible : false
+								// },
+								// {
+								// 	field : 'expiresTime',
+								// 	title : '会员到期时间',
+                                 //    visible : false
+								// },
 								{
 									field : 'registerTime',
 									title : '注册时间'
@@ -166,11 +166,10 @@ function load() {
 									title : '商户号',
 									visible : false
 								},
-//								,
-//																{
-//									field : 'modifyTime',
-//									title : '更新时间'
-//								}
+																{
+									field : 'modifyTime',
+									title : '成为会员时间'
+								},
 																{
 									title : '操作',
 									field : 'id',
@@ -195,7 +194,7 @@ function reLoad() {
 	$('#exampleTable').bootstrapTable('refresh');
 }
 function add() {
-	layer.open({
+    var index = layer.open({
 		type : 2,
 		title : '增加',
 		maxmin : true,
@@ -203,9 +202,10 @@ function add() {
 		area : [ '800px', '520px' ],
 		content : prefix + '/add' // iframe的url
 	});
+    layer.full(index);
 }
 function edit(id) {
-	layer.open({
+    var index = layer.open({
 		type : 2,
 		title : '编辑',
 		maxmin : true,
@@ -213,6 +213,7 @@ function edit(id) {
 		area : [ '800px', '520px' ],
 		content : prefix + '/edit/' + id // iframe的url
 	});
+    layer.full(index);
 }
 function remove(id) {
 	layer.confirm('确定要删除选中的记录？', {
@@ -294,7 +295,7 @@ layui.use('laydate', function(){
 });
 
 function getXiaXianList(userId) {
-    layer.open({
+    var index = layer.open({
         type : 2,
         title : '查看下线',
         maxmin : true,
@@ -302,4 +303,5 @@ function getXiaXianList(userId) {
         area : [ '800px', '520px' ],
         content : prefix + '/xiaXian/' + userId// iframe的url
     });
+    layer.full(index);
 }
