@@ -64,12 +64,12 @@ function load() {
                                     field : 'price',
                                     title : '价格' ,
                                     formatter: function (value, row, index) {
-                                                             return row.price/100;
+                                    	return row.price/100+"元";
                                     }
                                 },
                                 {
 									field : 'maidPercent', 
-									title : '分佣比例（按照100计算）'
+									title : '分佣比例（%）'
 								},
 																{
 									field : 'validityTime', 
@@ -98,11 +98,10 @@ function load() {
 									field : 'createTime', 
 									title : '创建时间'
 								},
-																{
-									field : 'modifyTime', 
-									title : '更新时间'
-								}
-								,
+								// 								{
+								// 	field : 'modifyTime',
+								// 	title : '更新时间'
+								// },
 																{
 									title : '操作',
 									field : 'id',

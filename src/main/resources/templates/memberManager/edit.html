@@ -12,7 +12,7 @@
                            type="hidden">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">原会员等级：</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-2">
                             <input  class="form-control" type="text"
                                    th:value="${ssUser.levelName}" readonly="readonly">
                         </div>
@@ -20,16 +20,13 @@
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">修改等级：</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="memberLevel" placeholder="等级">
+                        <div class="col-sm-2">
+                            <select class="form-control" id="memberLevel" name ="memberLevel" placeholder="等级">
                                 <option value="" selected>全部</option>
                                 <option value="99">校长</option>
                                 <option value="6">院长</option>
-                                <option value="5">班长</option>
                                 <option value="4">VIP学员</option>
                                 <option value="1">学员</option>
-                                <option value="0">会员</option>
-                                <option value="-1">游客</option>
                             </select>
                         </div>
                     </div>

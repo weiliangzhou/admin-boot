@@ -72,41 +72,37 @@ function load() {
                     //    field: 'merchantId',
                     //    title: '商户号'
                     // },
-                    {
-                       field: 'id',
-                       title: '返佣编号'
-                    },
+                    // {
+                    //    field: 'id',
+                    //    title: '返佣编号'
+                    // },
                         {
                         field : 'referrerMobile',
-                        title : '获得分佣手机号 '
+                        title : '推荐人手机号 '
                     },
                                                     {
                         field : 'referrerRealName',
-                        title : '获得分佣姓名 '
+                        title : '推荐人姓名 '
                     },
                     {
                         field : 'maidMobile',
-                        title : '产生分佣手机号 '
+                        title : '购买手机号 '
                     },
-                     {
-                        field : 'maidRealName',
-                        title : '产生分佣姓名 '
-                    },
+                    //  {
+                    //     field : 'maidRealName',
+                    //     title : '产生分佣姓名 '
+                    // },
                      {
                         field: 'maidMoney',
                         title: '分佣金额',
                         formatter: function (value, row, index) {
-                               return row.maidMoney/100;
-                         }
+                               return row.maidMoney/100+"元";
+                        }
                     },
-                    {
-                        field: 'maidPercent',
-                        title: '百分比'
-                    },
-                     {
-                        field: 'createTime',
-                        title: '返佣时间'
-                    },
+                    // {
+                    //     field: 'maidPercent',
+                    //     title: '百分比'
+                    // },
                     {
                         field: 'productName',
                         title: '产品名称'
@@ -119,9 +115,13 @@ function load() {
                     {
                         field: 'orderActualMoney',
                         title: '订单实际金额',
-                       formatter: function (value, row, index) {
-                                   return row.orderActualMoney/100;
-                             }
+                        formatter: function (value, row, index) {
+                            return row.orderActualMoney/100+"元";
+                        }
+                    },
+                     {
+                        field: 'createTime',
+                        title: '返佣时间'
                     },
 //                    {
 //                        field: 'productId',

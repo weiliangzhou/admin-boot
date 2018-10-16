@@ -113,14 +113,18 @@ function load() {
 									field : 'activityTime', 
 									title : '时长'
 								},
+								{
+									field : 'orderCount',
+									title : '报名人次'
+								},
 																{
 									field : 'createTime', 
 									title : '创建时间'
 								},
-																{
-									field : 'modifyTime', 
-									title : '更新时间'
-								},
+								// 								{
+								// 	field : 'modifyTime',
+								// 	title : '更新时间'
+								// },
 								// 								{
 								// 	field : 'available',
 								// 	title : ''

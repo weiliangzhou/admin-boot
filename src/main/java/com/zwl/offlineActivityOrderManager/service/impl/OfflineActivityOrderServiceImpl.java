@@ -48,5 +48,10 @@ public class OfflineActivityOrderServiceImpl implements OfflineActivityOrderServ
 	public int batchRemove(String[] orderNos){
 		return offlineActivityOrderMapper.batchRemove(orderNos);
 	}
-	
+
+	@Override
+	public Integer selectOrderCountByThemeId(Integer activityThemeId) {
+		return offlineActivityOrderMapper.selectOrderCountByThemeId(activityThemeId);
+	}
+
 }

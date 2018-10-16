@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.zwl.common.utils.*;
+import com.zwl.offlineActivityOrderManager.service.OfflineActivityOrderService;
 import com.zwl.offlineActivityThemeManager.domain.OfflineActivityThemeDO;
 import com.zwl.offlineActivityThemeManager.service.OfflineActivityThemeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class OfflineActivityThemeController {
 	@Autowired
 	private OfflineActivityThemeService offlineActivityThemeService;
+	@Autowired
+	private OfflineActivityOrderService offlineActivityOrderService;
 	
 	@GetMapping()
 	@RequiresPermissions("offlineActivityTheme:offlineActivityTheme")
@@ -40,6 +43,10 @@ public class OfflineActivityThemeController {
 		params.put("available", 1);
         Query query = new Query(params);
 		List<OfflineActivityThemeDO> offlineActivityThemeList = offlineActivityThemeService.list(query);
+		for(OfflineActivityThemeDO offlineActivityThemeDO:offlineActivityThemeList){
+			Integer orderCount = offlineActivityOrderService.selectOrderCountByThemeId(offlineActivityThemeDO.getId());
+			offlineActivityThemeDO.setOrderCount(orderCount);
+		}
 		int total = offlineActivityThemeService.count(query);
 		PageUtils pageUtils = new PageUtils(offlineActivityThemeList, total);
 		return pageUtils;

@@ -43,4 +43,6 @@ public class OfflineActivityThemeDO implements Serializable {
 	private Integer day;
 	//夜
 	private Integer night;
+	//订单人数
+	private Integer orderCount;
 }

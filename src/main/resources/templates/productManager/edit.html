@@ -12,20 +12,20 @@
                            type="hidden">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">等级名称：</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-2">
                             <input class="form-control" type="text" name="levelName"
                                    th:value="${product.levelName}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">产品名称：</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-2">
                             <input id="productName" name="productName" class="form-control" type="text" th:value="${product.productName}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">分佣百分比：</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-2">
                             <input class="form-control" type="text" name="maidPercent"
                                    th:value="${product.maidPercent}">
                         </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><span style="color:red">*</span>图片：</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <div class="layui-upload">
                                 <input id="product_imageUrl" name="imageUrl" class="form-control" type="text"
                                        th:value="${product.imageUrl}">

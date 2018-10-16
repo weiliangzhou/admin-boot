@@ -31,9 +31,9 @@ function load() {
                     return {
                         //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
                         limit: params.limit,
-                        offset: params.offset
-                        // name:$('#searchName').val(),
-                        // username:$('#searchName').val()
+                        offset: params.offset,
+                        phone:$('#phone').val(),
+                        referrerPhone:$('#referrerPhone').val()
                     };
                 },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -58,7 +58,7 @@ function load() {
                         field: 'maidMoney',
                         title: '需要修复返佣金额',
                         formatter: function (value, row, index) {
-                            return row.maidMoney / 100;
+                            return row.maidMoney / 100+"元";
                         }
                     },
                     {
@@ -67,7 +67,7 @@ function load() {
                     },
                     {
                         field: 'orderMoney',
-                        title: '订单支付金额',
+                        title: '订单金额',
                         formatter: function (value, row, index) {
                             return row.orderMoney / 100;
                         }
@@ -91,7 +91,7 @@ function load() {
                     },
                     {
                         field: 'orderNo',
-                        title: '购买订单号'
+                        title: '订单号'
                     },
                     {
                         field: 'remark',

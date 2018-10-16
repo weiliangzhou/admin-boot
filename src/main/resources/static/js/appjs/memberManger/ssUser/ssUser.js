@@ -52,7 +52,7 @@ function load() {
 								offset:params.offset,
                                 registerMobile:$('#registerMobile').val(),
                                 memberLevel:$('#memberLevel').val(),
-                                userId:$('#userId').val(),
+                                // userId:$('#userId').val(),
                                 registerFrom:$('#registerFrom').val(),
                                 referrerMobile:$('#referrerMobile').val(),
                                 minTime:$('#minTime').val(),
@@ -109,7 +109,7 @@ function load() {
 								},
 								{
 									field : 'referrerMobile',
-									title : '推荐人手机号 '
+									title : '推荐人手机号'
 								},
 								{
 									field : 'xiaxianCount',
@@ -133,11 +133,11 @@ function load() {
 								// 	title : '推荐人userId ',
 								// 	visible : false
 								// },
-								// {
-								// 	field : 'expiresTime',
-								// 	title : '会员到期时间',
-                                 //    visible : false
-								// },
+								{
+									field : 'expiresTime',
+									title : '会员到期时间',
+                                    // visible : false
+								},
 								{
 									field : 'registerTime',
 									title : '注册时间'
@@ -161,15 +161,15 @@ function load() {
                                 	field : 'actualMoney',
                                 	title : '消费金额'
 								},
-								{
-									field : 'merchantId',
-									title : '商户号',
-									visible : false
-								},
-																{
-									field : 'modifyTime',
-									title : '成为会员时间'
-								},
+								// {
+								// 	field : 'merchantId',
+								// 	title : '商户号',
+								// 	visible : false
+								// },
+								// 								{
+								// 	field : 'modifyTime',
+								// 	title : '更新时间'
+								// },
 																{
 									title : '操作',
 									field : 'id',

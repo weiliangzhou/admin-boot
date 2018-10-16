@@ -16,7 +16,7 @@ import java.util.Map;
 @Mapper
 public interface SsUserMapper {
 
-    @Select("select `id`, `user_id`, `wechat_openid`, `wechat_union_id`, `merchant_id`, `register_from`, `register_mobile`, `real_name`, `logo_url`, `referrer`, `member_level`, `level_name`, `is_buy`, `expires_time`, `register_time`, `modify_time`, `available`, `form_id` from ss_user where id = #{id}")
+    @Select("select `id`, `user_id`, `wechat_openid`, `wechat_union_id`, `merchant_id`, `register_from`, `register_mobile`, `real_name`, `logo_url`, `referrer`, `member_level`, `level_name`, `is_buy`, `expires_time`, `register_time`, `modify_time`, `available` from ss_user where id = #{id}")
     SsUserDO get(Long id);
 
     @Select("<script>" +

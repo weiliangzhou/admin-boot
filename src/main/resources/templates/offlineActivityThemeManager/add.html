@@ -11,13 +11,22 @@
 						<form class="form-horizontal m-t layui-form" id="signupForm">
 							<div class="form-group">	
 								<label class="col-sm-3 control-label">主题名称：</label>
-								<div class="col-sm-8">
+								<div class="col-sm-2">
 									<input id="themeName" name="themeName" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">类型：</label>
+								<div class="col-sm-8">
+									<div class="layui-input-block">
+										<input type="radio" name="themeType" value="0" title="图片">
+										<input type="radio" name="themeType" value="1" title="视频" checked>
+									</div>
 								</div>
 							</div>
 														<div class="form-group">	
 								<label class="col-sm-3 control-label">图片/视频：</label>
-								<div class="col-sm-8">
+								<div class="col-sm-6">
 									<!--<input id="themeHrefUrl" name="themeHrefUrl" class="form-control" type="text">-->
 									<div class="layui-upload">
 										<input id="themeHrefUrl" name="themeHrefUrl" class="form-control" type="text">
@@ -29,12 +38,17 @@
 									</div>
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">类型：</label>
-								<div class="col-sm-8">
-									<div class="layui-input-block">
-										<input type="radio" name="themeType" value="0" title="图片">
-										<input type="radio" name="themeType" value="1" title="视频" checked>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">课程封面：</label>
+								<div class="col-sm-6">
+									<!--<input id="imgUrl" name="imgUrl" class="form-control" type="text">-->
+									<div class="layui-upload">
+										<input id="imgUrl" name="imgUrl" class="form-control" type="text">
+										<button type="button" class="layui-btn" id="imgBtn">上传课程封面</button>
+										<div class="layui-upload-list">
+											<img class="layui-upload-img" id="imgShow">
+											<!--<p id="demoText"></p>-->
+										</div>
 									</div>
 								</div>
 							</div>
@@ -50,43 +64,7 @@
 									<!--<input id="buyCount" name="buyCount" class="form-control" type="text">-->
 								<!--</div>-->
 							<!--</div>-->
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">是否推荐：</label>
-								<div class="col-sm-8">
-									<div class="layui-input-block">
-										<input type="radio" name="isRecommend" value="0" title="不推荐">
-										<input type="radio" name="isRecommend" value="1" title="推荐" checked>
-									</div>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">是否展示：</label>
-								<div class="col-sm-8">
-									<div class="layui-input-block">
-										<input type="radio" name="isShow" value="0" title="不展示">
-										<input type="radio" name="isShow" value="1" title="展示" checked>
-									</div>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">图片上传：</label>
-								<div class="col-sm-8">
-									<!--<input id="imgUrl" name="imgUrl" class="form-control" type="text">-->
-									<div class="layui-upload">
-										<input id="imgUrl" name="imgUrl" class="form-control" type="text">
-										<button type="button" class="layui-btn" id="imgBtn">上传图片/视频</button>
-										<div class="layui-upload-list">
-											<img class="layui-upload-img" id="imgShow">
-											<!--<p id="demoText"></p>-->
-										</div>
-									</div>
-								</div>
-							</div>
 							<div class="form-group">
-								<!--<label class="col-sm-3 control-label">时长：</label>-->
-								<!--<div class="col-sm-8">-->
-									<!--<input id="activityTime" name="activityTime" class="form-control" type="text">-->
-								<!--</div>-->
 								<label class="col-sm-3 control-label">时长：</label>
 								<div class="col-sm-2">
 									<input id="day" name="day" class="form-control" type="text">
@@ -96,6 +74,24 @@
 									<input id="night" name="night" class="form-control" type="text">
 								</div>
 								<label class="col-sm-1 control-label">夜</label>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">是否推荐：</label>
+								<div class="col-sm-8">
+									<div class="layui-input-block">
+										<input type="radio" name="isRecommend" value="0" title="不推荐">
+										<input type="radio" name="isRecommend" value="1" title="推荐" checked>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">是否展示：</label>
+								<div class="col-sm-8">
+									<div class="layui-input-block">
+										<input type="radio" name="isShow" value="0" title="不展示">
+										<input type="radio" name="isShow" value="1" title="展示" checked>
+									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">简介：</label>

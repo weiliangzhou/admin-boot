@@ -20,4 +20,6 @@ public interface OfflineActivityOrderService {
 	int remove(String orderNo);
 	
 	int batchRemove(String[] orderNos);
+
+    Integer selectOrderCountByThemeId(Integer id);
 }

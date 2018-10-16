@@ -1,26 +1,17 @@
 $().ready(function() {
-	$('.summernote').summernote({
-		height : '220px',
-		lang : 'zh-CN'
-	});
-	var content = $("#content").val();
-	$('#content_sn').code(content);
 	validateRule();
 });
 
 $.validator.setDefaults({
 	submitHandler : function() {
-		save();
+		update();
 	}
 });
-function save(status) {
-	$("#status").val(status);
-	var content_sn = $("#content_sn").code();
-	$("#content").val(content_sn);
+function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "memberManager/save",
+		url : "/memberManager/update",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {

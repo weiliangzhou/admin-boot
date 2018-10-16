@@ -12,17 +12,17 @@
                         <input type="hidden" name="id" th:value="${Information.id}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">标题：</label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-2">
                                 <input id="title" name="title" class="form-control" type="text"
                                        th:value="${Information.title}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">展示图片：</label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <input id="logoUrl" name="logoUrl" class="form-control" type="text"
                                        th:value="${Information.logoUrl} ">
-                                <button type="button" class="layui-btn" id="information_upload">上传封面图片</button>
+                                <button type="button" class="layui-btn" id="information_upload">上传展示图片</button>
                                 <div class="layui-upload-list">
                                     <img class="layui-upload-img" id="information_CoverShow">
                                     <p id="frontCoverDemo"></p>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">音频地址：</label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <input id="audioUrl" name="audioUrl" class="form-control" type="text"
                                        th:value="${Information.audioUrl}">
                                 <button type="button" class="layui-btn" id="information_audioUrl">上传音频</button>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">课程简介：</label>
+                            <label class="col-sm-3 control-label">简介：</label>
                             <div class="col-sm-8">
                                 <textarea id="content" name="content" style="display: none;" th:inline="text">
                                     [[${Information.content}]]

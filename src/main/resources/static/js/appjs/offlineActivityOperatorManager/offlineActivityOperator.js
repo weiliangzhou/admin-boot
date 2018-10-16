@@ -53,7 +53,7 @@ function load() {
 								// },
 																{
 									field : 'operator', 
-									title : '操作员手机' 
+									title : '操作员手机号' 
 								},
 																{
 									field : 'password', 

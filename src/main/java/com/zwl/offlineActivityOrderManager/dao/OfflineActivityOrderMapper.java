@@ -126,4 +126,7 @@ public interface OfflineActivityOrderMapper {
 					"</foreach>"+
 			"</script>")
 	int batchRemove(String[] orderNos);
+
+	@Select("select count(*) from ss_offline_activity_order where activity_theme_id = #{activityThemeId} and order_status = 1")
+    Integer selectOrderCountByThemeId(Integer activityThemeId);
 }

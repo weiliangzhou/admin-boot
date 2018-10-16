@@ -120,16 +120,36 @@ public class MemberMangerController {
     /**
      * 修改
      */
-    @RequestMapping("/update")
+    @ResponseBody
+    @PostMapping("/update")
     @RequiresPermissions("memberManager:update")
-    public R update(@ModelAttribute SsUserDO ssUser) {
+    public R update(SsUserDO ssUser) {
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);//设置起时间
-        cal.add(Calendar.YEAR, 1);//增加一年
+        cal.add(Calendar.YEAR, 99);//增加99年
         ssUser.setExpiresTime(cal.getTime());
         ssUser.setIsBuy(1);
         ssUser.setRegisterFrom(2);
+        String levelName = "";
+        Integer memberLevel = ssUser.getMemberLevel();
+        if (null==memberLevel)
+            return R.error();
+        switch (memberLevel) {
+            case 99:
+                levelName = "校长";
+                break;
+            case 6:
+                levelName = "院长";
+                break;
+            case 4:
+                levelName = "VIP学员";
+                break;
+            case 1:
+                levelName = "学员";
+                break;
+        }
+        ssUser.setLevelName(levelName);
         ssUserService.update(ssUser);
         return R.ok();
     }

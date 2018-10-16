@@ -77,7 +77,27 @@ function load() {
                             return "";
                         }
                     },
-
+                    {
+                        field: 'requiredMemberLevel',
+                        title: '最低等级要求',
+                        formatter: function (value, row, index) {
+                            if (row.requiredMemberLevel == null) {
+                                return "-";
+                            }
+                            if (row.requiredMemberLevel == 1) {
+                                return "学员";
+                            } else if (row.requiredMemberLevel == 4) {
+                                return "VIP学员";
+                            }else if (row.requiredMemberLevel == 5) {
+                                return "班长";
+                            }else if (row.requiredMemberLevel == 6) {
+                                return "院长";
+                            } else if (row.requiredMemberLevel == 99) {
+                                return "校长";
+                            }
+                            return "";
+                        }
+                    },
                     {
                         field: 'isRecommend',
                         title: '是否推荐',
@@ -104,27 +124,6 @@ function load() {
                                 return "不发布";
                             } else if (row.isShow == 1) {
                                 return "发布";
-                            }
-                            return "";
-                        }
-                    },
-                    {
-                        field: 'requiredMemberLevel',
-                        title: '最低等级要求',
-                        formatter: function (value, row, index) {
-                            if (row.requiredMemberLevel == null) {
-                                return "-";
-                            }
-                            if (row.requiredMemberLevel == 1) {
-                                return "学员";
-                            } else if (row.requiredMemberLevel == 4) {
-                                return "VIP学员";
-                            }else if (row.requiredMemberLevel == 5) {
-                                return "班长";
-                            }else if (row.requiredMemberLevel == 6) {
-                                return "院长";
-                            } else if (row.requiredMemberLevel == 99) {
-                                return "校长";
                             }
                             return "";
                         }

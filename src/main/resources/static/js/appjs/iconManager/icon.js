@@ -62,7 +62,7 @@ function load() {
 								},
 								{
 									field : 'hrefType',
-									title : '链接类型',
+									title : '链接跳转类型',
 									formatter: function (value, row, index) {
 										if(row.hrefType == null ){
 											return "-";
@@ -83,7 +83,7 @@ function load() {
 								},
 								{
 									field : 'portType',
-									title : '端口类型',
+									title : '端口',
                                     formatter: function (value, row, index) {
                                         if(row.portType == null ){
                                             return "-";

@@ -71,7 +71,7 @@ function load() {
                                                 return "";
                                             }
                                            if (row.status == 1){
-                                                return "审核中";
+                                                return "待审核";
                                             }else if (row.status == 2){
                                                 return "通过";
                                             }else if (row.status == 3){
@@ -86,11 +86,10 @@ function load() {
 								}
 
                                 ,
-								{
-									field : 'operator',
-									title : '审核人员'
-								}
-							 ,
+								// {
+								// 	field : 'operator',
+								// 	title : '审核人员'
+								// },
 																{
 									field : 'rejectReason', 
 									title : '驳回原因' 

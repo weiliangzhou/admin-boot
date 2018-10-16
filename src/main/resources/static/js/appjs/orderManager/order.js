@@ -90,19 +90,22 @@ function load() {
                         field: 'money',
                         title: '订单金额',
                         formatter: function (value, row, index) {
-                         return row.money/100;
+                         return row.money/100+"元";
                          }
                     },
-                    {
-                        field: 'actualMoney',
-                        title: '实付金额',
-                        formatter: function (value, row, index) {
-                         return row.actualMoney/100;
-                         }
-                    },
+                    // {
+                    //     field: 'actualMoney',
+                    //     title: '实付金额',
+                    //     formatter: function (value, row, index) {
+                    //      return row.actualMoney/100;
+                    //      }
+                    // },
                     {
                         field: 'maidPercent',
-                        title: '返佣比例'
+                        title: '返佣金额',
+                        formatter: function (value, row) {
+                            return row.money*row.maidPercent/10000+"元";
+                        }
                     },
                     {
                         field: 'payWay',

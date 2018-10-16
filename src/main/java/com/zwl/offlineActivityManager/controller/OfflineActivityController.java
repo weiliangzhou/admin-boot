@@ -99,8 +99,10 @@ public class OfflineActivityController {
 			log.error("日期转化异常");
 			throw new RuntimeException("日期转化异常");
 		}
+		//如复训价格未填，则设初始值为0
+		Double retrainingPriceDesc = offlineActivity.getRetrainingPriceDesc()==null ? 0 : offlineActivity.getRetrainingPriceDesc();
 		offlineActivity.setActivityPrice(Integer.parseInt((int)mul(offlineActivity.getActivityPriceDesc(),100)+""));
-		offlineActivity.setRetrainingPrice(Integer.parseInt((int)mul(offlineActivity.getRetrainingPriceDesc(),100)+""));
+		offlineActivity.setRetrainingPrice(Integer.parseInt((int)mul(retrainingPriceDesc,100)+""));
 		offlineActivity.setMerchantId(ShiroUtils.getMerchantId());
 		offlineActivity.setBuyCount(0);
 		offlineActivity.setMinRequirement(offlineActivity.getMinRequirement() == null ? 0 :offlineActivity.getMinRequirement());
