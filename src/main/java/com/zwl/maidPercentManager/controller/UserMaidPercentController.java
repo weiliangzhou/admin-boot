@@ -9,7 +9,7 @@ import com.zwl.maidPercentManager.service.UserMaidPercentService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,10 +54,10 @@ public class UserMaidPercentController {
 
     @GetMapping("/edit/{id}")
     @RequiresPermissions("maidPercentManager:edit")
-    String edit(ModelMap model, @PathVariable("id") Integer id) {
+    String edit(@PathVariable("id") Integer id, Model model) {
         UserMaidPercentDO userMaidPercent = userMaidPercentService.get(id);
         model.addAttribute("userMaidPercent", userMaidPercent);
-        return "/maidPercentManager/edit";
+        return "maidPercentManager/edit";
     }
 
     /**
@@ -77,7 +77,7 @@ public class UserMaidPercentController {
     @PostMapping("/save")
     @RequiresPermissions("maidPercentManager:save")
     public R save(UserMaidPercentDO userMaidPercent) {
-        String merchantId= ShiroUtils.getMerchantId();
+        String merchantId = ShiroUtils.getMerchantId();
         userMaidPercent.setAvailable(1);
         userMaidPercent.setMerchantId(merchantId);
         if (userMaidPercentService.save(userMaidPercent) > 0) {
