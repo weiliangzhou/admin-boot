@@ -133,11 +133,11 @@ function load() {
 								// 	title : '推荐人userId ',
 								// 	visible : false
 								// },
-								{
-									field : 'expiresTime',
-									title : '会员到期时间',
-                                    // visible : false
-								},
+								// {
+								// 	field : 'expiresTime',
+								// 	title : '会员到期时间',
+                                 //    // visible : false
+								// },
 								{
 									field : 'registerTime',
 									title : '注册时间'

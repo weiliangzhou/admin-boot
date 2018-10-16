@@ -46,6 +46,8 @@ public class OfflineActivityThemeController {
 		for(OfflineActivityThemeDO offlineActivityThemeDO:offlineActivityThemeList){
 			Integer orderCount = offlineActivityOrderService.selectOrderCountByThemeId(offlineActivityThemeDO.getId());
 			offlineActivityThemeDO.setOrderCount(orderCount);
+			String activityTime = offlineActivityThemeDO.getActivityTime().substring(3);
+			offlineActivityThemeDO.setActivityTime(activityTime);
 		}
 		int total = offlineActivityThemeService.count(query);
 		PageUtils pageUtils = new PageUtils(offlineActivityThemeList, total);

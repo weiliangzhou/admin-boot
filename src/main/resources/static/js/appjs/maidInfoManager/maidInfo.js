@@ -50,7 +50,7 @@ function load() {
                         limit: params.limit,
                         offset: params.offset,
                         productName : $("#product_name").val(),
-                        userId:$('#userId').val(),
+                        // userId:$('#userId').val(),
                         referrerMobile:$('#referrerMobile').val(),
                         maidMobile:$('#maidMobile').val(),
                         minTime:$('#minTime').val(),
