@@ -53,6 +53,7 @@ public class UserMaidPercentController {
 
 
     @GetMapping("/edit/{id}")
+    @RequiresPermissions("maidPercentManager:edit")
     String edit(ModelMap model, @PathVariable("id") Integer id) {
         UserMaidPercentDO userMaidPercent = userMaidPercentService.get(id);
         model.addAttribute("userMaidPercent", userMaidPercent);
