@@ -48,36 +48,42 @@ function load() {
 									checkbox : true
 								},
 																{
-									field : 'id', 
-									title : '' 
-								},
-																{
 									field : 'memberLevel', 
-									title : '等级' 
+									title : '等级' ,
+									formatter: function (value, row, index) {
+                                        if(row.memberLevel == 6 ){
+                                            return "院长";
+                                        }
+                                        else if(row.memberLevel == 4 ){
+                                            return "VIP学员";
+                                        }
+                                        else(row.memberLevel == 1 )
+                                        {
+                                            return "学员";
+                                        }
+									}
+
+								}
+								,
+																{
+									field : 'maidPercent1',
+									title : '学员分佣比例'
 								},
 																{
-									field : 'maidPercent', 
-									title : '分佣比例' 
+									field : 'maidPercent4',
+									title : 'VIP学员分佣比例'
 								},
 																{
-									field : 'productId', 
-									title : '产品id' 
+									field : 'maidPercent6',
+									title : '院长分佣比例'
 								},
 																{
 									field : 'merchantId', 
-									title : '' 
+									title : '商户号'
 								},
 																{
 									field : 'createTime', 
-									title : '' 
-								},
-																{
-									field : 'modifyTime', 
-									title : '' 
-								},
-																{
-									field : 'available', 
-									title : '' 
+									title : '创建时间'
 								},
 																{
 									title : '操作',

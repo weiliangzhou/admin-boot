@@ -3,6 +3,7 @@ package com.zwl.maidPercentManager.controller;
 import com.zwl.common.utils.PageUtils;
 import com.zwl.common.utils.Query;
 import com.zwl.common.utils.R;
+import com.zwl.common.utils.ShiroUtils;
 import com.zwl.maidPercentManager.domain.UserMaidPercentDO;
 import com.zwl.maidPercentManager.service.UserMaidPercentService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -29,7 +30,7 @@ public class UserMaidPercentController {
     @GetMapping()
     @RequiresPermissions("maidPercentManager:maidPercentManager")
     String UserMaidPercent() {
-        return "demo/userMaidPercent/userMaidPercent";
+        return "maidPercentManager/userMaidPercent";
     }
 
     @ResponseBody
@@ -45,7 +46,7 @@ public class UserMaidPercentController {
     }
 
     @GetMapping("/add")
-        //@RequiresPermissions("blog:bComments")
+    @RequiresPermissions("maidPercentManager:add")
     String add() {
         return "maidPercentManager/add";
     }
@@ -73,7 +74,11 @@ public class UserMaidPercentController {
      */
     @ResponseBody
     @PostMapping("/save")
+    @RequiresPermissions("maidPercentManager:save")
     public R save(UserMaidPercentDO userMaidPercent) {
+        String merchantId= ShiroUtils.getMerchantId();
+        userMaidPercent.setAvailable(1);
+        userMaidPercent.setMerchantId(merchantId);
         if (userMaidPercentService.save(userMaidPercent) > 0) {
             return R.ok();
         }
@@ -84,9 +89,10 @@ public class UserMaidPercentController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody UserMaidPercentDO userMaidPercent) {
+    @RequiresPermissions("maidPercentManager:update")
+    @ResponseBody
+    public R update(@ModelAttribute UserMaidPercentDO userMaidPercent) {
         userMaidPercentService.update(userMaidPercent);
-
         return R.ok();
     }
 
