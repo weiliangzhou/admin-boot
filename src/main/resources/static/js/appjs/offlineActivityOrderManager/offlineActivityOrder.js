@@ -2,31 +2,36 @@
 var prefix = "/offlineActivityOrder"
 $(function() {
 	load();
-    layui.use(['layer', 'form'], function(){
-        var layer = layui.layer, $ = layui.jquery,form = layui.form;
-        var url = "/items/getActivityThemeItemsList";
-        var merchantId = $('#merchantId').val();
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:JSON.stringify({merchantId:merchantId}),
-            contentType:"application/json; charset=utf-8",
-            dataType:"json",
-            success: function(res){
-                if(!res){
-                    return
-                }
-                var activityThemeIdHtml = "<option value=''>请选择</option>";
-                res.forEach(item=>{
-                    activityThemeIdHtml+="<option value='"+item.id+"'>"+item.themeName+"</option>"
-                })
-                $("#activityThemeId").html(activityThemeIdHtml);
-                layui.form.render();
-            }
-        })
-    });
+    // layui.use(['layer', 'form'], function(){
+    //     var layer = layui.layer, $ = layui.jquery,form = layui.form;
+    //     var url = "/items/getActivityThemeItemsList";
+    //     var merchantId = $('#merchantId').val();
+    //     $.ajax({
+    //         url:url,
+    //         type:"POST",
+    //         data:JSON.stringify({merchantId:merchantId}),
+    //         contentType:"application/json; charset=utf-8",
+    //         dataType:"json",
+    //         success: function(res){
+    //             if(!res){
+    //                 return
+    //             }
+    //             var activityThemeIdHtml = "<option value=''>请选择</option>";
+    //             res.forEach(item=>{
+    //                 activityThemeIdHtml+="<option value='"+item.id+"'>"+item.themeName+"</option>"
+    //             })
+    //             $("#activityThemeId").html(activityThemeIdHtml);
+    //             layui.form.render();
+    //         }
+    //     })
+    // });
 });
-
+function DoOnMsoNumberFormat(cell, row, col) {
+    var result = "";
+    if (row > 0 && col == 0)
+        result = "\\@";
+    return result;
+}
 function load() {
 	$('#exampleTable')
 			.bootstrapTable(
@@ -51,6 +56,18 @@ function load() {
 						//search : true, // 是否显示搜索框
 						showColumns : false, // 是否显示内容下拉框（选择显示的列）
 						sidePagination : "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
+                        exportTypes:['excel'],  //导出文件类型
+                        Icons:'glyphicon-export',
+                        exportOptions:{
+                            ignoreColumn: [0,1],  //忽略某一列的索引
+                            fileName: '会员表',  //文件名称设置
+                            worksheetName: 'sheet1',  //表格工作区名称
+                            tableName: '会员表',
+                            excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
+                            onMsoNumberFormat: DoOnMsoNumberFormat
+                        },
+                        showExport: true,                     //是否显示导出
+                        exportDataType: "all",              //basic', 'all', 'selected'.
 						queryParams : function(params) {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
@@ -145,7 +162,7 @@ function load() {
 								},
 																{
 									field : 'idCardNum', 
-									title : '身份证号码' 
+									title : '身份证号码'
 								},
 								// 								{
 								// 	field : 'paymentNo',
