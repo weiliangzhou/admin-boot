@@ -51,7 +51,9 @@ function load() {
 									field : 'memberLevel', 
 									title : '等级' ,
 									formatter: function (value, row, index) {
-                                        if(row.memberLevel == 6 ){
+                                        if(row.memberLevel == 99 ){
+                                            return "院长";
+                                        }else if(row.memberLevel == 6 ){
                                             return "院长";
                                         }
                                         else if(row.memberLevel == 4 ){
