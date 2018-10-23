@@ -52,7 +52,7 @@ function load() {
 									title : '等级' ,
 									formatter: function (value, row, index) {
                                         if(row.memberLevel == 99 ){
-                                            return "院长";
+                                            return "校长";
                                         }else if(row.memberLevel == 6 ){
                                             return "院长";
                                         }
