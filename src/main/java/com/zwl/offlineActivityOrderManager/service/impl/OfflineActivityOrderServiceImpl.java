@@ -54,4 +54,9 @@ public class OfflineActivityOrderServiceImpl implements OfflineActivityOrderServ
 		return offlineActivityOrderMapper.selectOrderCountByThemeId(activityThemeId);
 	}
 
+	@Override
+	public Integer selectOrderCountByActivityId(Integer activityId) {
+		return offlineActivityOrderMapper.selectOrderCountByActivityId(activityId);
+	}
+
 }

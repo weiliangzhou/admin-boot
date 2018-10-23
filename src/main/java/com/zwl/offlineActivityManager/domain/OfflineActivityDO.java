@@ -70,4 +70,6 @@ public class OfflineActivityDO implements Serializable {
 	private Double activityPriceDesc;
 	//复训价格
 	private Double retrainingPriceDesc;
+	//订单购买人数
+	private Integer orderCount;
 }

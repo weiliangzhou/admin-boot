@@ -55,6 +55,20 @@ function load() {
 									field : 'themeName', 
 									title : '主题名称' 
 								},
+								{
+									field : 'city',
+									title : '城市',
+                                    formatter : function(value, row) {
+										if(value != null){
+                                            var e = '<a  href="#" style="color: blue" mce_href="#" title="查看订单" onclick="getActivityList(\''
+                                                + row.id
+                                                + '\')">'+'更多'+'</a> ';
+                                            return value+'，'+e ;
+										}else{
+                                            return "-";
+										}
+                                    }
+								},
 								// 								{
 								// 	field : 'themeHrefUrl',
 								// 	title : '图片地址或者视频地址'
@@ -115,7 +129,13 @@ function load() {
 								},
 								{
 									field : 'orderCount',
-									title : '报名人次'
+									title : '报名人次',
+                                    formatter : function(value, row) {
+                                        var e = '<a  href="#" style="color: blue" mce_href="#" title="查看订单" onclick="getOrderList(\''
+                                            + row.id
+                                            + '\')">'+value+'人'+'</a> ';
+                                        return e ;
+                                    }
 								},
 																{
 									field : 'createTime', 
@@ -234,4 +254,26 @@ function batchRemove() {
 	}, function() {
 
 	});
+}
+function getOrderList(id) {
+    var index = layer.open({
+        type : 2,
+        title : '查看订单',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '800px', '520px' ],
+        content : prefix + '/order/' + id// iframe的url
+    });
+    layer.full(index);
+}
+function getActivityList(id) {
+    var index = layer.open({
+        type : 2,
+        title : '查看开课城市',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '800px', '520px' ],
+        content : prefix + '/activity/' + id// iframe的url
+    });
+    layer.full(index);
 }

@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.zwl.common.utils.*;
+import com.zwl.offlineActivityManager.domain.OfflineActivityDO;
+import com.zwl.offlineActivityManager.service.OfflineActivityService;
+import com.zwl.offlineActivityOrderManager.domain.OfflineActivityOrderDO;
 import com.zwl.offlineActivityOrderManager.service.OfflineActivityOrderService;
 import com.zwl.offlineActivityThemeManager.domain.OfflineActivityThemeDO;
 import com.zwl.offlineActivityThemeManager.service.OfflineActivityThemeService;
@@ -26,6 +29,8 @@ public class OfflineActivityThemeController {
 	private OfflineActivityThemeService offlineActivityThemeService;
 	@Autowired
 	private OfflineActivityOrderService offlineActivityOrderService;
+	@Autowired
+	private OfflineActivityService offlineActivityService;
 	
 	@GetMapping()
 	@RequiresPermissions("offlineActivityTheme:offlineActivityTheme")
@@ -48,6 +53,16 @@ public class OfflineActivityThemeController {
 			offlineActivityThemeDO.setOrderCount(orderCount);
 			String activityTime = offlineActivityThemeDO.getActivityTime().substring(3);
 			offlineActivityThemeDO.setActivityTime(activityTime);
+			//查询该课程主题下有哪些开课城市
+			List<String> cities = offlineActivityService.selectActivityAddressByThemeId(offlineActivityThemeDO.getId());
+			if(null != cities && !cities.isEmpty()){
+				String city = cities.get(0);
+				if(2 == cities.size()){
+					city = city + "，"+cities.get(1);
+				}
+				offlineActivityThemeDO.setCity(city);
+			}
+
 		}
 		int total = offlineActivityThemeService.count(query);
 		PageUtils pageUtils = new PageUtils(offlineActivityThemeList, total);
@@ -150,5 +165,60 @@ public class OfflineActivityThemeController {
 		
 		return R.ok();
 	}
-	
+
+	@GetMapping("/order/{id}")
+	String order(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("id", id);
+		return "offlineActivityThemeManager/order";
+	}
+
+	@ResponseBody
+	@GetMapping("/getOrderList")
+//	@RequiresPermissions("offlineActivityTheme:getOrderList")
+	public PageUtils getOrderList(@RequestParam Map<String, Object> params){
+		//查询列表数据
+		String merchantId = ShiroUtils.getMerchantId();
+		params.put("merchantId", merchantId);
+		params.put("available", 1);
+		params.put("orderStatus",1);
+		Query query = new Query(params);
+		List<OfflineActivityOrderDO> offlineActivityOrderList = offlineActivityOrderService.list(query);
+		for(OfflineActivityOrderDO offlineActivityOrderDO:offlineActivityOrderList){
+			OfflineActivityDO offlineActivityDO = offlineActivityService.get(offlineActivityOrderDO.getActivityId());
+			offlineActivityOrderDO.setActivityAddress(offlineActivityDO.getActivityAddress());
+			OfflineActivityThemeDO offlineActivityThemeDO = offlineActivityThemeService.get(offlineActivityOrderDO.getActivityThemeId());
+			offlineActivityOrderDO.setThemeName(offlineActivityThemeDO.getThemeName());
+		}
+		int total = offlineActivityOrderService.count(query);
+		PageUtils pageUtils = new PageUtils(offlineActivityOrderList, total);
+		return pageUtils;
+	}
+
+	@GetMapping("/activity/{id}")
+	String activity(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("id", id);
+		return "offlineActivityThemeManager/activity";
+	}
+
+	@ResponseBody
+	@GetMapping("/getActivityList")
+//	@RequiresPermissions("offlineActivity:list")
+	public PageUtils getActivityList(@RequestParam Map<String, Object> params){
+		//查询列表数据
+		String merchantId = ShiroUtils.getMerchantId();
+		params.put("merchantId", merchantId);
+		params.put("available", 1);
+		Query query = new Query(params);
+		List<OfflineActivityDO> offlineActivityList = offlineActivityService.list(query);
+		for(OfflineActivityDO offlineActivityDO:offlineActivityList){
+			//根据活动主题id查询活动主题名称
+			String activityTheme = offlineActivityService.selectThemeNameByThemeId(offlineActivityDO.getActivityThemeId());
+			offlineActivityDO.setActivityTheme(activityTheme);
+			Integer orderCount = offlineActivityOrderService.selectOrderCountByActivityId(offlineActivityDO.getId());
+			offlineActivityDO.setOrderCount(orderCount);
+		}
+		int total = offlineActivityService.count(query);
+		PageUtils pageUtils = new PageUtils(offlineActivityList, total);
+		return pageUtils;
+	}
 }

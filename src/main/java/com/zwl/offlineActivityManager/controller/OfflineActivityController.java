@@ -8,6 +8,10 @@ import java.util.Map;
 import com.zwl.common.utils.ShiroUtils;
 import com.zwl.offlineActivityManager.domain.OfflineActivityDO;
 import com.zwl.offlineActivityManager.service.OfflineActivityService;
+import com.zwl.offlineActivityOrderManager.domain.OfflineActivityOrderDO;
+import com.zwl.offlineActivityOrderManager.service.OfflineActivityOrderService;
+import com.zwl.offlineActivityThemeManager.domain.OfflineActivityThemeDO;
+import com.zwl.offlineActivityThemeManager.service.OfflineActivityThemeService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +31,10 @@ import static com.zwl.common.utils.BigDecimalUtil.mul;
 public class OfflineActivityController {
 	@Autowired
 	private OfflineActivityService offlineActivityService;
+	@Autowired
+	private OfflineActivityOrderService offlineActivityOrderService;
+	@Autowired
+	private OfflineActivityThemeService offlineActivityThemeService;
 	
 	@GetMapping()
 	@RequiresPermissions("offlineActivity:offlineActivity")
@@ -47,10 +55,10 @@ public class OfflineActivityController {
 		for(OfflineActivityDO offlineActivityDO:offlineActivityList){
 			//根据活动主题id查询活动主题名称
 			String activityTheme = offlineActivityService.selectThemeNameByThemeId(offlineActivityDO.getActivityThemeId());
-			//根据上个活动id查询上个活动名称
-//			String activityParent = offlineActivityService.selectActivityAddressByActivityParentId(offlineActivityDO.getActivityParentId());
 			offlineActivityDO.setActivityTheme(activityTheme);
-//			offlineActivityDO.setActivityParent(activityParent == null ? "":activityParent);
+			//根据开课城市id查询该课程订单人数
+			Integer orderCount = offlineActivityOrderService.selectOrderCountByActivityId(offlineActivityDO.getId());
+			offlineActivityDO.setOrderCount(orderCount);
 		}
 		int total = offlineActivityService.count(query);
 		PageUtils pageUtils = new PageUtils(offlineActivityList, total);
@@ -161,5 +169,32 @@ public class OfflineActivityController {
 		
 		return R.ok();
 	}
-	
+
+	@GetMapping("/order/{id}")
+	String order(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("id", id);
+		return "offlineActivityManager/order";
+	}
+
+	@ResponseBody
+	@GetMapping("/getOrderList")
+//	@RequiresPermissions("offlineActivityTheme:getOrderList")
+	public PageUtils getOrderList(@RequestParam Map<String, Object> params){
+		//查询列表数据
+		String merchantId = ShiroUtils.getMerchantId();
+		params.put("merchantId", merchantId);
+		params.put("available", 1);
+		params.put("orderStatus",1);
+		Query query = new Query(params);
+		List<OfflineActivityOrderDO> offlineActivityOrderList = offlineActivityOrderService.list(query);
+		for(OfflineActivityOrderDO offlineActivityOrderDO:offlineActivityOrderList){
+			OfflineActivityDO offlineActivityDO = offlineActivityService.get(offlineActivityOrderDO.getActivityId());
+			offlineActivityOrderDO.setActivityAddress(offlineActivityDO.getActivityAddress());
+			OfflineActivityThemeDO offlineActivityThemeDO = offlineActivityThemeService.get(offlineActivityOrderDO.getActivityThemeId());
+			offlineActivityOrderDO.setThemeName(offlineActivityThemeDO.getThemeName());
+		}
+		int total = offlineActivityOrderService.count(query);
+		PageUtils pageUtils = new PageUtils(offlineActivityOrderList, total);
+		return pageUtils;
+	}
 }

@@ -25,6 +25,8 @@ public interface OfflineActivityService {
     List<OfflineActivityVo> getActivityItemsList(String merchantId, Integer activityThemeId);
 
 	String selectThemeNameByThemeId(Integer activityThemeId);
+	//根据themeId查询该课程主题下有哪些开课城市，限制查询两个
+    List<String> selectActivityAddressByThemeId(Integer activityThemeId);
 
 //	String selectActivityAddressByActivityParentId(Integer activityParentId);
 }

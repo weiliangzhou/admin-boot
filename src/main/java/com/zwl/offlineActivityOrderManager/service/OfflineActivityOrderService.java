@@ -20,6 +20,8 @@ public interface OfflineActivityOrderService {
 	int remove(String orderNo);
 	
 	int batchRemove(String[] orderNos);
-
-    Integer selectOrderCountByThemeId(Integer id);
+	//根据themeId查询该场线下活动主题的订单人数
+    Integer selectOrderCountByThemeId(Integer activityThemeId);
+	//根据activityId查询该场活动的订单人数
+    Integer selectOrderCountByActivityId(Integer activityId);
 }

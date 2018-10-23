@@ -135,4 +135,7 @@ public interface OfflineActivityMapper {
 
 	@Select("select activity_address from ss_offline_activity where id = #{activityParentId}")
 	String selectActivityAddressByActivityParentId(Integer activityParentId);
+
+	@Select("select activity_address from ss_offline_activity where activity_theme_id = #{activityThemeId} and available = 1 limit 2")
+    List<String> selectActivityAddressByThemeId(Integer activityThemeId);
 }

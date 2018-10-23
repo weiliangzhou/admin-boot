@@ -129,4 +129,7 @@ public interface OfflineActivityOrderMapper {
 
 	@Select("select count(*) from ss_offline_activity_order where activity_theme_id = #{activityThemeId} and order_status = 1")
     Integer selectOrderCountByThemeId(Integer activityThemeId);
+
+	@Select("select count(*) from ss_offline_activity_order where activity_id = #{activityId} and order_status = 1")
+    Integer selectOrderCountByActivityId(Integer activityId);
 }
