@@ -60,7 +60,7 @@ function load() {
 									title : '城市',
                                     formatter : function(value, row) {
 										if(value != null){
-                                            var e = '<a  href="#" style="color: blue" mce_href="#" title="查看订单" onclick="getActivityList(\''
+                                            var e = '<a  href="#" style="color: blue" mce_href="#" title="查看开课城市" onclick="getActivityList(\''
                                                 + row.id
                                                 + '\')">'+'更多'+'</a> ';
                                             return value+'，'+e ;
