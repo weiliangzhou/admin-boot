@@ -146,11 +146,11 @@ public class GzhServiceImpl implements GzhService {
         String gzAppId = merchant.getGzAppId();
         String gzAppKey = merchant.getGzAppKey();
         String xcxAppId = merchant.getAppId();
-//        List<String> openidList = getGzhOpenIdList(merchantId, gzAppId, gzAppKey);
-        List<String> openidList = new ArrayList<>();
-        openidList.add("obBoO0yVr8DwoZK47eSidlIFUE7A");
-        openidList.add("obBoO01VBFIZd1S51jEKLnkuzPfQ");
-        openidList.add("obBoO0yGdBJ-C0iaDCBppTNUK0fE");
+        List<String> openidList = getGzhOpenIdList(merchantId, gzAppId, gzAppKey);
+//        List<String> openidList = new ArrayList<>();
+//        openidList.add("obBoO0yVr8DwoZK47eSidlIFUE7A");
+//        openidList.add("obBoO01VBFIZd1S51jEKLnkuzPfQ");
+//        openidList.add("obBoO0yGdBJ-C0iaDCBppTNUK0fE");
 //        String templateId = "niRn7EQ3Hb7pXD13o2D9JL6YpSWVqX2uV1I30EWmI8s";
         String templateId = "ZZcSUlXiCLKAiMkFrQVzRvVv4D7vKHD6ImSZej9Q3iE";
         for (String openId : openidList) {
