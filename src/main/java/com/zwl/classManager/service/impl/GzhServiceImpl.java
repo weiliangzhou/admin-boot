@@ -61,7 +61,7 @@ public class GzhServiceImpl implements GzhService {
 //        欢迎登陆东遥课堂微信小程序收听！
         GzhMsgTemplate gzhMsgTemplate = new GzhMsgTemplate();
         Map first = new HashMap();
-        first.put("value", "微商夜大有新课程啦！");
+        first.put("value", "微商大学有新课程啦！");
         first.put("color", "#e6304a");
         Map keyword1 = new HashMap();
         keyword1.put("value", "\uD83C\uDF38"+className+"\uD83C\uDF31");
