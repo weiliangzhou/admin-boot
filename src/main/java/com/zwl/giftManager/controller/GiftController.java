@@ -74,7 +74,7 @@ public class GiftController {
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("gift:save")
-    public R save(GiftDO gift) {
+    public R save(@ModelAttribute GiftDO gift) {
         if (giftService.save(gift) > 0) {
             return R.ok();
         }
