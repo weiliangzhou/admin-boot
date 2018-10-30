@@ -78,22 +78,22 @@ function load() {
                         }
 
                     },
-                    {
-                        field: 'giftMainImg',
-                        title: '产品主图'
-                    },
-                    {
-                        field: 'giftViceImg1',
-                        title: '产品附图1'
-                    },
-                    {
-                        field: 'giftViceImg2',
-                        title: '产品附图2'
-                    },
-                    {
-                        field: 'giftViceImg3',
-                        title: '产品附图3'
-                    },
+                    // {
+                    //     field: 'giftMainImg',
+                    //     title: '产品主图'
+                    // },
+                    // {
+                    //     field: 'giftViceImg1',
+                    //     title: '产品附图1'
+                    // },
+                    // {
+                    //     field: 'giftViceImg2',
+                    //     title: '产品附图2'
+                    // },
+                    // {
+                    //     field: 'giftViceImg3',
+                    //     title: '产品附图3'
+                    // },
                     {
                         field: 'price',
                         title: '价格',
@@ -103,7 +103,10 @@ function load() {
                     },
                     {
                         field: 'expressFee',
-                        title: '快递费'
+                        title: '快递费',
+                        formatter: function (value, row, index) {
+                            return row.price / 100;
+                        }
                     },
                     {
                         field: 'stock',

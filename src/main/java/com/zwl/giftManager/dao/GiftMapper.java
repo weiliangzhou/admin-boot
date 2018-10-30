@@ -9,12 +9,12 @@ import java.util.Map;
 /**
  * @author th 2 brother
  * @email 382308664@qq.com
- * @date 2018-10-30 16:11:40
+ * @date 2018-10-30 17:50:24
  */
 @Mapper
 public interface GiftMapper {
 
-    @Select("select `id`, `gift_main_title`, `gift_vice_title`, `min_requirement`, `gift_main_img`, `gift_vice_img_1`, `gift_vice_img_2`, `gift_vice_img_3`, `price`, `express_fee`, `stock`, `gift_desc`, `is_recommend`, `is_show`, `create_time`, `modify_time`, `available` from ss_gift where id = #{id}")
+    @Select("select `id`, `gift_main_title`, `gift_vice_title`, `min_requirement`, `gift_main_img`, `gift_vice_img_1`, `gift_vice_img_2`, `gift_vice_img_3`, `price`, `express_fee`, `stock`, `gift_desc`, `is_recommend`, `is_show`, `merchant_id`, `create_time`, `modify_time`, `available` from ss_gift where id = #{id}")
     GiftDO get(Long id);
 
     @Select("<script>" +
@@ -34,6 +34,7 @@ public interface GiftMapper {
             "<if test=\"giftDesc != null and giftDesc != ''\">" + "and gift_desc = #{giftDesc} " + "</if>" +
             "<if test=\"isRecommend != null and isRecommend != ''\">" + "and is_recommend = #{isRecommend} " + "</if>" +
             "<if test=\"isShow != null and isShow != ''\">" + "and is_show = #{isShow} " + "</if>" +
+            "<if test=\"merchantId != null and merchantId != ''\">" + "and merchant_id = #{merchantId} " + "</if>" +
             "<if test=\"createTime != null and createTime != ''\">" + "and create_time = #{createTime} " + "</if>" +
             "<if test=\"modifyTime != null and modifyTime != ''\">" + "and modify_time = #{modifyTime} " + "</if>" +
             "<if test=\"available != null and available != ''\">" + "and available = #{available} " + "</if>" +
@@ -69,6 +70,7 @@ public interface GiftMapper {
             "<if test=\"giftDesc != null and giftDesc != ''\">" + "and gift_desc = #{giftDesc} " + "</if>" +
             "<if test=\"isRecommend != null and isRecommend != ''\">" + "and is_recommend = #{isRecommend} " + "</if>" +
             "<if test=\"isShow != null and isShow != ''\">" + "and is_show = #{isShow} " + "</if>" +
+            "<if test=\"merchantId != null and merchantId != ''\">" + "and merchant_id = #{merchantId} " + "</if>" +
             "<if test=\"createTime != null and createTime != ''\">" + "and create_time = #{createTime} " + "</if>" +
             "<if test=\"modifyTime != null and modifyTime != ''\">" + "and modify_time = #{modifyTime} " + "</if>" +
             "<if test=\"available != null and available != ''\">" + "and available = #{available} " + "</if>" +
@@ -76,9 +78,9 @@ public interface GiftMapper {
             "</script>")
     int count(Map<String, Object> map);
 
-    @Insert("insert into ss_gift (`gift_main_title`, `gift_vice_title`, `min_requirement`, `gift_main_img`, `gift_vice_img_1`, `gift_vice_img_2`, `gift_vice_img_3`, `price`, `express_fee`, `stock`, `gift_desc`, `is_recommend`, `is_show`, `create_time`, `modify_time`, `available`)"
-            + "values (#{giftMainTitle}, #{giftViceTitle}, #{minRequirement}, #{giftMainImg}, #{giftViceImg1}, #{giftViceImg2}, #{giftViceImg3}, #{price}, #{expressFee}, #{stock}, #{giftDesc}, #{isRecommend}, #{isShow}, #{createTime}, #{modifyTime}, #{available})")
-    int save(GiftDO gift);
+    @Insert("insert into ss_gift (`gift_main_title`, `gift_vice_title`, `min_requirement`, `gift_main_img`, `gift_vice_img_1`, `gift_vice_img_2`, `gift_vice_img_3`, `price`, `express_fee`, `stock`, `gift_desc`, `is_recommend`, `is_show`, `merchant_id`, `create_time`, `modify_time`, `available`)"
+            + "values (#{giftMainTitle}, #{giftViceTitle}, #{minRequirement}, #{giftMainImg}, #{giftViceImg1}, #{giftViceImg2}, #{giftViceImg3}, #{price}, #{expressFee}, #{stock}, #{giftDesc}, #{isRecommend}, #{isShow}, #{merchantId}, #{createTime}, #{modifyTime}, #{available})")
+    int  save(GiftDO gift);
 
     @Update("<script>" +
             "update ss_gift " +
@@ -97,6 +99,7 @@ public interface GiftMapper {
             "<if test=\"giftDesc != null\">`gift_desc` = #{giftDesc}, </if>" +
             "<if test=\"isRecommend != null\">`is_recommend` = #{isRecommend}, </if>" +
             "<if test=\"isShow != null\">`is_show` = #{isShow}, </if>" +
+            "<if test=\"merchantId != null\">`merchant_id` = #{merchantId}, </if>" +
             "<if test=\"createTime != null\">`create_time` = #{createTime}, </if>" +
             "<if test=\"modifyTime != null\">`modify_time` = #{modifyTime}, </if>" +
             "<if test=\"available != null\">`available` = #{available}, </if>" +

@@ -3,6 +3,7 @@ package com.zwl.giftManager.controller;
 import com.zwl.common.utils.PageUtils;
 import com.zwl.common.utils.Query;
 import com.zwl.common.utils.R;
+import com.zwl.common.utils.ShiroUtils;
 import com.zwl.giftManager.domain.GiftDO;
 import com.zwl.giftManager.service.GiftService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +77,10 @@ public class GiftController {
     @PostMapping("/save")
     @RequiresPermissions("gift:save")
     public R save(@ModelAttribute GiftDO gift) {
+        String merchantId = ShiroUtils.getMerchantId();
+        gift.setCreateTime(new Date());
+        gift.setAvailable(1);
+        gift.setMerchantId(merchantId);
         if (giftService.save(gift) > 0) {
             return R.ok();
         }
