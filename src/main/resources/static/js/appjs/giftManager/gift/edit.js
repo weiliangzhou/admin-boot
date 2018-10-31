@@ -151,7 +151,7 @@ layui.use('upload', function () {
 
 
 });
-
+var giftDesc = undefined;
 layui.use('layedit', function () {
     var layedit = layui.layedit;
     layedit.set({
@@ -160,7 +160,6 @@ layui.use('layedit', function () {
             , type: 'post' //默认post
         }
     });
-
-    var giftDesc = layedit.build('giftDesc'); //建立编辑器
+    giftDesc = layedit.build('giftDesc'); //建立编辑器
 });
 
