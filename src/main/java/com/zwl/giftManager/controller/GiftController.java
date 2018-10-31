@@ -92,9 +92,8 @@ public class GiftController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("gift:update")
-    public R update(@RequestBody GiftDO gift) {
+    public R update(@ModelAttribute GiftDO gift) {
         giftService.update(gift);
-
         return R.ok();
     }
 
