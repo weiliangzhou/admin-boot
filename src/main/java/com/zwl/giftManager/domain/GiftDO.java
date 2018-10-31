@@ -40,9 +40,9 @@ public class GiftDO implements Serializable {
     //
     private String giftDesc;
     //是否推荐，0不推荐，1推荐
-    private String isRecommend;
+    private Integer isRecommend;
     //是否展示，0不展示，1展示
-    private String isShow;
+    private Integer isShow;
     //商户号
     private String merchantId;
     //
