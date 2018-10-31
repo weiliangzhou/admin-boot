@@ -90,6 +90,7 @@ public class GiftController {
     /**
      * 修改
      */
+    @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("gift:update")
     public R update(@ModelAttribute GiftDO gift) {
