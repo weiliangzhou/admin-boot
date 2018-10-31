@@ -50,3 +50,4 @@ logging:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+  config-location: /mapper/*.xml
