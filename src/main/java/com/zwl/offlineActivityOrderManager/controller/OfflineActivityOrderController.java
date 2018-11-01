@@ -50,6 +50,7 @@ public class OfflineActivityOrderController {
 		String merchantId = ShiroUtils.getMerchantId();
 		params.put("merchantId", merchantId);
 		params.put("available", 1);
+		params.put("orderType", "0");
         Query query = new Query(params);
 		List<OfflineActivityOrderDO> offlineActivityOrderList = offlineActivityOrderService.list(query);
 		for(OfflineActivityOrderDO offlineActivityOrderDO:offlineActivityOrderList){

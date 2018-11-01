@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface OfflineActivityOrderMapper {
 
-	@Select("select `order_no`, `activity_id`, `activity_theme_id`, `activity_code`, `activity_price`, `actual_money`, `order_status`, `user_id`, `sex`, `phone`, `real_name`, `city`, `id_card_num`, `payment_no`, `payment_time`, `merchant_id`, `create_time`, `modify_time`, `available`, `is_maid`, `is_retraining` from ss_offline_activity_order where order_no = #{id}")
+	@Select("select `order_no`, `activity_id`, `order_type`, `activity_theme_id`, `activity_code`, `activity_price`, `actual_money`, `order_status`, `user_id`, `sex`, `phone`, `real_name`, `city`, `id_card_num`, `payment_no`, `payment_time`, `merchant_id`, `create_time`, `modify_time`, `available`, `is_maid`, `is_retraining` from ss_offline_activity_order where order_no = #{id}")
 	OfflineActivityOrderDO get(String orderNo);
 	
 	@Select("<script>" +
@@ -36,7 +36,8 @@ public interface OfflineActivityOrderMapper {
 		  		  "<if test=\"paymentTime != null and paymentTime != ''\">"+ "and payment_time = #{paymentTime} " + "</if>" + 
 		  		  "<if test=\"merchantId != null and merchantId != ''\">"+ "and merchant_id = #{merchantId} " + "</if>" + 
 		  		  "<if test=\"createTime != null and createTime != ''\">"+ "and create_time = #{createTime} " + "</if>" + 
-		  		  "<if test=\"modifyTime != null and modifyTime != ''\">"+ "and modify_time = #{modifyTime} " + "</if>" + 
+		  		  "<if test=\"modifyTime != null and modifyTime != ''\">"+ "and modify_time = #{modifyTime} " + "</if>" +
+			      "<if test=\"orderType != null and orderType != ''\">"+ "and order_type = #{orderType} " + "</if>" +
 		  		  "<if test=\"available != null and available != ''\">"+ "and available = #{available} " + "</if>" + 
 		  		  "<if test=\"isMaid != null and isMaid != ''\">"+ "and is_maid = #{isMaid} " + "</if>" + 
 		  		  "<if test=\"isRetraining != null and isRetraining != ''\">"+ "and is_retraining = #{isRetraining} " + "</if>" + 
@@ -74,7 +75,8 @@ public interface OfflineActivityOrderMapper {
 		  		  "<if test=\"paymentNo != null and paymentNo != ''\">"+ "and payment_no = #{paymentNo} " + "</if>" + 
 		  		  "<if test=\"paymentTime != null and paymentTime != ''\">"+ "and payment_time = #{paymentTime} " + "</if>" + 
 		  		  "<if test=\"merchantId != null and merchantId != ''\">"+ "and merchant_id = #{merchantId} " + "</if>" + 
-		  		  "<if test=\"createTime != null and createTime != ''\">"+ "and create_time = #{createTime} " + "</if>" + 
+		  		  "<if test=\"createTime != null and createTime != ''\">"+ "and create_time = #{createTime} " + "</if>" +
+			      "<if test=\"orderType != null and orderType != ''\">"+ "and order_type = #{orderType} " + "</if>" +
 		  		  "<if test=\"modifyTime != null and modifyTime != ''\">"+ "and modify_time = #{modifyTime} " + "</if>" + 
 		  		  "<if test=\"available != null and available != ''\">"+ "and available = #{available} " + "</if>" + 
 		  		  "<if test=\"isMaid != null and isMaid != ''\">"+ "and is_maid = #{isMaid} " + "</if>" + 

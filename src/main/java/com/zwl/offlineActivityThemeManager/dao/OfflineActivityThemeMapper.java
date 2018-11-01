@@ -108,4 +108,7 @@ public interface OfflineActivityThemeMapper {
 
 	@Select("select id,theme_name from ss_offline_activity_theme where available = 1 and merchant_id = #{merchantId}")
 	List<OfflineActivityThemeItemVo> getActivityThemeItemsList(@Param("merchantId") String merchantId);
+
+	@Select("select id from ss_offline_activity_theme where available = 1 and theme_name = #{themeName} and merchant_id = #{merchantId}")
+	Integer getThemeIdByThemeName(String themeName);
 }

@@ -55,6 +55,10 @@ function load() {
                         title: '副标题'
                     },
                     {
+                        field: 'buyCount',
+                        title: '销量'
+                    },
+                    {
                         field: 'minRequirement',
                         title: '购买最低要求',
                         formatter: function (value, row, index) {
@@ -109,12 +113,12 @@ function load() {
                     },
                     {
                         field: 'isShow',
-                        title: '是否展示',
+                        title: '是否发布',
                         formatter: function (value, row, index) {
                             if (row.isShow == 0) {
-                                return "不展示";
+                                return "不发布";
                             } else if (row.isShow == 1) {
-                                return "展示";
+                                return "发布";
                             }
                         }
                     },

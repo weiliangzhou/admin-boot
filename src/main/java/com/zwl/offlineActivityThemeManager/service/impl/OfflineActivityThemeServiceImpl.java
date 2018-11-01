@@ -55,4 +55,9 @@ public class OfflineActivityThemeServiceImpl implements OfflineActivityThemeServ
 		return offlineActivityThemeMapper.getActivityThemeItemsList(merchantId);
 	}
 
+	@Override
+	public Integer getThemeIdByThemeName(String themeName){
+		return offlineActivityThemeMapper.getThemeIdByThemeName(themeName);
+	}
+
 }
