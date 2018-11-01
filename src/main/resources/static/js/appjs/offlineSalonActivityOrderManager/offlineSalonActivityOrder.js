@@ -153,7 +153,7 @@ function load() {
 									}
 								},
 								 								{
-                                    field : 'createTime',
+                                    field : 'paymentTime',
                                     title : '支付时间'
                                 }
 								// 								{
