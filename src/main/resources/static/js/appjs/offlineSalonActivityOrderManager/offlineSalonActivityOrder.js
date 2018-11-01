@@ -87,9 +87,6 @@ function load() {
 						// sortOrder.
 						// 返回false将会终止请求
 						columns : [
-								{
-									checkbox : true
-								},
 																{
 									field : 'orderNo', 
 									title : '订单号'
