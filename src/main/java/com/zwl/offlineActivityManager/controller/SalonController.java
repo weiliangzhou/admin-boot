@@ -1,10 +1,8 @@
 package com.zwl.offlineActivityManager.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
-
+import com.zwl.common.utils.PageUtils;
+import com.zwl.common.utils.Query;
+import com.zwl.common.utils.R;
 import com.zwl.common.utils.ShiroUtils;
 import com.zwl.offlineActivityManager.domain.OfflineActivityDO;
 import com.zwl.offlineActivityManager.service.OfflineActivityService;
@@ -19,16 +17,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.zwl.common.utils.PageUtils;
-import com.zwl.common.utils.Query;
-import com.zwl.common.utils.R;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Map;
 
 import static com.zwl.common.utils.BigDecimalUtil.mul;
 
 @Controller
-@RequestMapping("/offlineActivity")
+@RequestMapping("/salon")
 @Slf4j
-public class OfflineActivityController {
+public class SalonController {
 	@Autowired
 	private OfflineActivityService offlineActivityService;
 	@Autowired
@@ -37,20 +36,20 @@ public class OfflineActivityController {
 	private OfflineActivityThemeService offlineActivityThemeService;
 	
 	@GetMapping()
-	@RequiresPermissions("offlineActivity:offlineActivity")
+	@RequiresPermissions("salon:salon")
 	String OfflineActivity(){
-	    return "offlineActivityManager/offlineActivity";
+	    return "salonManager/salon";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("offlineActivity:list")
+	@RequiresPermissions("salon:list")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
 		String merchantId = ShiroUtils.getMerchantId();
 		params.put("merchantId", merchantId);
 		params.put("available", 1);
-		params.put("activityType", "0");
+		params.put("activityType", 1);
         Query query = new Query(params);
 		List<OfflineActivityDO> offlineActivityList = offlineActivityService.list(query);
 		for(OfflineActivityDO offlineActivityDO:offlineActivityList){
@@ -67,25 +66,25 @@ public class OfflineActivityController {
 	}
 	
 	@GetMapping("/add")
-	@RequiresPermissions("offlineActivity:add")
+	@RequiresPermissions("salon:add")
 	String add(Model model){
 		String merchantId = ShiroUtils.getMerchantId();
 		model.addAttribute("merchantId", merchantId);
-	    return "offlineActivityManager/add";
+	    return "salonManager/add";
 	}
 
 	@GetMapping("/edit/{id}")
-	@RequiresPermissions("offlineActivity:edit")
+	@RequiresPermissions("salon:edit")
 	String edit(Model model,@PathVariable("id")Integer id){
 		OfflineActivityDO offlineActivity = offlineActivityService.get(id);
 		model.addAttribute("offlineActivity", offlineActivity);
-	    return "offlineActivityManager/edit";
+	    return "salonManager/edit";
 	}
 	/**
 	 * 信息
 	 */
 	@RequestMapping("/info/{id}")
-	@RequiresPermissions("offlineActivity:info")
+	@RequiresPermissions("salon:info")
 	public R info(@PathVariable("id") Integer id){
 		OfflineActivityDO offlineActivity = offlineActivityService.get(id);
 		return R.ok().put("offlineActivity", offlineActivity);
@@ -115,7 +114,7 @@ public class OfflineActivityController {
 		offlineActivity.setMerchantId(ShiroUtils.getMerchantId());
 		offlineActivity.setBuyCount(0);
 		offlineActivity.setMinRequirement(offlineActivity.getMinRequirement() == null ? 0 :offlineActivity.getMinRequirement());
-		offlineActivity.setActivityType(0);
+		offlineActivity.setActivityType(1);
 		if(offlineActivityService.save(offlineActivity)>0){
 			return R.ok();
 		}
@@ -152,7 +151,7 @@ public class OfflineActivityController {
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
-	@RequiresPermissions("offlineActivity:remove")
+	@RequiresPermissions("salon:remove")
 	public R remove( Integer id){
 		if(offlineActivityService.remove(id)>0){
 		return R.ok();
@@ -165,7 +164,7 @@ public class OfflineActivityController {
 	 */
 	@PostMapping( "/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("offlineActivity:remove")
+	@RequiresPermissions("salon:remove")
 	public R remove(@RequestParam("ids[]") Integer[] ids){
 		offlineActivityService.batchRemove(ids);
 		
@@ -175,7 +174,7 @@ public class OfflineActivityController {
 	@GetMapping("/order/{id}")
 	String order(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("id", id);
-		return "offlineActivityManager/order";
+		return "salonManager/order";
 	}
 
 	@ResponseBody

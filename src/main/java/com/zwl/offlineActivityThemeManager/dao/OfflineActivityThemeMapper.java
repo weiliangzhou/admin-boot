@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface OfflineActivityThemeMapper {
 
-	@Select("select `id`, `theme_name`, `theme_href_url`, `theme_type`, `content`, `content_text`, `buy_count`, `is_recommend`, `is_show`, `img_url`, `activity_time`, `create_time`, `modify_time`, `available`, `merchant_id` from ss_offline_activity_theme where id = #{id}")
+	@Select("select `id`, `theme_name`, `theme_href_url`, `theme_type`, `content`, `content_text`, `buy_count`, `is_recommend`, `is_show`, `img_url`, `activity_time`, `create_time`, `modify_time`, `available`, `merchant_id`, `activity_type` from ss_offline_activity_theme where id = #{id}")
 	OfflineActivityThemeDO get(Integer id);
 	
 	@Select("<script>" +
@@ -30,8 +30,9 @@ public interface OfflineActivityThemeMapper {
 		  		  "<if test=\"createTime != null and createTime != ''\">"+ "and create_time = #{createTime} " + "</if>" + 
 		  		  "<if test=\"modifyTime != null and modifyTime != ''\">"+ "and modify_time = #{modifyTime} " + "</if>" + 
 		  		  "<if test=\"available != null and available != ''\">"+ "and available = #{available} " + "</if>" + 
-		  		  "<if test=\"merchantId != null and merchantId != ''\">"+ "and merchant_id = #{merchantId} " + "</if>" + 
-		  			"</where>"+ 
+		  		  "<if test=\"merchantId != null and merchantId != ''\">"+ "and merchant_id = #{merchantId} " + "</if>" +
+					"<if test=\"activityType != null and activityType != ''\">"+ "and activity_type = #{activityType} " + "</if>" +
+			"</where>"+
 			" <choose>" + 
 	            "<when test=\"sort != null and sort.trim() != ''\">" + 
 	                "order by ${sort} ${order}" + 
@@ -63,13 +64,14 @@ public interface OfflineActivityThemeMapper {
 		  		  "<if test=\"createTime != null and createTime != ''\">"+ "and create_time = #{createTime} " + "</if>" + 
 		  		  "<if test=\"modifyTime != null and modifyTime != ''\">"+ "and modify_time = #{modifyTime} " + "</if>" + 
 		  		  "<if test=\"available != null and available != ''\">"+ "and available = #{available} " + "</if>" + 
-		  		  "<if test=\"merchantId != null and merchantId != ''\">"+ "and merchant_id = #{merchantId} " + "</if>" + 
+		  		  "<if test=\"merchantId != null and merchantId != ''\">"+ "and merchant_id = #{merchantId} " + "</if>" +
+					"<if test=\"activityType != null and activityType != ''\">"+ "and activity_type = #{activityType} " + "</if>" +
 		  			"</where>"+ 
 			"</script>")
 	int count(Map<String, Object> map);
 	
-	@Insert("insert into ss_offline_activity_theme (`theme_name`, `theme_href_url`, `theme_type`, `content`, `content_text`, `buy_count`, `is_recommend`, `is_show`, `img_url`, `activity_time`, `create_time`, `modify_time`, `available`, `merchant_id`)"
-	+ "values (#{themeName}, #{themeHrefUrl}, #{themeType}, #{content}, #{contentText}, #{buyCount}, #{isRecommend}, #{isShow}, #{imgUrl}, #{activityTime}, #{createTime}, #{modifyTime}, #{available}, #{merchantId})")
+	@Insert("insert into ss_offline_activity_theme (`theme_name`, `theme_href_url`, `theme_type`, `content`, `content_text`, `buy_count`, `is_recommend`, `is_show`, `img_url`, `activity_time`, `create_time`, `modify_time`, `available`, `merchant_id`, `activity_type`)"
+	+ "values (#{themeName}, #{themeHrefUrl}, #{themeType}, #{content}, #{contentText}, #{buyCount}, #{isRecommend}, #{isShow}, #{imgUrl}, #{activityTime}, #{createTime}, #{modifyTime}, #{available}, #{merchantId}, #{activityType})")
 	int save(OfflineActivityThemeDO offlineActivityTheme);
 	
 	@Update("<script>"+ 
@@ -106,8 +108,8 @@ public interface OfflineActivityThemeMapper {
 			"</script>")
 	int batchRemove(Integer[] ids);
 
-	@Select("select id,theme_name from ss_offline_activity_theme where available = 1 and merchant_id = #{merchantId}")
-	List<OfflineActivityThemeItemVo> getActivityThemeItemsList(@Param("merchantId") String merchantId);
+	@Select("select id,theme_name from ss_offline_activity_theme where available = 1 and merchant_id = #{merchantId} and activity_type = #{activityType}")
+	List<OfflineActivityThemeItemVo> getActivityThemeItemsList(@Param("merchantId") String merchantId,@Param("activityType")Integer activityType);
 
 	@Select("select id from ss_offline_activity_theme where available = 1 and theme_name = #{themeName} and merchant_id = #{merchantId}")
 	Integer getThemeIdByThemeName(String themeName);

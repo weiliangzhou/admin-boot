@@ -1,8 +1,5 @@
 package com.zwl.offlineActivityThemeManager.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import com.zwl.common.utils.*;
 import com.zwl.offlineActivityManager.domain.OfflineActivityDO;
 import com.zwl.offlineActivityManager.service.OfflineActivityService;
@@ -14,17 +11,14 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping("/offlineActivityTheme")
-public class OfflineActivityThemeController {
+@RequestMapping("/salonTheme")
+public class SalonThemeController {
 	@Autowired
 	private OfflineActivityThemeService offlineActivityThemeService;
 	@Autowired
@@ -33,37 +27,25 @@ public class OfflineActivityThemeController {
 	private OfflineActivityService offlineActivityService;
 	
 	@GetMapping()
-	@RequiresPermissions("offlineActivityTheme:offlineActivityTheme")
+	@RequiresPermissions("salonTheme:salonTheme")
 	String OfflineActivityTheme(){
-	    return "offlineActivityThemeManager/offlineActivityTheme";
+	    return "salonThemeManager/salonTheme";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("offlineActivityTheme:list")
+	@RequiresPermissions("salonTheme:list")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
 		String merchantId = ShiroUtils.getMerchantId();
 		params.put("merchantId", merchantId);
 		params.put("available", 1);
-		params.put("activityType", "0");
+		params.put("activityType",1);
         Query query = new Query(params);
 		List<OfflineActivityThemeDO> offlineActivityThemeList = offlineActivityThemeService.list(query);
 		for(OfflineActivityThemeDO offlineActivityThemeDO:offlineActivityThemeList){
 			Integer orderCount = offlineActivityOrderService.selectOrderCountByThemeId(offlineActivityThemeDO.getId());
 			offlineActivityThemeDO.setOrderCount(orderCount);
-			String activityTime = offlineActivityThemeDO.getActivityTime().substring(3);
-			offlineActivityThemeDO.setActivityTime(activityTime);
-			//查询该课程主题下有哪些开课城市
-			List<String> cities = offlineActivityService.selectActivityAddressByThemeId(offlineActivityThemeDO.getId());
-			if(null != cities && !cities.isEmpty()){
-				String city = cities.get(0);
-				if(2 == cities.size()){
-					city = city + "，"+cities.get(1);
-				}
-				offlineActivityThemeDO.setCity(city);
-			}
-
 		}
 		int total = offlineActivityThemeService.count(query);
 		PageUtils pageUtils = new PageUtils(offlineActivityThemeList, total);
@@ -71,30 +53,30 @@ public class OfflineActivityThemeController {
 	}
 	
 	@GetMapping("/add")
-	@RequiresPermissions("offlineActivityTheme:add")
+	@RequiresPermissions("salonTheme:add")
 	String add(){
-	    return "offlineActivityThemeManager/add";
+	    return "salonThemeManager/add";
 	}
 
 	@GetMapping("/edit/{id}")
-	@RequiresPermissions("offlineActivityTheme:edit")
+	@RequiresPermissions("salonTheme:edit")
 	String edit(Model model, @PathVariable("id")Integer id){
 		OfflineActivityThemeDO offlineActivityTheme = offlineActivityThemeService.get(id);
 		String activityTime = offlineActivityTheme.getActivityTime();
 		if(null != activityTime){
-			Integer day = Integer.valueOf(activityTime.substring(3,activityTime.indexOf("天")));
-			Integer night = Integer.valueOf(activityTime.substring(activityTime.indexOf("天")+1,activityTime.indexOf("夜")));
-			offlineActivityTheme.setDay(day);
-			offlineActivityTheme.setNight(night);
+			String startTime = activityTime.substring(0,16);
+			String endTime = activityTime.substring(17,22);
+			offlineActivityTheme.setStartTime(startTime);
+			offlineActivityTheme.setEndTime(endTime);
 		}
 		model.addAttribute("offlineActivityTheme", offlineActivityTheme);
-	    return "offlineActivityThemeManager/edit";
+	    return "salonThemeManager/edit";
 	}
 	/**
 	 * 信息
 	 */
 	@RequestMapping("/info/{id}")
-	@RequiresPermissions("offlineActivityTheme:info")
+	@RequiresPermissions("salonTheme:info")
 	public R info(@PathVariable("id") Integer id){
 		OfflineActivityThemeDO offlineActivityTheme = offlineActivityThemeService.get(id);
 		return R.ok().put("offlineActivityTheme", offlineActivityTheme);
@@ -108,15 +90,13 @@ public class OfflineActivityThemeController {
 //	@RequiresPermissions("demo:save")
 	public R save( OfflineActivityThemeDO offlineActivityTheme){
 		offlineActivityTheme.setMerchantId(ShiroUtils.getMerchantId());
-		Integer day = offlineActivityTheme.getDay();
-		Integer night = offlineActivityTheme.getNight();
-		if (null != day && null != night) {
-			offlineActivityTheme.setActivityTime("时长 "+day+"天"+night+"夜");
-		}
+		String startTime = offlineActivityTheme.getStartTime();
+		String endTime = offlineActivityTheme.getEndTime();
+		offlineActivityTheme.setActivityTime(startTime+"-"+endTime);
+		offlineActivityTheme.setActivityType(1);
 		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
 		offlineActivityTheme.setContentText(contextText);
 		offlineActivityTheme.setBuyCount(0);
-		offlineActivityTheme.setActivityType(0);
 		if(offlineActivityThemeService.save(offlineActivityTheme)>0){
 			return R.ok();
 		}
@@ -130,11 +110,9 @@ public class OfflineActivityThemeController {
 	@PostMapping("/update")
 //	@RequiresPermissions("demo:update")
 	public R update( OfflineActivityThemeDO offlineActivityTheme){
-		Integer day = offlineActivityTheme.getDay();
-		Integer night = offlineActivityTheme.getNight();
-		if (null != day && null != night) {
-			offlineActivityTheme.setActivityTime("时长 "+day+"天"+night+"夜");
-		}
+		String startTime = offlineActivityTheme.getStartTime();
+		String endTime = offlineActivityTheme.getEndTime();
+		offlineActivityTheme.setActivityTime(startTime+"-"+endTime);
 		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
 		offlineActivityTheme.setContentText(contextText);
 		offlineActivityThemeService.update(offlineActivityTheme);
@@ -148,7 +126,7 @@ public class OfflineActivityThemeController {
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
-	@RequiresPermissions("offlineActivityTheme:remove")
+	@RequiresPermissions("salonTheme:remove")
 	public R remove( Integer id){
 		if(offlineActivityThemeService.remove(id)>0){
 		return R.ok();
@@ -161,7 +139,7 @@ public class OfflineActivityThemeController {
 	 */
 	@PostMapping( "/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("offlineActivityTheme:remove")
+	@RequiresPermissions("salonTheme:remove")
 	public R remove(@RequestParam("ids[]") Integer[] ids){
 		offlineActivityThemeService.batchRemove(ids);
 		
@@ -171,7 +149,7 @@ public class OfflineActivityThemeController {
 	@GetMapping("/order/{id}")
 	String order(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("id", id);
-		return "offlineActivityThemeManager/order";
+		return "salonThemeManager/order";
 	}
 
 	@ResponseBody
@@ -193,34 +171,6 @@ public class OfflineActivityThemeController {
 		}
 		int total = offlineActivityOrderService.count(query);
 		PageUtils pageUtils = new PageUtils(offlineActivityOrderList, total);
-		return pageUtils;
-	}
-
-	@GetMapping("/activity/{id}")
-	String activity(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("id", id);
-		return "offlineActivityThemeManager/activity";
-	}
-
-	@ResponseBody
-	@GetMapping("/getActivityList")
-//	@RequiresPermissions("offlineActivity:list")
-	public PageUtils getActivityList(@RequestParam Map<String, Object> params){
-		//查询列表数据
-		String merchantId = ShiroUtils.getMerchantId();
-		params.put("merchantId", merchantId);
-		params.put("available", 1);
-		Query query = new Query(params);
-		List<OfflineActivityDO> offlineActivityList = offlineActivityService.list(query);
-		for(OfflineActivityDO offlineActivityDO:offlineActivityList){
-			//根据活动主题id查询活动主题名称
-			String activityTheme = offlineActivityService.selectThemeNameByThemeId(offlineActivityDO.getActivityThemeId());
-			offlineActivityDO.setActivityTheme(activityTheme);
-			Integer orderCount = offlineActivityOrderService.selectOrderCountByActivityId(offlineActivityDO.getId());
-			offlineActivityDO.setOrderCount(orderCount);
-		}
-		int total = offlineActivityService.count(query);
-		PageUtils pageUtils = new PageUtils(offlineActivityList, total);
 		return pageUtils;
 	}
 }

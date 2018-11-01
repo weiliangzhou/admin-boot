@@ -47,4 +47,10 @@ public class OfflineActivityThemeDO implements Serializable {
 	private Integer orderCount;
 	//开课城市
 	private String city;
+	//类型 0线下课程 1沙龙
+	private Integer activityType;
+	//时长 开始时间
+	private String startTime;
+	//时长 结束时间
+	private String endTime;
 }

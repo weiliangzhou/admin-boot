@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div id="exampleToolbar" role="group">
+						<input id="id" name="id" th:value="${id}"
+							   type="hidden">
+						<div class="form-group col-sm-3">
+							<input id="phone" type="text" class="form-control" placeholder="手机号">
+						</div>
+						<div class="form-group col-sm-3">
+							<input id="realName" type="text" class="form-control" placeholder="真实姓名">
+						</div>
+						<!--<div class="form-group col-sm-3">-->
+							<!--<select id="orderStatus" class="form-control" name="orderStatus">-->
+								<!--<option value="0">未支付</option>-->
+								<!--<option value="1">支付成功</option>-->
+								<!--<option value="-1">超时关闭</option>-->
+								<!--<option value="" selected>全部</option>-->
+							<!--</select>-->
+						<!--</div>-->
+						<button class="btn btn-success" onclick="reLoad()">查询</button>
+						<button type="button" id="download" id="btn_download"
+								class="btn btn-primary"
+								onClick="$('#exampleTable').tableExport({ type: 'excel', escape: 'false' })">数据导出
+						</button>
+						<!--<button type="button" class="btn  btn-primary" onclick="add()">-->
+							<!--<i class="fa fa-plus" aria-hidden="true"></i>添加-->
+						<!--</button>-->
+						<!--<button type="button" class="btn  btn-danger"-->
+							<!--onclick="batchRemove()">-->
+							<!--<i class="fa fa-trash" aria-hidden="true"></i>删除-->
+						<!--</button>-->
+					</div>
+					<table id="exampleTable" data-mobile-responsive="true">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="/js/appjs/salonThemeManager/order.js"></script>
+</body>
+</html>

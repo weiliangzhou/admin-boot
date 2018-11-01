@@ -7,7 +7,7 @@ $().ready(function() {
         $.ajax({
             url:url,
             type:"POST",
-            data:JSON.stringify({merchantId:merchantId,activityType:0}),
+            data:JSON.stringify({merchantId:merchantId,activityType:1}),
             contentType:"application/json; charset=utf-8",
             dataType:"json",
             success: function(res){
@@ -34,7 +34,7 @@ function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/offlineActivity/save",
+		url : "/salon/save",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {

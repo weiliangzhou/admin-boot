@@ -54,7 +54,8 @@ public class ItemsListController {
     @PostMapping("/getActivityThemeItemsList")
     public String getActivityThemeItemsList(@RequestBody JSONObject jsonObject) {
         String merchantId = jsonObject.getString("merchantId");
-        List<OfflineActivityThemeItemVo> list = offlineActivityThemeService.getActivityThemeItemsList(merchantId);
+        Integer activityType = jsonObject.getInteger("activityType");
+        List<OfflineActivityThemeItemVo> list = offlineActivityThemeService.getActivityThemeItemsList(merchantId,activityType);
         return JSON.toJSONString(list);
     }
 

@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface OfflineActivityMapper {
 
-	@Select("select `id`, `activity_address`, `activity_start_time`, `activity_end_time`, `activity_price`, `is_retraining`, `activity_theme_id`, `limit_count`, `buy_count`, `is_recommend`, `is_show`, `is_rebuy`, `is_maid`, `min_requirement`, `merchant_id`, `create_time`, `modify_time`, `available`, `apply_start_time`, `apply_end_time` , `retraining_price` from ss_offline_activity where id = #{id}")
+	@Select("select `id`, `activity_address`, `activity_start_time`, `activity_end_time`, `activity_price`, `is_retraining`, `activity_theme_id`, `limit_count`, `buy_count`, `is_recommend`, `is_show`, `is_rebuy`, `is_maid`, `min_requirement`, `merchant_id`, `create_time`, `modify_time`, `available`, `apply_start_time`, `apply_end_time` , `retraining_price`, `activity_type` from ss_offline_activity where id = #{id}")
 	OfflineActivityDO get(Integer id);
 	
 	@Select("<script>" +
@@ -38,6 +38,7 @@ public interface OfflineActivityMapper {
 				"<if test=\"applyStartTime != null and applyStartTime != ''\">"+ "and apply_start_time = #{applyStartTime} " + "</if>" +
 				"<if test=\"applyEndTime != null and applyEndTime != ''\">"+ "and apply_end_time = #{applyEndTime} " + "</if>" +
 				"<if test=\"retrainingPrice != null and retrainingPrice != ''\">"+ "and retraining_price = #{retrainingPrice} " + "</if>" +
+				"<if test=\"activityType != null and activityType != ''\">"+ "and activity_type = #{activityType} " + "</if>" +
 			"</where>"+
 			" <choose>" + 
 	            "<when test=\"sort != null and sort.trim() != ''\">" + 
@@ -78,12 +79,13 @@ public interface OfflineActivityMapper {
 				"<if test=\"applyStartTime != null and applyStartTime != ''\">"+ "and apply_start_time = #{applyStartTime} " + "</if>" +
 				"<if test=\"applyEndTime != null and applyEndTime != ''\">"+ "and apply_end_time = #{applyEndTime} " + "</if>" +
 				"<if test=\"retrainingPrice != null and retrainingPrice != ''\">"+ "and retraining_price = #{retrainingPrice} " + "</if>" +
+				"<if test=\"activityType != null and activityType != ''\">"+ "and activity_type = #{activityType} " + "</if>" +
 		  			"</where>"+ 
 			"</script>")
 	int count(Map<String, Object> map);
 	
-	@Insert("insert into ss_offline_activity (`activity_address`, `activity_start_time`, `activity_end_time`, `activity_price`, `is_retraining`, `activity_theme_id`, `limit_count`, `buy_count`, `is_recommend`, `is_show`, `is_rebuy`, `is_maid`, `min_requirement`, `merchant_id`, `create_time`, `modify_time`, `available`, `apply_start_time`, `apply_end_time`, `retraining_price`)"
-	+ "values (#{activityAddress}, #{activityStartTime}, #{activityEndTime}, #{activityPrice}, #{isRetraining}, #{activityThemeId}, #{limitCount}, #{buyCount}, #{isRecommend}, #{isShow}, #{isRebuy}, #{isMaid}, #{minRequirement}, #{merchantId}, #{createTime}, #{modifyTime}, #{available}, #{applyStartTime}, #{applyEndTime}, #{retrainingPrice})")
+	@Insert("insert into ss_offline_activity (`activity_address`, `activity_start_time`, `activity_end_time`, `activity_price`, `is_retraining`, `activity_theme_id`, `limit_count`, `buy_count`, `is_recommend`, `is_show`, `is_rebuy`, `is_maid`, `min_requirement`, `merchant_id`, `create_time`, `modify_time`, `available`, `apply_start_time`, `apply_end_time`, `retraining_price`, `activity_type`)"
+	+ "values (#{activityAddress}, #{activityStartTime}, #{activityEndTime}, #{activityPrice}, #{isRetraining}, #{activityThemeId}, #{limitCount}, #{buyCount}, #{isRecommend}, #{isShow}, #{isRebuy}, #{isMaid}, #{minRequirement}, #{merchantId}, #{createTime}, #{modifyTime}, #{available}, #{applyStartTime}, #{applyEndTime}, #{retrainingPrice}, #{activityType})")
 	int save(OfflineActivityDO offlineActivity);
 	
 	@Update("<script>"+ 

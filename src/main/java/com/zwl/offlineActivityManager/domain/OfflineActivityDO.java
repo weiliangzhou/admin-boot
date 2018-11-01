@@ -72,4 +72,6 @@ public class OfflineActivityDO implements Serializable {
 	private Double retrainingPriceDesc;
 	//订单购买人数
 	private Integer orderCount;
+	//类型 0线下课程 1沙龙
+	private Integer activityType;
 }

@@ -9,7 +9,7 @@ $().ready(function() {
         $.ajax({
             url:url,
             type:"POST",
-            data:JSON.stringify({merchantId:merchantId}),
+            data:JSON.stringify({merchantId:merchantId,activityType:0}),
             contentType:"application/json; charset=utf-8",
             dataType:"json",
             success: function(res){
