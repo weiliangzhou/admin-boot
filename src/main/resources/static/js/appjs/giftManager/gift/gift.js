@@ -55,6 +55,10 @@ function load() {
                         title: '副标题'
                     },
                     {
+                        field: 'buyCount',
+                        title: '销量'
+                    },
+                    {
                         field: 'minRequirement',
                         title: '购买最低要求',
                         formatter: function (value, row, index) {
