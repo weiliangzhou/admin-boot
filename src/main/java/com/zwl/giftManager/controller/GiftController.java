@@ -80,6 +80,7 @@ public class GiftController {
         String merchantId = ShiroUtils.getMerchantId();
         gift.setCreateTime(new Date());
         gift.setAvailable(1);
+        gift.setBuyCount(0);
         gift.setMerchantId(merchantId);
         if (giftService.save(gift) > 0) {
             return R.ok();

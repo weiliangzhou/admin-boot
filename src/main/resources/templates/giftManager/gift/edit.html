@@ -25,6 +25,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color:red"></span>销量：</label>
+                            <div class="col-sm-4">
+                                <input id="buyCount" name="buyCount" class="form-control" type="text"
+                                       th:value="${gift.buyCount}">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">购买最低要求：</label>
                             <div class="col-sm-6">
                                 <select name="minRequirement" name="minRequirement" lay-verify=""
