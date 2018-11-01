@@ -1,56 +1,285 @@
 package com.zwl.giftManager.domain;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
 
 
+
 /**
+ * 
+ * 
  * @author th 2 brother
  * @email 382308664@qq.com
- * @date 2018-10-30 17:50:24
+ * @date 2018-11-01 13:57:43
  */
-@Data
 public class GiftDO implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+	
+	//
+	private Long id;
+	//主标题
+	private String giftMainTitle;
+	//副标题
+	private String giftViceTitle;
+	//购买最低要求
+	private Integer minRequirement;
+	//产品主图
+	private String giftMainImg;
+	//产品附图1
+	private String giftViceImg1;
+	//产品附图2
+	private String giftViceImg2;
+	//产品附图3
+	private String giftViceImg3;
+	//价格
+	private Integer price;
+	//快递费
+	private Integer expressFee;
+	//库存
+	private Integer stock;
+	//
+	private String giftDesc;
+	//是否推荐，0不推荐，1推荐
+	private Integer isRecommend;
+	//是否展示，0不展示，1展示
+	private Integer isShow;
+	//商户号
+	private String merchantId;
+	//
+	private Date createTime;
+	//
+	private Date modifyTime;
+	//
+	private Integer available;
+	//销量
+	private Integer buyCount;
 
-    //
-    private Long id;
-    //主标题
-    private String giftMainTitle;
-    //副标题
-    private String giftViceTitle;
-    //购买最低要求
-    private Integer minRequirement;
-    //产品主图
-    private String giftMainImg;
-    //产品附图1
-    private String giftViceImg1;
-    //产品附图2
-    private String giftViceImg2;
-    //产品附图3
-    private String giftViceImg3;
-    //价格
-    private Integer price;
-    //快递费
-    private Integer expressFee;
-    //库存
-    private Integer stock;
-    //
-    private String giftDesc;
-    //是否推荐，0不推荐，1推荐
-    private String isRecommend;
-    //是否展示，0不展示，1展示
-    private String isShow;
-    //商户号
-    private String merchantId;
-    //
-    private Date createTime;
-    //
-    private Date modifyTime;
-    //
-    private Integer available;
-
-
+	/**
+	 * 设置：
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public Long getId() {
+		return id;
+	}
+	/**
+	 * 设置：主标题
+	 */
+	public void setGiftMainTitle(String giftMainTitle) {
+		this.giftMainTitle = giftMainTitle;
+	}
+	/**
+	 * 获取：主标题
+	 */
+	public String getGiftMainTitle() {
+		return giftMainTitle;
+	}
+	/**
+	 * 设置：副标题
+	 */
+	public void setGiftViceTitle(String giftViceTitle) {
+		this.giftViceTitle = giftViceTitle;
+	}
+	/**
+	 * 获取：副标题
+	 */
+	public String getGiftViceTitle() {
+		return giftViceTitle;
+	}
+	/**
+	 * 设置：购买最低要求
+	 */
+	public void setMinRequirement(Integer minRequirement) {
+		this.minRequirement = minRequirement;
+	}
+	/**
+	 * 获取：购买最低要求
+	 */
+	public Integer getMinRequirement() {
+		return minRequirement;
+	}
+	/**
+	 * 设置：产品主图
+	 */
+	public void setGiftMainImg(String giftMainImg) {
+		this.giftMainImg = giftMainImg;
+	}
+	/**
+	 * 获取：产品主图
+	 */
+	public String getGiftMainImg() {
+		return giftMainImg;
+	}
+	/**
+	 * 设置：产品附图1
+	 */
+	public void setGiftViceImg1(String giftViceImg1) {
+		this.giftViceImg1 = giftViceImg1;
+	}
+	/**
+	 * 获取：产品附图1
+	 */
+	public String getGiftViceImg1() {
+		return giftViceImg1;
+	}
+	/**
+	 * 设置：产品附图2
+	 */
+	public void setGiftViceImg2(String giftViceImg2) {
+		this.giftViceImg2 = giftViceImg2;
+	}
+	/**
+	 * 获取：产品附图2
+	 */
+	public String getGiftViceImg2() {
+		return giftViceImg2;
+	}
+	/**
+	 * 设置：产品附图3
+	 */
+	public void setGiftViceImg3(String giftViceImg3) {
+		this.giftViceImg3 = giftViceImg3;
+	}
+	/**
+	 * 获取：产品附图3
+	 */
+	public String getGiftViceImg3() {
+		return giftViceImg3;
+	}
+	/**
+	 * 设置：价格
+	 */
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+	/**
+	 * 获取：价格
+	 */
+	public Integer getPrice() {
+		return price;
+	}
+	/**
+	 * 设置：快递费
+	 */
+	public void setExpressFee(Integer expressFee) {
+		this.expressFee = expressFee;
+	}
+	/**
+	 * 获取：快递费
+	 */
+	public Integer getExpressFee() {
+		return expressFee;
+	}
+	/**
+	 * 设置：库存
+	 */
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+	/**
+	 * 获取：库存
+	 */
+	public Integer getStock() {
+		return stock;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setGiftDesc(String giftDesc) {
+		this.giftDesc = giftDesc;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getGiftDesc() {
+		return giftDesc;
+	}
+	/**
+	 * 设置：是否推荐，0不推荐，1推荐
+	 */
+	public void setIsRecommend(Integer isRecommend) {
+		this.isRecommend = isRecommend;
+	}
+	/**
+	 * 获取：是否推荐，0不推荐，1推荐
+	 */
+	public Integer getIsRecommend() {
+		return isRecommend;
+	}
+	/**
+	 * 设置：是否展示，0不展示，1展示
+	 */
+	public void setIsShow(Integer isShow) {
+		this.isShow = isShow;
+	}
+	/**
+	 * 获取：是否展示，0不展示，1展示
+	 */
+	public Integer getIsShow() {
+		return isShow;
+	}
+	/**
+	 * 设置：商户号
+	 */
+	public void setMerchantId(String merchantId) {
+		this.merchantId = merchantId;
+	}
+	/**
+	 * 获取：商户号
+	 */
+	public String getMerchantId() {
+		return merchantId;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+	/**
+	 * 获取：
+	 */
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setAvailable(Integer available) {
+		this.available = available;
+	}
+	/**
+	 * 获取：
+	 */
+	public Integer getAvailable() {
+		return available;
+	}
+	/**
+	 * 设置：销量
+	 */
+	public void setBuyCount(Integer buyCount) {
+		this.buyCount = buyCount;
+	}
+	/**
+	 * 获取：销量
+	 */
+	public Integer getBuyCount() {
+		return buyCount;
+	}
 }

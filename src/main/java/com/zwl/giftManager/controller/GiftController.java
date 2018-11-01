@@ -77,10 +77,13 @@ public class GiftController {
     @PostMapping("/save")
     @RequiresPermissions("gift:save")
     public R save(@ModelAttribute GiftDO gift) {
+        //接收过来的价格 是单位元 ，需要*100
         String merchantId = ShiroUtils.getMerchantId();
         gift.setCreateTime(new Date());
         gift.setAvailable(1);
+        gift.setBuyCount(0);
         gift.setMerchantId(merchantId);
+        gift.setPrice(gift.getPrice()*100);
         if (giftService.save(gift) > 0) {
             return R.ok();
         }
@@ -90,11 +93,12 @@ public class GiftController {
     /**
      * 修改
      */
+    @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("gift:update")
-    public R update(@RequestBody GiftDO gift) {
+    public R update(@ModelAttribute GiftDO gift) {
+        gift.setPrice(gift.getPrice()*100);
         giftService.update(gift);
-
         return R.ok();
     }
 

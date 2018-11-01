@@ -43,6 +43,24 @@ function validateRule() {
             },
             giftViceTitle: {
                 required: true
+            },
+            buyCount: {
+                required: true
+            },
+            minRequirement: {
+                required: true
+            },
+            giftMainImg: {
+                required: true
+            },
+            price: {
+                required: true
+            },
+            expressFee: {
+                required: true
+            },
+            stock: {
+                required: true
             }
 
 
@@ -53,6 +71,24 @@ function validateRule() {
             },
             giftViceTitle: {
                 required: icon + "请输入副标题"
+            },
+            buyCount: {
+                required: icon + "请输入销量"
+            },
+            minRequirement: {
+                required: icon + "请输入购买最低要求"
+            },
+            giftMainImg: {
+                required: icon + "请输入产品主图"
+            },
+            price: {
+                required: icon + "请输入产品价格"
+            },
+            expressFee: {
+                required: icon + "请输入快递费"
+            },
+            stock: {
+                required: icon + "请输入库存"
             }
         }
     });
@@ -151,7 +187,7 @@ layui.use('upload', function () {
 
 
 });
-
+var giftDesc = undefined;
 layui.use('layedit', function () {
     var layedit = layui.layedit;
     layedit.set({
@@ -160,7 +196,6 @@ layui.use('layedit', function () {
             , type: 'post' //默认post
         }
     });
-
-    var giftDesc = layedit.build('giftDesc'); //建立编辑器
+    giftDesc = layedit.build('giftDesc'); //建立编辑器
 });
 
