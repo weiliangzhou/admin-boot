@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +64,9 @@ public class OfflineSalonActivityOrderController {
 			themeName = params.get("themeName").toString();
 			Integer themeId = offlineActivityThemeService.getThemeIdByThemeName(themeName);
 			if(null != themeId ){
-				params.put("themeId", themeId);
+				params.put("activityThemeId", themeId);
+			}else{
+				return new PageUtils(new ArrayList<OfflineSalonActivityOrderDO>(), 0);
 			}
 		}
         Query query = new Query(params);

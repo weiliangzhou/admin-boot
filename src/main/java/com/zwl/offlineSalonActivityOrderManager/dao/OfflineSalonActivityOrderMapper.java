@@ -41,8 +41,8 @@ public interface OfflineSalonActivityOrderMapper {
 			"<if test=\"modifyTime != null and modifyTime != ''\">"+ "and modify_time = #{modifyTime} " + "</if>" +
 			"<if test=\"available != null and available != ''\">"+ "and available = #{available} " + "</if>" +
 			"<if test=\"orderType != null and orderType != ''\">"+ "and order_type = #{orderType} " + "</if>" +
-			"<if test=\"minTime != null and minTime != ''\">" + "and  <![CDATA[ create_time>= #{minTime} ]]>" + "</if>" +
-			"<if test=\"maxTime != null and maxTime != ''\">" + "and  <![CDATA[ create_time<= #{maxTime} ]]>" + "</if>" +
+			"<if test=\"minTime != null and minTime != ''\">" + "and  <![CDATA[ payment_time>= #{minTime} ]]>" + "</if>" +
+			"<if test=\"maxTime != null and maxTime != ''\">" + "and  <![CDATA[ payment_time<= #{maxTime} ]]>" + "</if>" +
 			"<if test=\"isMaid != null and isMaid != ''\">"+ "and is_maid = #{isMaid} " + "</if>" +
 			"<if test=\"isRetraining != null and isRetraining != ''\">"+ "and is_retraining = #{isRetraining} " + "</if>" +
 			"</where>"+
