@@ -55,4 +55,6 @@ public class OfflineActivityOrderDO implements Serializable {
 	private String activityAddress;
 	//线下课程主题
 	private String themeName;
+	//订单类型 0:线下活动 1:线下沙龙
+	private Integer orderType;
 }

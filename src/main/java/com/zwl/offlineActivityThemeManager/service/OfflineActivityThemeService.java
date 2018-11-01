@@ -23,4 +23,6 @@ public interface OfflineActivityThemeService {
 	int batchRemove(Integer[] ids);
 
 	List<OfflineActivityThemeItemVo> getActivityThemeItemsList(String merchantId);
+
+	Integer  getThemeIdByThemeName(String themeName);
 }
