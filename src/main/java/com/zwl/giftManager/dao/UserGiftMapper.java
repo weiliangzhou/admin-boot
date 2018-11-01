@@ -14,7 +14,7 @@ import java.util.Map;
 @Mapper
 public interface UserGiftMapper {
 
-    @Select("select `id`, `user_id`, `gift_title`, `phone`, `province`, `city`, `area`, `address`, `express_no`, `express_company`, `create_time`, `modify_time`, `available` from ss_user_gift where id = #{id}")
+    @Select("select `id`, `user_id`, `gift_id`, `gift_title`, `phone`, `province`, `city`, `area`, `address`, `express_no`, `express_company`, `merchant_id`, `order_state`, `create_time`, `modify_time`, `available` from ss_user_gift where id = #{id}")
     UserGiftDO get(Long id);
 
     @Select("<script>" +
@@ -75,9 +75,9 @@ public interface UserGiftMapper {
     @Update("<script>" +
             "update ss_user_gift " +
             "<set>" +
-            "<if test=\"id != null\">`id` = #{id}, </if>" +
-            "<if test=\"userId != null\">`user_id` = #{userId}, </if>" +
-            "<if test=\"giftTitle != null\">`gift_title` = #{giftTitle}, </if>" +
+//            "<if test=\"id != null\">`id` = #{id}, </if>" +
+//            "<if test=\"userId != null\">`user_id` = #{userId}, </if>" +
+//            "<if test=\"giftTitle != null\">`gift_title` = #{giftTitle}, </if>" +
             "<if test=\"phone != null\">`phone` = #{phone}, </if>" +
             "<if test=\"province != null\">`province` = #{province}, </if>" +
             "<if test=\"city != null\">`city` = #{city}, </if>" +
@@ -103,4 +103,7 @@ public interface UserGiftMapper {
             "</foreach>" +
             "</script>")
     int batchRemove(Long[] ids);
+
+    @Update("update ss_user_gift b set b.express_company = #{expressCompany} , b.express_no = #{expressNo} ,b.order_state = 1 where b.id = #{id}")
+    int updateShipments(@Param("id") Long id, @Param("expressCompany") Integer expressCompany, @Param("expressNo") String expressNo);
 }

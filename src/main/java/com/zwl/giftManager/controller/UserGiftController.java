@@ -9,6 +9,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,12 +51,34 @@ public class UserGiftController {
         return "giftManager/userGift/add";
     }
 
+    @GetMapping("/dispatchShipments")
+    @RequiresPermissions("userGift:shipments")
+    public String dispatchShipments(@RequestParam(value = "id") Long id, ModelMap modelMap) {
+        modelMap.put("id", id);
+        return "giftManager/userGift/shipments";
+    }
+
     @GetMapping("/edit/{id}")
-    @RequiresPermissions("userGift:edit")
+    @RequiresPermissions("userGift:update")
     String edit(@PathVariable("id") Long id, Model model) {
         UserGiftDO userGift = userGiftService.get(id);
         model.addAttribute("userGift", userGift);
         return "giftManager/userGift/edit";
+    }
+
+    /**
+     * 确认发货
+     */
+    @ResponseBody
+    @PostMapping("/shipments")
+    @RequiresPermissions("userGift:shipments")
+    public R shipments(@RequestParam(value = "id") Long id,
+                       @RequestParam(value = "expressCompany") Integer expressCompany,
+                       @RequestParam(value = "expressNo") String expressNo) {
+        if (userGiftService.updateShipments(id, expressCompany, expressNo) > 0) {
+            return R.ok();
+        }
+        return R.error();
     }
 
     /**
@@ -85,8 +108,9 @@ public class UserGiftController {
      * 修改
      */
     @RequestMapping("/update")
+    @ResponseBody
     @RequiresPermissions("userGift:update")
-    public R update(@RequestBody UserGiftDO userGift) {
+    public R update(@ModelAttribute UserGiftDO userGift) {
         userGiftService.update(userGift);
 
         return R.ok();

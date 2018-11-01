@@ -102,6 +102,11 @@ function load() {
                         title: '更新时间'
                     },
                     {
+                        field: 'orderState',
+                        title: '更新时间',
+                        visible: false
+                    },
+                    {
                         title: '操作',
                         field: 'id',
                         align: 'center',
@@ -112,10 +117,8 @@ function load() {
                             var d = '<a class="btn btn-warning btn-sm" href="#" title="删除"  mce_href="#" onclick="remove(\''
                                 + row.id
                                 + '\')"><i class="fa fa-remove"></i></a> ';
-                            var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
-                                + row.id
-                                + '\')"><i class="fa fa-key"></i></a> ';
-                            return e + d;
+                            var f = '<a class="btn btn-success btn-sm" href="#" title="确认发货"  mce_href="#" onclick="shipments(' + row.id + ',' + row.orderState + ')"><i class="fa fa-truck"></i></a> ';
+                            return e + f;
                         }
                     }]
             });
@@ -133,6 +136,21 @@ function add() {
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
         content: prefix + '/add' // iframe的url
+    });
+}
+
+function shipments(id,orderState) {
+    if (orderState == 1) {
+        layer.msg("该商品已经发货请勿重复发货");
+        return;
+    }
+    layer.open({
+        type: 2,
+        title: '确认发货',
+        maxmin: true,
+        shadeClose: false, // 点击遮罩关闭层
+        area: ['800px', '350px'],
+        content: prefix + '/dispatchShipments?id=' + id // iframe的url
     });
 }
 

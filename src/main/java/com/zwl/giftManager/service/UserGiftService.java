@@ -26,4 +26,14 @@ public interface UserGiftService {
     int remove(Long id);
 
     int batchRemove(Long[] ids);
+
+    /**
+     * 修改商品发货信息
+     *
+     * @param id             商品订单编号
+     * @param expressCompany 快递公司 1韵达 2圆通 3EMS 4申通
+     * @param expressNo      快递单号
+     * @return 修改受影响行数
+     */
+    int updateShipments(Long id, Integer expressCompany, String expressNo);
 }
