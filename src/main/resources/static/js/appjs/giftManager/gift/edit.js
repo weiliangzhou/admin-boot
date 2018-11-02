@@ -53,6 +53,9 @@ function validateRule() {
             giftMainImg: {
                 required: true
             },
+            giftShareBack: {
+                required: true
+            },
             price: {
                 required: true
             },
@@ -80,6 +83,9 @@ function validateRule() {
             },
             giftMainImg: {
                 required: icon + "请输入产品主图"
+            },
+            giftShareBack: {
+                required: icon + "请输入产品背景图"
             },
             price: {
                 required: icon + "请输入产品价格"
