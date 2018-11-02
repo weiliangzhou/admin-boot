@@ -162,7 +162,10 @@ function load() {
 								},
 																{
 									field : 'idCardNum', 
-									title : '身份证号码'
+									title : '身份证号码',
+									formatter: function (value) {
+										return ":"+value;
+									}
 								},
 								// 								{
 								// 	field : 'paymentNo',

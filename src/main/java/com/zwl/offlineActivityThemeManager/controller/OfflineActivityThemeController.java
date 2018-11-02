@@ -113,8 +113,8 @@ public class OfflineActivityThemeController {
 		if (null != day && null != night) {
 			offlineActivityTheme.setActivityTime("时长 "+day+"天"+night+"夜");
 		}
-		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
-		offlineActivityTheme.setContentText(contextText);
+//		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
+//		offlineActivityTheme.setContentText(contextText);
 		offlineActivityTheme.setBuyCount(0);
 		offlineActivityTheme.setActivityType(0);
 		if(offlineActivityThemeService.save(offlineActivityTheme)>0){
@@ -135,8 +135,8 @@ public class OfflineActivityThemeController {
 		if (null != day && null != night) {
 			offlineActivityTheme.setActivityTime("时长 "+day+"天"+night+"夜");
 		}
-		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
-		offlineActivityTheme.setContentText(contextText);
+//		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
+//		offlineActivityTheme.setContentText(contextText);
 		offlineActivityThemeService.update(offlineActivityTheme);
 		
 		return R.ok();

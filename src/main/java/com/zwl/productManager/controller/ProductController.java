@@ -88,8 +88,8 @@ public class ProductController {
     @RequiresPermissions("productManager:update")
     @ResponseBody
     public R update(@ModelAttribute ProductDO product) {
-        String contentText=EditUtil.delHtmlTag(product.getContent());
-        product.setContentText(contentText);
+//        String contentText=EditUtil.delHtmlTag(product.getContent());
+//        product.setContentText(contentText);
         productService.update(product);
         return R.ok();
     }

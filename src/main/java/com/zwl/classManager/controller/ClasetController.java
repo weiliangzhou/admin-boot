@@ -108,10 +108,10 @@ public class ClasetController {
     public R save(ClasetDO claset) {
         claset.setMerchantId(ShiroUtils.getMerchantId());
 //        claset.setAvailable(1);
-        String contextText = EditUtil.delHtmlTag(claset.getContent());
+//        String contextText = EditUtil.delHtmlTag(claset.getContent());
         String teacherName = "徐东遥";
         SimpleDateFormat sdf_yMdHms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        claset.setContentText(contextText);
+//        claset.setContentText(contextText);
         if (clasetService.save(claset) > 0) {
             String className = claset.getTitle();
             String merchantId = claset.getMerchantId();
@@ -128,8 +128,8 @@ public class ClasetController {
     @RequiresPermissions("claset:update")
     @ResponseBody
     public R update(@ModelAttribute ClasetDO claset) {
-        String contextText = EditUtil.delHtmlTag(claset.getContent());
-        claset.setContentText(contextText);
+//        String contextText = EditUtil.delHtmlTag(claset.getContent());
+//        claset.setContentText(contextText);
         Integer categoryId = claset.getCategoryId();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("classSetId",claset.getId());

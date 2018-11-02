@@ -94,8 +94,8 @@ public class SalonThemeController {
 		String endTime = offlineActivityTheme.getEndTime();
 		offlineActivityTheme.setActivityTime(startTime+"-"+endTime);
 		offlineActivityTheme.setActivityType(1);
-		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
-		offlineActivityTheme.setContentText(contextText);
+//		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
+//		offlineActivityTheme.setContentText(contextText);
 		offlineActivityTheme.setBuyCount(0);
 		if(offlineActivityThemeService.save(offlineActivityTheme)>0){
 			return R.ok();
@@ -113,8 +113,8 @@ public class SalonThemeController {
 		String startTime = offlineActivityTheme.getStartTime();
 		String endTime = offlineActivityTheme.getEndTime();
 		offlineActivityTheme.setActivityTime(startTime+"-"+endTime);
-		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
-		offlineActivityTheme.setContentText(contextText);
+//		String contextText = EditUtil.delHtmlTag(offlineActivityTheme.getContent());
+//		offlineActivityTheme.setContentText(contextText);
 		offlineActivityThemeService.update(offlineActivityTheme);
 		
 		return R.ok();
