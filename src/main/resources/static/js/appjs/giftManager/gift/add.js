@@ -184,6 +184,28 @@ layui.use('upload', function () {
             //请求异常回调
         }
     });
+    //上传图片
+    upload.render({
+        elem: '#giftShareBackBtn' //绑定元素
+        , url: '/file/upload/' //上传接口
+        , accept: 'images'
+        , before: function (obj) {
+            //预读本地文件示例，不支持ie8
+            obj.preview(function (index, file, result) {
+                $('#giftShareBackShow').attr('src', result); //图片链接（base64）
+            });
+        }
+        , done: function (res) {
+            if (res.code == 0) {
+                parent.layer.msg("上传成功");
+                $('#giftShareBack').val(res.data.src);
+            }
+            //上传完毕回调
+        }
+        , error: function () {
+            //请求异常回调
+        }
+    });
 });
 
 layui.use('layedit', function () {

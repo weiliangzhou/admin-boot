@@ -14,7 +14,7 @@ import java.util.Map;
 @Mapper
 public interface GiftMapper {
 
-    @Select("select `id`, `gift_main_title`, `gift_vice_title`, `min_requirement`, `gift_main_img`, `gift_vice_img_1`, `gift_vice_img_2`, `gift_vice_img_3`, `price`, `express_fee`, `stock`, `gift_desc`, `is_recommend`, `is_show`, `merchant_id`, `create_time`, `modify_time`, `available`, `buy_count` from ss_gift where id = #{id}")
+    @Select("select `id`, `gift_main_title`, `gift_vice_title`, `min_requirement`, `gift_main_img`, `gift_vice_img_1`, `gift_vice_img_2`, `gift_vice_img_3`, `gift_share_back` ,`price`, `express_fee`, `stock`, `gift_desc`, `is_recommend`, `is_show`, `merchant_id`, `create_time`, `modify_time`, `available`, `buy_count` from ss_gift where id = #{id}")
     GiftDO get(Long id);
 
     @Select("<script>" +
@@ -80,8 +80,8 @@ public interface GiftMapper {
             "</script>")
     int count(Map<String, Object> map);
 
-    @Insert("insert into ss_gift (`gift_main_title`, `gift_vice_title`, `min_requirement`, `gift_main_img`, `gift_vice_img_1`, `gift_vice_img_2`, `gift_vice_img_3`, `price`, `express_fee`, `stock`, `gift_desc`, `is_recommend`, `is_show`, `merchant_id`, `create_time`, `modify_time`, `available`, `buy_count`)"
-            + "values (#{giftMainTitle}, #{giftViceTitle}, #{minRequirement}, #{giftMainImg}, #{giftViceImg1}, #{giftViceImg2}, #{giftViceImg3}, #{price}, #{expressFee}, #{stock}, #{giftDesc}, #{isRecommend}, #{isShow}, #{merchantId}, #{createTime}, #{modifyTime}, #{available}, #{buyCount})")
+    @Insert("insert into ss_gift (`gift_main_title`, `gift_vice_title`, `min_requirement`, `gift_main_img`, `gift_vice_img_1`, `gift_vice_img_2`, `gift_vice_img_3`, `gift_share_back`,`price`, `express_fee`, `stock`, `gift_desc`, `is_recommend`, `is_show`, `merchant_id`, `create_time`, `modify_time`, `available`, `buy_count`)"
+            + "values (#{giftMainTitle}, #{giftViceTitle}, #{minRequirement}, #{giftMainImg}, #{giftViceImg1}, #{giftViceImg2}, #{giftViceImg3},#{giftShareBack}, #{price}, #{expressFee}, #{stock}, #{giftDesc}, #{isRecommend}, #{isShow}, #{merchantId}, #{createTime}, #{modifyTime}, #{available}, #{buyCount})")
     int save(GiftDO gift);
 
     @Update("<script>" +
@@ -95,6 +95,7 @@ public interface GiftMapper {
             "<if test=\"giftViceImg1 != null\">`gift_vice_img_1` = #{giftViceImg1}, </if>" +
             "<if test=\"giftViceImg2 != null\">`gift_vice_img_2` = #{giftViceImg2}, </if>" +
             "<if test=\"giftViceImg3 != null\">`gift_vice_img_3` = #{giftViceImg3}, </if>" +
+            "<if test=\"giftShareBack != null\">`gift_share_back` = #{giftShareBack}, </if>" +
             "<if test=\"price != null\">`price` = #{price}, </if>" +
             "<if test=\"expressFee != null\">`express_fee` = #{expressFee}, </if>" +
             "<if test=\"stock != null\">`stock` = #{stock}, </if>" +
