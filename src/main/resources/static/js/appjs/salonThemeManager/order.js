@@ -134,6 +134,18 @@ function load() {
 									field : 'realName', 
 									title : '真实姓名' 
 								},
+								{
+									field : 'wechatNo',
+									title : '微信号'
+								},
+								{
+									field : 'slReferrerPhone',
+									title : '邀约人手机号'
+								},
+								{
+									field : 'slReferrerName',
+									title : '邀约人姓名'
+								},
 																{
 									field : 'city', 
 									title : '所在城市' 

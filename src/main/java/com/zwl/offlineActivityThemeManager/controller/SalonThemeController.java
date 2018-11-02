@@ -1,12 +1,16 @@
 package com.zwl.offlineActivityThemeManager.controller;
 
 import com.zwl.common.utils.*;
+import com.zwl.memberManager.domain.SsUserDO;
+import com.zwl.memberManager.service.SsUserService;
 import com.zwl.offlineActivityManager.domain.OfflineActivityDO;
 import com.zwl.offlineActivityManager.service.OfflineActivityService;
 import com.zwl.offlineActivityOrderManager.domain.OfflineActivityOrderDO;
 import com.zwl.offlineActivityOrderManager.service.OfflineActivityOrderService;
 import com.zwl.offlineActivityThemeManager.domain.OfflineActivityThemeDO;
 import com.zwl.offlineActivityThemeManager.service.OfflineActivityThemeService;
+import com.zwl.offlineSalonActivityOrderManager.domain.OfflineSalonActivityOrderDO;
+import com.zwl.offlineSalonActivityOrderManager.service.OfflineSalonActivityOrderService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,10 @@ public class SalonThemeController {
 	private OfflineActivityOrderService offlineActivityOrderService;
 	@Autowired
 	private OfflineActivityService offlineActivityService;
+	@Autowired
+	private SsUserService userService;
+	@Autowired
+	private OfflineSalonActivityOrderService offlineSalonActivityOrderService;
 	
 	@GetMapping()
 	@RequiresPermissions("salonTheme:salonTheme")
@@ -162,14 +170,17 @@ public class SalonThemeController {
 		params.put("available", 1);
 		params.put("orderStatus",1);
 		Query query = new Query(params);
-		List<OfflineActivityOrderDO> offlineActivityOrderList = offlineActivityOrderService.list(query);
-		for(OfflineActivityOrderDO offlineActivityOrderDO:offlineActivityOrderList){
+		List<OfflineSalonActivityOrderDO> offlineActivityOrderList = offlineSalonActivityOrderService.list(query);
+		for(OfflineSalonActivityOrderDO offlineActivityOrderDO:offlineActivityOrderList){
 			OfflineActivityDO offlineActivityDO = offlineActivityService.get(offlineActivityOrderDO.getActivityId());
 			offlineActivityOrderDO.setActivityAddress(offlineActivityDO.getActivityAddress());
 			OfflineActivityThemeDO offlineActivityThemeDO = offlineActivityThemeService.get(offlineActivityOrderDO.getActivityThemeId());
 			offlineActivityOrderDO.setThemeName(offlineActivityThemeDO.getThemeName());
+			SsUserDO ssUserDO = userService.getUserByUserId(offlineActivityOrderDO.getSlReferrer());
+			offlineActivityOrderDO.setSlReferrerName(ssUserDO.getRealName());
+			offlineActivityOrderDO.setSlReferrerPhone(ssUserDO.getRegisterMobile());
 		}
-		int total = offlineActivityOrderService.count(query);
+		int total = offlineSalonActivityOrderService.count(query);
 		PageUtils pageUtils = new PageUtils(offlineActivityOrderList, total);
 		return pageUtils;
 	}
