@@ -122,6 +122,6 @@ layui.use('layedit', function () {
             , type: 'post' //默认post
         }
     });
-    content_init = layedit.build('contentText'); //建立编辑器
+    content_init = layedit.build('content'); //建立编辑器
 
 });

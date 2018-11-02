@@ -89,8 +89,8 @@ public class VideoController {
             Integer playTime = minute * 60 + second;
             video.setPlayTime(playTime);
         }
-        String contextText = EditUtil.delHtmlTag(video.getContent());
-        video.setContentText(contextText);
+//        String contextText = EditUtil.delHtmlTag(video.getContent());
+//        video.setContentText(contextText);
         if (videoService.save(video) > 0) {
             return R.ok();
         }
@@ -110,8 +110,8 @@ public class VideoController {
             Integer playTime = minute * 60 + second;
             video.setPlayTime(playTime);
         }
-        String contextText = EditUtil.delHtmlTag(video.getContent());
-        video.setContentText(contextText);
+//        String contextText = EditUtil.delHtmlTag(video.getContent());
+//        video.setContentText(contextText);
         videoService.update(video);
         return R.ok();
     }

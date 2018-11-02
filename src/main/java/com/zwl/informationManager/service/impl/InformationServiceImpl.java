@@ -51,7 +51,7 @@ public class InformationServiceImpl implements InformationService {
         if (null == information) {
             throw new RuntimeException("参数错误");
         }
-        information.setContentText(EditUtil.delHtmlTag(information.getContent()));
+//        information.setContentText(EditUtil.delHtmlTag(information.getContent()));
         return informationMapper.update(information);
     }
 

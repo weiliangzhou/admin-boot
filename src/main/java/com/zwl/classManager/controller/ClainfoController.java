@@ -134,8 +134,8 @@ public class ClainfoController {
             Integer playTime = minute * 60 + second;
             clainfo.setPlayTime(playTime);
         }
-        String contextText = EditUtil.delHtmlTag(clainfo.getContent());
-        clainfo.setContentText(contextText);
+//        String contextText = EditUtil.delHtmlTag(clainfo.getContent());
+//        clainfo.setContentText(contextText);
         if (clainfoService.save(clainfo) > 0) {
             String className = clainfo.getTitle();
             String merchantId = clainfo.getMerchantId();
@@ -163,8 +163,8 @@ public class ClainfoController {
             Integer playTime = minute * 60 + second;
             clainfo.setPlayTime(playTime);
         }
-        String contextText = EditUtil.delHtmlTag(clainfo.getContent());
-        clainfo.setContentText(contextText);
+//        String contextText = EditUtil.delHtmlTag(clainfo.getContent());
+//        clainfo.setContentText(contextText);
         clainfoService.update(clainfo);
         return R.ok();
     }

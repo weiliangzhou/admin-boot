@@ -78,7 +78,7 @@ public class InformationController {
     public R save(@ModelAttribute InformationDO information) {
         information.setMerchantId(ShiroUtils.getMerchantId());
         information.setAvailable(1);
-        information.setContentText(EditUtil.delHtmlTag(information.getContent()));
+//        information.setContentText(EditUtil.delHtmlTag(information.getContent()));
         if (informationService.save(information) > 0) {
             return R.ok();
         }
