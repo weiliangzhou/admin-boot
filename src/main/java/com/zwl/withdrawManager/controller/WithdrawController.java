@@ -83,6 +83,11 @@ public class WithdrawController {
             SsUserDO userDO=ssUserService.getUserByUserId(userId);
             String phone=userDO.getRegisterMobile();
             withdrawDO.setPhone(phone);
+            //银行卡地址
+            if(StringUtils.isNotBlank(withdrawDO.getBankProvince())&&StringUtils.isNotBlank(withdrawDO.getBankCity())
+                    &&StringUtils.isNotBlank(withdrawDO.getBankArea())){
+                withdrawDO.setBankAddress(withdrawDO.getBankProvince()+withdrawDO.getBankCity()+withdrawDO.getBankArea());
+            }
         }
         int total = withdrawService.count(query);
         PageUtils pageUtils = new PageUtils(withdrawList, total);

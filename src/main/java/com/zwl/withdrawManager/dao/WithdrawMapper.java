@@ -20,24 +20,30 @@ public interface WithdrawMapper {
     @Select("<script>" +
             "select * from ss_withdraw " +
             "<where>" +
-            "<if test=\"id != null and id != ''\">" + "and id = #{id} " + "</if>" +
-            "<if test=\"withdrawId != null and withdrawId != ''\">" + "and withdraw_id = #{withdrawId} " + "</if>" +
-            "<if test=\"money != null and money != ''\">" + "and money = #{money} " + "</if>" +
-            "<if test=\"openId != null and openId != ''\">" + "and open_id = #{openId} " + "</if>" +
-            "<if test=\"realName != null and realName != ''\">" + "and real_name = #{realName} " + "</if>" +
-            "<if test=\"userId != null and userId != ''\">" + "and user_id = #{userId} " + "</if>" +
-            "<if test=\"account != null and account != ''\">" + "and account = #{account} " + "</if>" +
-            "<if test=\"status != null and status != ''\">" + "and status = #{status} " + "</if>" +
-            "<if test=\"payWay != null and payWay != ''\">" + "and pay_way = #{payWay} " + "</if>" +
-            "<if test=\"operator != null and operator != ''\">" + "and operator = #{operator} " + "</if>" +
-            "<if test=\"remark != null and remark != ''\">" + "and remark = #{remark} " + "</if>" +
-            "<if test=\"successTime != null and successTime != ''\">" + "and success_time = #{successTime} " + "</if>" +
-            "<if test=\"merchantId != null and merchantId != 'admin'\">" + "and merchant_id = #{merchantId} " + "</if>" +
-            "<if test=\"paymentNo != null and paymentNo != ''\">" + "and payment_no = #{paymentNo} " + "</if>" +
-            "<if test=\"paymentTime != null and paymentTime != ''\">" + "and payment_time = #{paymentTime} " + "</if>" +
-            "<if test=\"createTime != null and createTime != ''\">" + "and create_time = #{createTime} " + "</if>" +
-            "<if test=\"modifyTime != null and modifyTime != ''\">" + "and modify_time = #{modifyTime} " + "</if>" +
-            "<if test=\"available != null and available != ''\">" + "and available = #{available} " + "</if>" +
+            "<if test=\"id != null and id != ''\">"+ "and id = #{id} " + "</if>" +
+            "<if test=\"withdrawId != null and withdrawId != ''\">"+ "and withdraw_id = #{withdrawId} " + "</if>" +
+            "<if test=\"money != null and money != ''\">"+ "and money = #{money} " + "</if>" +
+            "<if test=\"balance != null and balance != ''\">"+ "and balance = #{balance} " + "</if>" +
+            "<if test=\"openId != null and openId != ''\">"+ "and open_id = #{openId} " + "</if>" +
+            "<if test=\"realName != null and realName != ''\">"+ "and real_name = #{realName} " + "</if>" +
+            "<if test=\"userId != null and userId != ''\">"+ "and user_id = #{userId} " + "</if>" +
+            "<if test=\"account != null and account != ''\">"+ "and account = #{account} " + "</if>" +
+            "<if test=\"status != null and status != ''\">"+ "and status = #{status} " + "</if>" +
+            "<if test=\"payWay != null and payWay != ''\">"+ "and pay_way = #{payWay} " + "</if>" +
+            "<if test=\"operator != null and operator != ''\">"+ "and operator = #{operator} " + "</if>" +
+            "<if test=\"remark != null and remark != ''\">"+ "and remark = #{remark} " + "</if>" +
+            "<if test=\"successTime != null and successTime != ''\">"+ "and success_time = #{successTime} " + "</if>" +
+            "<if test=\"merchantId != null and merchantId != ''\">"+ "and merchant_id = #{merchantId} " + "</if>" +
+            "<if test=\"paymentNo != null and paymentNo != ''\">"+ "and payment_no = #{paymentNo} " + "</if>" +
+            "<if test=\"paymentTime != null and paymentTime != ''\">"+ "and payment_time = #{paymentTime} " + "</if>" +
+            "<if test=\"bankName != null and bankName != ''\">"+ "and bank_name = #{bankName} " + "</if>" +
+            "<if test=\"bankProvince != null and bankProvince != ''\">"+ "and bank_province = #{bankProvince} " + "</if>" +
+            "<if test=\"bankCity != null and bankCity != ''\">"+ "and bank_city = #{bankCity} " + "</if>" +
+            "<if test=\"bankArea != null and bankArea != ''\">"+ "and bank_area = #{bankArea} " + "</if>" +
+            "<if test=\"bankBranch != null and bankBranch != ''\">"+ "and bank_branch = #{bankBranch} " + "</if>" +
+            "<if test=\"createTime != null and createTime != ''\">"+ "and create_time = #{createTime} " + "</if>" +
+            "<if test=\"modifyTime != null and modifyTime != ''\">"+ "and modify_time = #{modifyTime} " + "</if>" +
+            "<if test=\"available != null and available != ''\">"+ "and available = #{available} " + "</if>" +
             "<if test=\"minTime != null and minTime != ''\">" + "and  <![CDATA[ create_time>= #{minTime} ]]>" + "</if>" +
             "<if test=\"maxTime != null and maxTime != ''\">" + "and  <![CDATA[ create_time<= #{maxTime} ]]>" + "</if>" +
             "<if test=\"minSuccessTime != null and minSuccessTime != ''\">" + "and  <![CDATA[ successTime >= #{minSuccessTime} ]]>" + "</if>" +
@@ -60,24 +66,30 @@ public interface WithdrawMapper {
     @Select("<script>" +
             "select count(*) from ss_withdraw " +
             "<where>" +
-            "<if test=\"id != null and id != ''\">" + "and id = #{id} " + "</if>" +
-            "<if test=\"withdrawId != null and withdrawId != ''\">" + "and withdraw_id = #{withdrawId} " + "</if>" +
-            "<if test=\"money != null and money != ''\">" + "and money = #{money} " + "</if>" +
-            "<if test=\"openId != null and openId != ''\">" + "and open_id = #{openId} " + "</if>" +
-            "<if test=\"realName != null and realName != ''\">" + "and real_name = #{realName} " + "</if>" +
-            "<if test=\"userId != null and userId != ''\">" + "and user_id = #{userId} " + "</if>" +
-            "<if test=\"account != null and account != ''\">" + "and account = #{account} " + "</if>" +
-            "<if test=\"status != null and status != ''\">" + "and status = #{status} " + "</if>" +
-            "<if test=\"payWay != null and payWay != ''\">" + "and pay_way = #{payWay} " + "</if>" +
-            "<if test=\"operator != null and operator != ''\">" + "and operator = #{operator} " + "</if>" +
-            "<if test=\"remark != null and remark != ''\">" + "and remark = #{remark} " + "</if>" +
-            "<if test=\"successTime != null and successTime != ''\">" + "and success_time = #{successTime} " + "</if>" +
-            "<if test=\"merchantId != null and merchantId != 'admin'\">" + "and merchant_id = #{merchantId} " + "</if>" +
-            "<if test=\"paymentNo != null and paymentNo != ''\">" + "and payment_no = #{paymentNo} " + "</if>" +
-            "<if test=\"paymentTime != null and paymentTime != ''\">" + "and payment_time = #{paymentTime} " + "</if>" +
-            "<if test=\"createTime != null and createTime != ''\">" + "and create_time = #{createTime} " + "</if>" +
-            "<if test=\"modifyTime != null and modifyTime != ''\">" + "and modify_time = #{modifyTime} " + "</if>" +
-            "<if test=\"available != null and available != ''\">" + "and available = #{available} " + "</if>" +
+            "<if test=\"id != null and id != ''\">"+ "and id = #{id} " + "</if>" +
+            "<if test=\"withdrawId != null and withdrawId != ''\">"+ "and withdraw_id = #{withdrawId} " + "</if>" +
+            "<if test=\"money != null and money != ''\">"+ "and money = #{money} " + "</if>" +
+            "<if test=\"balance != null and balance != ''\">"+ "and balance = #{balance} " + "</if>" +
+            "<if test=\"openId != null and openId != ''\">"+ "and open_id = #{openId} " + "</if>" +
+            "<if test=\"realName != null and realName != ''\">"+ "and real_name = #{realName} " + "</if>" +
+            "<if test=\"userId != null and userId != ''\">"+ "and user_id = #{userId} " + "</if>" +
+            "<if test=\"account != null and account != ''\">"+ "and account = #{account} " + "</if>" +
+            "<if test=\"status != null and status != ''\">"+ "and status = #{status} " + "</if>" +
+            "<if test=\"payWay != null and payWay != ''\">"+ "and pay_way = #{payWay} " + "</if>" +
+            "<if test=\"operator != null and operator != ''\">"+ "and operator = #{operator} " + "</if>" +
+            "<if test=\"remark != null and remark != ''\">"+ "and remark = #{remark} " + "</if>" +
+            "<if test=\"successTime != null and successTime != ''\">"+ "and success_time = #{successTime} " + "</if>" +
+            "<if test=\"merchantId != null and merchantId != ''\">"+ "and merchant_id = #{merchantId} " + "</if>" +
+            "<if test=\"paymentNo != null and paymentNo != ''\">"+ "and payment_no = #{paymentNo} " + "</if>" +
+            "<if test=\"paymentTime != null and paymentTime != ''\">"+ "and payment_time = #{paymentTime} " + "</if>" +
+            "<if test=\"bankName != null and bankName != ''\">"+ "and bank_name = #{bankName} " + "</if>" +
+            "<if test=\"bankProvince != null and bankProvince != ''\">"+ "and bank_province = #{bankProvince} " + "</if>" +
+            "<if test=\"bankCity != null and bankCity != ''\">"+ "and bank_city = #{bankCity} " + "</if>" +
+            "<if test=\"bankArea != null and bankArea != ''\">"+ "and bank_area = #{bankArea} " + "</if>" +
+            "<if test=\"bankBranch != null and bankBranch != ''\">"+ "and bank_branch = #{bankBranch} " + "</if>" +
+            "<if test=\"createTime != null and createTime != ''\">"+ "and create_time = #{createTime} " + "</if>" +
+            "<if test=\"modifyTime != null and modifyTime != ''\">"+ "and modify_time = #{modifyTime} " + "</if>" +
+            "<if test=\"available != null and available != ''\">"+ "and available = #{available} " + "</if>" +
             "<if test=\"minTime != null and minTime != ''\">" + "and  <![CDATA[ create_time>= #{minTime} ]]>" + "</if>" +
             "<if test=\"maxTime != null and maxTime != ''\">" + "and  <![CDATA[ create_time<= #{maxTime} ]]>" + "</if>" +
             "<if test=\"minSuccessTime != null and minSuccessTime != ''\">" + "and  <![CDATA[ successTime >= #{minSuccessTime} ]]>" + "</if>" +

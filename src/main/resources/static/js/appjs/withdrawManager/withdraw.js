@@ -86,11 +86,11 @@ function load() {
                         title: '手机号'
                     }
                     ,
-                    {
-                        field: 'withdrawId',
-                        title: '提现编号'
-                    }
-                    ,
+                    // {
+                    //     field: 'withdrawId',
+                    //     title: '提现编号'
+                    // }
+                    // ,
                     {
                         field: 'realName',
                         title: '真实姓名'
@@ -151,6 +151,14 @@ function load() {
                         title: '收款账户'
                     },
                     {
+                        field: 'bankAddress',
+                        title: '银行卡地址'
+                    },
+                    {
+                        field: 'bankBranch',
+                        title: '开户支行'
+                    },
+                    {
                         field: 'idCard',
                         title: '身份证号码'
                     },
@@ -165,17 +173,19 @@ function load() {
                             if (row.status == 1) {
                                 return "审核中";
                             } else if (row.status == 2) {
-                                return "通过";
+                                return "审核通过";
                             } else if (row.status == 3) {
                                 return "未通过";
+                            }else if(row.status ==4){
+                                return "已到账";
                             }
                             return "";
                         }
                     },
-                    {
-                        field: 'operator',
-                        title: '审核人员'
-                    },
+                    // {
+                    //     field: 'operator',
+                    //     title: '审核人员'
+                    // },
                     {
                         field: 'remark',
                         title: '审核意见'

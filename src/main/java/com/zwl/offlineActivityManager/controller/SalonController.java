@@ -115,6 +115,10 @@ public class SalonController {
 		offlineActivity.setBuyCount(0);
 		offlineActivity.setMinRequirement(offlineActivity.getMinRequirement() == null ? 0 :offlineActivity.getMinRequirement());
 		offlineActivity.setActivityType(1);
+		//沙龙的是否可重复购买设置默认值为0，是否复训设置默认值为0，是否返佣设置默认值为0，
+		offlineActivity.setIsRebuy(0);
+		offlineActivity.setIsRetraining(0);
+		offlineActivity.setIsMaid(0);
 		if(offlineActivityService.save(offlineActivity)>0){
 			return R.ok();
 		}
