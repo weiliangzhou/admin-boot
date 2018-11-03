@@ -148,7 +148,10 @@ function load() {
                     },
                     {
                         field: 'account',
-                        title: '收款账户'
+                        title: '收款账户',
+                        formatter: function ( value) {
+                            return ":"+value;
+                        }
                     },
                     {
                         field: 'bankAddress',
@@ -160,7 +163,10 @@ function load() {
                     },
                     {
                         field: 'idCard',
-                        title: '身份证号码'
+                        title: '身份证号码',
+                        formatter: function ( value) {
+                            return ":"+value;
+                        }
                     },
 
                     {
