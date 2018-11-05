@@ -48,8 +48,9 @@ function load() {
                         minSuccessTime: $('#minSuccessTime').val(),
                         maxSuccessTime: $('#maxSuccessTime').val(),
                         phone: $('#phone').val(),
-                        withdrawId:$("#withdrawId").val()
+                        // withdrawId:$("#withdrawId").val()
                         // username:$('#searchName').val()
+                        merchantId: $('#merchantId').val()
                     };
                 },
 //                showExport: true,  //是否显示导出按钮
