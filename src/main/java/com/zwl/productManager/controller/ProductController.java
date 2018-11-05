@@ -45,7 +45,7 @@ public class ProductController {
     }
 
     @GetMapping("/add")
-    @RequiresPermissions("productManager:add")
+    @RequiresPermissions("productManager:save")
     String add() {
         return "productManager/add";
     }
