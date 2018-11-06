@@ -39,4 +39,6 @@ public interface SsUserService {
 	SsUserDO getUserByPhone(String referrerPhone, String merchantId);
 
 	Integer getTotalPerformanceByUserId(String userId, String merchantId);
+
+	List<String> getUserIdByRealName(String slReferrerName,String merchantId);
 }

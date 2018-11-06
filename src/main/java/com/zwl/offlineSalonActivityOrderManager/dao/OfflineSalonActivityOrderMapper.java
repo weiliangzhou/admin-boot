@@ -45,6 +45,9 @@ public interface OfflineSalonActivityOrderMapper {
 			"<if test=\"maxTime != null and maxTime != ''\">" + "and  <![CDATA[ payment_time<= #{maxTime} ]]>" + "</if>" +
 			"<if test=\"isMaid != null and isMaid != ''\">"+ "and is_maid = #{isMaid} " + "</if>" +
 			"<if test=\"isRetraining != null and isRetraining != ''\">"+ "and is_retraining = #{isRetraining} " + "</if>" +
+			"<if test=\"slReferrer != null and slReferrer != ''\">"+ "and sl_referrer = #{slReferrer} " + "</if>" +
+			"<if test=\"wechatNo != null and wechatNo != ''\">"+ "and wechat_no = #{wechatNo} " + "</if>" +
+			"<if test=\"activityDate != null and activityDate != ''\">"+ "and activity_date = #{activityDate} " + "</if>" +
 			"</where>"+
 			" <choose>" +
 			"<when test=\"sort != null and sort.trim() != ''\">" +
@@ -88,6 +91,8 @@ public interface OfflineSalonActivityOrderMapper {
 		  		  "<if test=\"orderType != null and orderType != ''\">"+ "and order_type = #{orderType} " + "</if>" + 
 		  		  "<if test=\"wechatNo != null and wechatNo != ''\">"+ "and wechat_no = #{wechatNo} " + "</if>" +
 					"<if test=\"activityDate != null and activityDate != ''\">"+ "and activity_date = #{activityDate} " + "</if>" +
+					"<if test=\"minTime != null and minTime != ''\">" + "and  <![CDATA[ payment_time>= #{minTime} ]]>" + "</if>" +
+					"<if test=\"maxTime != null and maxTime != ''\">" + "and  <![CDATA[ payment_time<= #{maxTime} ]]>" + "</if>" +
 		  			"</where>"+ 
 			"</script>")
 	int count(Map<String, Object> map);

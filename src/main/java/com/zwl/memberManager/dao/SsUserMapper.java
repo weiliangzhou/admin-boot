@@ -131,4 +131,7 @@ public interface SsUserMapper {
     //根据userId查询该userId的一级下线的总业绩
     @Select("select sum(so.money) from ss_user su join ss_order so on su.user_id = so.user_id where su.referrer = #{userId} and su.merchant_id = #{merchantId} and su.available = 1 and so.order_status in (1,2) and so.available = 1")
     Integer getTotalPerformanceByUserId(@Param("userId")String userId, @Param("merchantId")String merchantId);
+
+    @Select("select user_id from ss_user where real_name = #{slReferrerName} and merchant_id = #{merchantId} and available = 1 ")
+    List<String> getUserIdByRealName(@Param("slReferrerName") String slReferrerName, @Param("merchantId") String merchantId);
 }
