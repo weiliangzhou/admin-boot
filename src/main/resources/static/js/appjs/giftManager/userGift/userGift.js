@@ -84,7 +84,7 @@ function load() {
                                 return "圆通";
                             }
                             else if (row.expressCompany == 3) {
-                                return "圆通";
+                                return "EMS";
                             }
                             else if (row.expressCompany == 4) {
                                 return "申通";
@@ -140,10 +140,10 @@ function add() {
 }
 
 function shipments(id,orderState) {
-    if (orderState == 1) {
-        layer.msg("该商品已经发货请勿重复发货");
-        return;
-    }
+    // if (orderState == 1) {
+    //     layer.msg("该商品已经发货请勿重复发货");
+    //     return;
+    // }
     layer.open({
         type: 2,
         title: '确认发货',

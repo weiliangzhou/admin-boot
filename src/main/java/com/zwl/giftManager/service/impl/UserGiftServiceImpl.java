@@ -66,9 +66,9 @@ public class UserGiftServiceImpl implements UserGiftService {
         if (null == userGiftDO) {
             throw new RuntimeException("无效订单");
         }
-        if (userGiftDO.getOrderState().intValue() == 1) {
-            throw new RuntimeException("请勿重复发货");
-        }
+//        if (userGiftDO.getOrderState().intValue() == 1) {
+//            throw new RuntimeException("请勿重复发货");
+//        }
         return userGiftMapper.updateShipments(id, expressCompany, expressNo);
     }
 

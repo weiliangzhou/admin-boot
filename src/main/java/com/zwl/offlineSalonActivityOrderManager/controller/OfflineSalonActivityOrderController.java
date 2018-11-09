@@ -69,6 +69,24 @@ public class OfflineSalonActivityOrderController {
 				return new PageUtils(new ArrayList<OfflineSalonActivityOrderDO>(), 0);
 			}
 		}
+		String slReferrerPhone = params.get("slReferrerPhone").toString();
+		if(StringUtils.isNotBlank(slReferrerPhone)){
+			String slReferrer = userService.getUserByRegisterMobile(slReferrerPhone);
+			if(StringUtils.isNotBlank(slReferrer)){
+				params.put("slReferrer", slReferrer);
+			}else{
+				return new PageUtils(new ArrayList<OfflineSalonActivityOrderDO>(), 0);
+			}
+		}
+		String slReferrerName = params.get("slReferrerName").toString();
+		if(StringUtils.isNotBlank(slReferrerName)){
+			List<String> slReferrerList = userService.getUserIdByRealName(slReferrerName,merchantId);
+			if(null != slReferrerList && slReferrerList.size() != 0){
+				params.put("slReferrer", slReferrerList.get(0));
+			}else{
+				return new PageUtils(new ArrayList<OfflineSalonActivityOrderDO>(), 0);
+			}
+		}
         Query query = new Query(params);
 		List<OfflineSalonActivityOrderDO> offlineActivityOrderList = offlineSalonActivityOrderService.list(query);
 		for(OfflineSalonActivityOrderDO offlineActivityOrderDO:offlineActivityOrderList){

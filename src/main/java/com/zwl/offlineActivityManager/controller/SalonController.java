@@ -16,6 +16,7 @@ import com.zwl.offlineSalonActivityOrderManager.domain.OfflineSalonActivityOrder
 import com.zwl.offlineSalonActivityOrderManager.service.OfflineSalonActivityOrderService;
 import com.zwl.system.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -117,9 +119,9 @@ public class SalonController {
 			throw new RuntimeException("日期转化异常");
 		}
 		//如复训价格未填，则设初始值为0
-		Double retrainingPriceDesc = offlineActivity.getRetrainingPriceDesc()==null ? 0 : offlineActivity.getRetrainingPriceDesc();
+//		Double retrainingPriceDesc = offlineActivity.getRetrainingPriceDesc()==null ? 0 : offlineActivity.getRetrainingPriceDesc();
 		offlineActivity.setActivityPrice(Integer.parseInt((int)mul(offlineActivity.getActivityPriceDesc(),100)+""));
-		offlineActivity.setRetrainingPrice(Integer.parseInt((int)mul(retrainingPriceDesc,100)+""));
+		offlineActivity.setRetrainingPrice(0);
 		offlineActivity.setMerchantId(ShiroUtils.getMerchantId());
 		offlineActivity.setBuyCount(0);
 		offlineActivity.setMinRequirement(offlineActivity.getMinRequirement() == null ? 0 :offlineActivity.getMinRequirement());
@@ -152,7 +154,7 @@ public class SalonController {
 			throw new RuntimeException("日期转化异常");
 		}
 		offlineActivity.setActivityPrice(Integer.parseInt((int)mul(offlineActivity.getActivityPriceDesc(),100)+""));
-		offlineActivity.setRetrainingPrice(Integer.parseInt((int)mul(offlineActivity.getRetrainingPriceDesc(),100)+""));
+//		offlineActivity.setRetrainingPrice(Integer.parseInt((int)mul(offlineActivity.getRetrainingPriceDesc(),100)+""));
 		offlineActivityService.update(offlineActivity);
 		
 		return R.ok();
@@ -199,6 +201,24 @@ public class SalonController {
 		params.put("merchantId", merchantId);
 		params.put("available", 1);
 		params.put("orderStatus",1);
+		String slReferrerPhone = params.get("slReferrerPhone").toString();
+		if(StringUtils.isNotBlank(slReferrerPhone)){
+			String slReferrer = userService.getUserByRegisterMobile(slReferrerPhone);
+			if(StringUtils.isNotBlank(slReferrer)){
+				params.put("slReferrer", slReferrer);
+			}else{
+				return new PageUtils(new ArrayList<OfflineSalonActivityOrderDO>(), 0);
+			}
+		}
+		String slReferrerName = params.get("slReferrerName").toString();
+		if(StringUtils.isNotBlank(slReferrerName)){
+			List<String> slReferrerList = userService.getUserIdByRealName(slReferrerName,merchantId);
+			if(null != slReferrerList && slReferrerList.size() != 0){
+				params.put("slReferrer", slReferrerList.get(0));
+			}else{
+				return new PageUtils(new ArrayList<OfflineSalonActivityOrderDO>(), 0);
+			}
+		}
 		Query query = new Query(params);
 		List<OfflineSalonActivityOrderDO> offlineActivityOrderList = offlineSalonActivityOrderService.list(query);
 		for(OfflineSalonActivityOrderDO offlineActivityOrderDO:offlineActivityOrderList){

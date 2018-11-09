@@ -77,7 +77,9 @@ function load() {
 					            realName:$('#realName').val(),
 					            minTime:$('#minTime').val(),
                                 maxTime:$('#maxTime').val(),
-								themeName:$('#themeName').val()
+								themeName:$('#themeName').val(),
+                                slReferrerPhone:$('#slReferrerPhone').val(),
+                                slReferrerName:$('#slReferrerName').val()
 							};
 						},
 						// //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -288,3 +290,17 @@ function batchRemove() {
 
 	});
 }
+layui.use('laydate', function(){
+    var laydate = layui.laydate;
+    laydate.render({
+        elem: '#minTime',
+        type: 'datetime'
+    });
+});
+layui.use('laydate', function(){
+    var laydate = layui.laydate;
+    laydate.render({
+        elem: '#maxTime',
+        type: 'datetime'
+    });
+});

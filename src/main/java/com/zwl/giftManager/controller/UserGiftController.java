@@ -54,7 +54,9 @@ public class UserGiftController {
     @GetMapping("/dispatchShipments")
     @RequiresPermissions("userGift:shipments")
     public String dispatchShipments(@RequestParam(value = "id") Long id, ModelMap modelMap) {
-        modelMap.put("id", id);
+        UserGiftDO userGift = userGiftService.get(id);
+        modelMap.put("userGift", userGift);
+//        modelMap.put("id", id);
         return "giftManager/userGift/shipments";
     }
 

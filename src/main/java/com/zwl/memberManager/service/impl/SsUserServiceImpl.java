@@ -79,4 +79,9 @@ public class SsUserServiceImpl implements SsUserService {
     public Integer getTotalPerformanceByUserId(String userId, String merchantId) {
         return ssUserMapper.getTotalPerformanceByUserId(userId,merchantId);
     }
+
+    @Override
+    public List<String> getUserIdByRealName(String slReferrerName, String merchantId) {
+        return ssUserMapper.getUserIdByRealName(slReferrerName,merchantId);
+    }
 }
