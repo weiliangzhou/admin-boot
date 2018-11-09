@@ -29,7 +29,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.98.55.127:3306/zwl_test?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://47.98.55.127:3306/new_cloud?useUnicode=true&characterEncoding=utf8
     username: root
     password: weigu2018
   thymeleaf:

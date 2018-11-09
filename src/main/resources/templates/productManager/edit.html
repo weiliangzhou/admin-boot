@@ -24,16 +24,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">副标题：</label>
-                        <div class="col-sm-4">
-                            <input id="contentText" name="contentText" class="form-control" type="text" th:value="${product.contentText}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">分佣百分比：</label>
+                        <label class="col-sm-3 control-label">价格：</label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" name="maidPercent"
-                                   th:value="${product.maidPercent}">
+                            <input class="form-control" type="text" name="price"
+                                   th:value="${product.price}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,7 +60,7 @@
                                           th:inline="text">
                                     [[${product.content}]]
                                 </textarea>
-                            <!--<input id="contentText" name="contentText" type="hidden">-->
+                            <input id="contentText" name="contentText" type="hidden">
                         </div>
 
                     </div>
