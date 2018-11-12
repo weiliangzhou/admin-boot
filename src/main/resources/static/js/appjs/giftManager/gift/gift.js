@@ -93,7 +93,7 @@ function load() {
                         field: 'expressFee',
                         title: '快递费',
                         formatter: function (value, row, index) {
-                            return row.price / 100;
+                            return row.expressFee / 100;
                         }
                     },
                     {
