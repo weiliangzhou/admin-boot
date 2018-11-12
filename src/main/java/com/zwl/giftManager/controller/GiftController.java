@@ -83,8 +83,8 @@ public class GiftController {
         gift.setAvailable(1);
         gift.setBuyCount(0);
         gift.setMerchantId(merchantId);
-        gift.setPrice(gift.getPrice()*100);
-        gift.setExpressFee(gift.getExpressFee()*100);
+        gift.setPrice((int)(gift.getPriceDesc()*100));
+        gift.setExpressFee((int)(gift.getExpressFeeDesc()*100));
         if (giftService.save(gift) > 0) {
             return R.ok();
         }
@@ -98,8 +98,8 @@ public class GiftController {
     @RequestMapping("/update")
     @RequiresPermissions("gift:update")
     public R update(@ModelAttribute GiftDO gift) {
-        gift.setPrice(gift.getPrice()*100);
-        gift.setExpressFee(gift.getExpressFee()*100);
+        gift.setPrice((int)(gift.getPriceDesc()*100));
+        gift.setExpressFee((int)(gift.getExpressFeeDesc()*100));
         giftService.update(gift);
         return R.ok();
     }

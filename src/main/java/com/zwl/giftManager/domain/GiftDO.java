@@ -37,9 +37,12 @@ public class GiftDO implements Serializable {
     private String giftShareBack;
     //价格
     private Integer price;
-
+    //价格
+    private Double priceDesc;
     //快递费
     private Integer expressFee;
+    //快递费w
+    private Double expressFeeDesc;
     //库存
     private Integer stock;
     //
