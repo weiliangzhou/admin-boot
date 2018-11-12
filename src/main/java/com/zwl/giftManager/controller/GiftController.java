@@ -84,6 +84,7 @@ public class GiftController {
         gift.setBuyCount(0);
         gift.setMerchantId(merchantId);
         gift.setPrice(gift.getPrice()*100);
+        gift.setExpressFee(gift.getExpressFee()*100);
         if (giftService.save(gift) > 0) {
             return R.ok();
         }
@@ -98,6 +99,7 @@ public class GiftController {
     @RequiresPermissions("gift:update")
     public R update(@ModelAttribute GiftDO gift) {
         gift.setPrice(gift.getPrice()*100);
+        gift.setExpressFee(gift.getExpressFee()*100);
         giftService.update(gift);
         return R.ok();
     }
