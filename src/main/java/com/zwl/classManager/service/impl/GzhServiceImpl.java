@@ -151,8 +151,7 @@ public class GzhServiceImpl implements GzhService {
 //        openidList.add("obBoO0yVr8DwoZK47eSidlIFUE7A");
 //        openidList.add("obBoO01VBFIZd1S51jEKLnkuzPfQ");
 //        openidList.add("obBoO0yGdBJ-C0iaDCBppTNUK0fE");
-//        String templateId = "niRn7EQ3Hb7pXD13o2D9JL6YpSWVqX2uV1I30EWmI8s";
-        String templateId = "ZZcSUlXiCLKAiMkFrQVzRvVv4D7vKHD6ImSZej9Q3iE";
+        String templateId = "niRn7EQ3Hb7pXD13o2D9JL6YpSWVqX2uV1I30EWmI8s";
         for (String openId : openidList) {
 //            String openId, String className, String classType, String teacherName, String classTime, String merchantId, String gzAppId, String gzAppKey, String xcxAppId, String templateId
             sendGzhMsgByOne(openId, className, classType, teacherName, classTime, merchantId, gzAppId, gzAppKey, xcxAppId, templateId);
