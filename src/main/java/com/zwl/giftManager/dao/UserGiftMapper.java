@@ -14,7 +14,7 @@ import java.util.Map;
 @Mapper
 public interface UserGiftMapper {
 
-    @Select("select `id`, `user_id`, `gift_id`, `gift_title`, `phone`, `province`, `city`, `area`, `address`, `express_no`, `express_company`, `merchant_id`, `order_state`, `create_time`, `modify_time`, `available` from ss_user_gift where id = #{id}")
+    @Select("select `id`, `user_id`, `gift_id`, `gift_title`, `phone`, `province`, `city`, `area`, `address`, `express_no`, `express_company`, `merchant_id`, `order_state`, `create_time`, `modify_time`, `available`, `real_name` from ss_user_gift where id = #{id}")
     UserGiftDO get(Long id);
 
     @Select("<script>" +
@@ -24,6 +24,7 @@ public interface UserGiftMapper {
             "<if test=\"userId != null and userId != ''\">" + "and user_id = #{userId} " + "</if>" +
             "<if test=\"giftTitle != null and giftTitle != ''\">" + "and gift_title = #{giftTitle} " + "</if>" +
             "<if test=\"phone != null and phone != ''\">" + "and phone = #{phone} " + "</if>" +
+            "<if test=\"realName != null and realName != ''\">" + "and real_name = #{realName} " + "</if>" +
             "<if test=\"province != null and province != ''\">" + "and province = #{province} " + "</if>" +
             "<if test=\"city != null and city != ''\">" + "and city = #{city} " + "</if>" +
             "<if test=\"area != null and area != ''\">" + "and area = #{area} " + "</if>" +
@@ -55,6 +56,7 @@ public interface UserGiftMapper {
             "<if test=\"userId != null and userId != ''\">" + "and user_id = #{userId} " + "</if>" +
             "<if test=\"giftTitle != null and giftTitle != ''\">" + "and gift_title = #{giftTitle} " + "</if>" +
             "<if test=\"phone != null and phone != ''\">" + "and phone = #{phone} " + "</if>" +
+            "<if test=\"realName != null and realName != ''\">" + "and real_name = #{realName} " + "</if>" +
             "<if test=\"province != null and province != ''\">" + "and province = #{province} " + "</if>" +
             "<if test=\"city != null and city != ''\">" + "and city = #{city} " + "</if>" +
             "<if test=\"area != null and area != ''\">" + "and area = #{area} " + "</if>" +
@@ -68,8 +70,8 @@ public interface UserGiftMapper {
             "</script>")
     int count(Map<String, Object> map);
 
-    @Insert("insert into ss_user_gift (`user_id`, `gift_title`, `phone`, `province`, `city`, `area`, `address`, `express_no`, `express_company`, `create_time`, `modify_time`, `available`)"
-            + "values (#{userId}, #{giftTitle}, #{phone}, #{province}, #{city}, #{area}, #{address}, #{expressNo}, #{expressCompany}, #{createTime}, #{modifyTime}, #{available})")
+    @Insert("insert into ss_user_gift (`user_id`, `gift_title`, `phone`, `province`, `city`, `area`, `address`, `express_no`, `express_company`, `create_time`, `modify_time`, `available`, `real_name`)"
+            + "values (#{userId}, #{giftTitle}, #{phone}, #{province}, #{city}, #{area}, #{address}, #{expressNo}, #{expressCompany}, #{createTime}, #{modifyTime}, #{available},#{realName})")
     int save(UserGiftDO userGift);
 
     @Update("<script>" +
@@ -79,6 +81,7 @@ public interface UserGiftMapper {
 //            "<if test=\"userId != null\">`user_id` = #{userId}, </if>" +
 //            "<if test=\"giftTitle != null\">`gift_title` = #{giftTitle}, </if>" +
             "<if test=\"phone != null\">`phone` = #{phone}, </if>" +
+            "<if test=\"realName != null\">`real_name` = #{realName}, </if>" +
             "<if test=\"province != null\">`province` = #{province}, </if>" +
             "<if test=\"city != null\">`city` = #{city}, </if>" +
             "<if test=\"area != null\">`area` = #{area}, </if>" +

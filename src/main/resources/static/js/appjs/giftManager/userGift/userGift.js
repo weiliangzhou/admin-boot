@@ -55,6 +55,10 @@ function load() {
                         title: '收货人手机'
                     },
                     {
+                        field: 'realName',
+                        title: '收货人姓名'
+                    },
+                    {
                         field: 'province',
                         title: '省'
                     },
