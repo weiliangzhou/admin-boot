@@ -76,7 +76,7 @@ public class GzhServiceImpl implements GzhService {
         keyword4.put("value", classTime);
         keyword4.put("color", "#173177");
         Map remark = new HashMap();
-        remark.put("value", "立即点击查看详情");
+        remark.put("value", "欢迎收听");
         remark.put("color", "#173177");
         gzhMsgTemplate.setFirst(first);
         gzhMsgTemplate.setKeyword1(keyword1);
