@@ -51,10 +51,10 @@ public class GzhServiceImpl implements GzhService {
         String accessToken = wxAccessTokenService.getAccessToken(merchantId, gzAppId, gzAppKey, 1);
         String msgurl = WxConstans.SEND_KC_MSG + accessToken;
         SimpleDateFormat sdf_yMdHms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Map miniprogramMap = new HashMap<>();
-        miniprogramMap.put("appid", xcxAppId);
-        miniprogramMap.put("pagepath", WxConstans.PAGEPATH);
-        String miniprogram = JSON.toJSONString(miniprogramMap);
+//        Map miniprogramMap = new HashMap<>();
+//        miniprogramMap.put("appid", xcxAppId);
+//        miniprogramMap.put("pagepath", WxConstans.PAGEPATH);
+//        String miniprogram = JSON.toJSONString(miniprogramMap);
 //        东遥课堂更新新课程啦！
 //        课程：总裁班
 //        参加人：王小二或者手机号码
@@ -88,7 +88,7 @@ public class GzhServiceImpl implements GzhService {
         requestMap.put("touser", openId);
         requestMap.put("appid", gzAppId);
         requestMap.put("template_id", templateId);
-        requestMap.put("miniprogram", miniprogramMap);
+//        requestMap.put("miniprogram", miniprogramMap);
         requestMap.put("data", gzhMsgTemplate);
         log.info("发送微信模板" + JSON.toJSONString(requestMap));
         Map msgMap = new HashMap();
