@@ -80,13 +80,13 @@ function validateRule() {
                 required: icon + "请输入购买最低要求"
             },
             giftMainImg: {
-                required: icon + "请输入产品主图"
+                required: icon + "请输入书籍主图"
             },
             giftShareBack:{
-                required: icon + "请输入产品背景图"
+                required: icon + "请输入书籍背景图"
             },
             price: {
-                required: icon + "请输入产品价格"
+                required: icon + "请输入书籍价格"
             },
             expressFee: {
                 required: icon + "请输入快递费"
