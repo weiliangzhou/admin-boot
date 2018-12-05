@@ -39,6 +39,10 @@ public class UserGiftDO implements Serializable {
      * 号码
      */
     private String phone;
+    /**
+     * 收货人姓名
+     */
+    private String realName;
 
     /**
      * 省
