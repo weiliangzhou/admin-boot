@@ -14,11 +14,11 @@ import java.util.Map;
 @Mapper
 public interface ProductMapper {
 
-    @Select("select `id`, `level`, `level_name`, `product_name`, `maid_percent`, `validity_time`, `price`, `merchant_id`, `image_url`, `content`, `content_text`, `buy_count`, `create_time`, `modify_time`, `available` from saas_product where id = #{id}")
+    @Select("select `id`, `level`, `level_name`, `product_name`, `maid_percent`, `validity_time`, `price`, `merchant_id`, `image_url`, `content`, `content_text`, `buy_count`, `create_time`, `modify_time`, `available` from ss_product where id = #{id}")
     ProductDO get(Long id);
 
     @Select("<script>" +
-            "select * from saas_product " +
+            "select * from ss_product " +
             "<where>" +
             "<if test=\"id != null and id != ''\">" + "and id = #{id} " + "</if>" +
             "<if test=\"level != null and level != ''\">" + "and level = #{level} " + "</if>" +
@@ -51,7 +51,7 @@ public interface ProductMapper {
     List<ProductDO> list(Map<String, Object> map);
 
     @Select("<script>" +
-            "select count(*) from saas_product " +
+            "select count(*) from ss_product " +
             "<where>" +
             "<if test=\"id != null and id != ''\">" + "and id = #{id} " + "</if>" +
             "<if test=\"level != null and level != ''\">" + "and level = #{level} " + "</if>" +
@@ -72,12 +72,12 @@ public interface ProductMapper {
             "</script>")
     int count(Map<String, Object> map);
 
-    @Insert("insert into saas_product (`level`, `level_name`, `product_name`, `maid_percent`, `validity_time`, `price`, `merchant_id`, `image_url`, `content`, `content_text`, `buy_count`, `create_time`, `modify_time`, `available`)"
+    @Insert("insert into ss_product (`level`, `level_name`, `product_name`, `maid_percent`, `validity_time`, `price`, `merchant_id`, `image_url`, `content`, `content_text`, `buy_count`, `create_time`, `modify_time`, `available`)"
             + "values (#{level}, #{levelName}, #{productName}, #{maidPercent}, #{validityTime}, #{price}, #{merchantId}, #{imageUrl}, #{content}, #{contentText}, #{buyCount}, #{createTime}, #{modifyTime}, #{available})")
     int save(ProductDO product);
 
     @Update("<script>" +
-            "update saas_product " +
+            "update ss_product " +
             "<set>" +
             "<if test=\"levelName != null\">`level_name` = #{levelName}, </if>" +
             "<if test=\"productName != null\">`product_name` = #{productName}, </if>" +
@@ -94,17 +94,17 @@ public interface ProductMapper {
             "</script>")
     int update(ProductDO product);
 
-    @Delete("delete from saas_product where id =#{id}")
+    @Delete("delete from ss_product where id =#{id}")
     int remove(Long id);
 
     @Delete("<script>" +
-            "delete from saas_product where id in " +
+            "delete from ss_product where id in " +
             "<foreach item=\"id\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">" +
             "#{id}" +
             "</foreach>" +
             "</script>")
     int batchRemove(Long[] ids);
 
-    @Select("select * from saas_product  where `level`=#{referrerLevel} and available =1  and merchant_id=#{merchantId}")
+    @Select("select * from ss_product  where `level`=#{referrerLevel} and available =1  and merchant_id=#{merchantId}")
     ProductDO getProductByLevel(@Param("referrerLevel") Integer referrerLevel, @Param("merchantId") String merchantId);
 }
