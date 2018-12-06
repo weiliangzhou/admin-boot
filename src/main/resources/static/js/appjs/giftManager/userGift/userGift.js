@@ -99,6 +99,9 @@ function load() {
                             else if (row.expressCompany == 4) {
                                 return "申通";
                             }
+                            else if (row.expressCompany == 5) {
+                                return "顺丰";
+                            }
 
                         }
 
