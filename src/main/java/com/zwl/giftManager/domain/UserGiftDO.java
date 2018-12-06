@@ -86,5 +86,7 @@ public class UserGiftDO implements Serializable {
     private Date modifyTime;
 
     private Integer available;
+    //注册手机号
+    private String registerMobile;
 
 }

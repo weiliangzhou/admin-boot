@@ -22,9 +22,9 @@ public interface UserGiftMapper {
             "<where>" +
             "<if test=\"id != null and id != ''\">" + "and id = #{id} " + "</if>" +
             "<if test=\"userId != null and userId != ''\">" + "and user_id = #{userId} " + "</if>" +
-            "<if test=\"giftTitle != null and giftTitle != ''\">" + "and gift_title = #{giftTitle} " + "</if>" +
-            "<if test=\"phone != null and phone != ''\">" + "and phone = #{phone} " + "</if>" +
-            "<if test=\"realName != null and realName != ''\">" + "and real_name = #{realName} " + "</if>" +
+            "<if test=\"giftTitle != null and giftTitle != ''\">" + "and gift_title like concat('%',#{giftTitle},'%') " + "</if>" +
+            "<if test=\"phone != null and phone != ''\">" + "and phone like concat('%',#{phone},'%') " + "</if>" +
+            "<if test=\"realName != null and realName != ''\">" + "and real_name like concat('%',#{realName},'%') " + "</if>" +
             "<if test=\"province != null and province != ''\">" + "and province = #{province} " + "</if>" +
             "<if test=\"city != null and city != ''\">" + "and city = #{city} " + "</if>" +
             "<if test=\"area != null and area != ''\">" + "and area = #{area} " + "</if>" +
@@ -54,9 +54,9 @@ public interface UserGiftMapper {
             "<where>" +
             "<if test=\"id != null and id != ''\">" + "and id = #{id} " + "</if>" +
             "<if test=\"userId != null and userId != ''\">" + "and user_id = #{userId} " + "</if>" +
-            "<if test=\"giftTitle != null and giftTitle != ''\">" + "and gift_title = #{giftTitle} " + "</if>" +
-            "<if test=\"phone != null and phone != ''\">" + "and phone = #{phone} " + "</if>" +
-            "<if test=\"realName != null and realName != ''\">" + "and real_name = #{realName} " + "</if>" +
+            "<if test=\"giftTitle != null and giftTitle != ''\">" + "and gift_title like concat('%',#{giftTitle},'%') " + "</if>" +
+            "<if test=\"phone != null and phone != ''\">" + "and phone like concat('%',#{phone},'%') " + "</if>" +
+            "<if test=\"realName != null and realName != ''\">" + "and real_name like concat('%',#{realName},'%') " + "</if>" +
             "<if test=\"province != null and province != ''\">" + "and province = #{province} " + "</if>" +
             "<if test=\"city != null and city != ''\">" + "and city = #{city} " + "</if>" +
             "<if test=\"area != null and area != ''\">" + "and area = #{area} " + "</if>" +

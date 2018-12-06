@@ -5,6 +5,11 @@ import com.zwl.common.utils.Query;
 import com.zwl.common.utils.R;
 import com.zwl.giftManager.domain.UserGiftDO;
 import com.zwl.giftManager.service.UserGiftService;
+import com.zwl.memberManager.domain.SsUserDO;
+import com.zwl.memberManager.service.SsUserService;
+import com.zwl.system.domain.SysUserDO;
+import com.zwl.system.service.UserService;
+import org.apache.catalina.User;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +31,8 @@ import java.util.Map;
 public class UserGiftController {
     @Autowired
     private UserGiftService userGiftService;
+    @Autowired
+    private SsUserService ssUserService;
 
     @GetMapping()
     @RequiresPermissions("userGift:userGift")
@@ -38,8 +45,17 @@ public class UserGiftController {
     @RequiresPermissions("userGift:list")
     public PageUtils list(@RequestParam Map<String, Object> params) {
         //查询列表数据
+        Object registerMobile = params.get("registerMobile");
+        if(registerMobile != null){
+            String userId = ssUserService.getUserByRegisterMobile(registerMobile.toString());
+            params.put("userId",userId);
+        }
         Query query = new Query(params);
         List<UserGiftDO> userGiftList = userGiftService.list(query);
+        for (UserGiftDO userGiftDO : userGiftList) {
+            SsUserDO ssUserDO = ssUserService.getUserByUserId(userGiftDO.getUserId());
+            userGiftDO.setRegisterMobile(ssUserDO.getRegisterMobile());
+        }
         int total = userGiftService.count(query);
         PageUtils pageUtils = new PageUtils(userGiftList, total);
         return pageUtils;
