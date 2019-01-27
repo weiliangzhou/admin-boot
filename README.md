@@ -10,8 +10,11 @@ Springboot作为容器，使用mybatis作为持久层框架
 基于注解的sql写法，零XML，极简配置，一键前后台代码生成
 
 演示地址 localhost
+
 QQ 382308664
+
 超级账号:admin 密码:1
+
 普通权限账号:wegoo 密码:1
 
 ###  **功能简介** 
